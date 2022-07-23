@@ -47,9 +47,9 @@ function check_access($roleId, $menuId) //Digunakan oleh Views('user/role_access
 
 function get_signature_login($get_array = array(), $secret_key)
 {
-    $email = $get_array['email'];      
+    $email = $get_array['email'];
 
-    $belife_signature = sha1($email.$secret_key);
+    $belife_signature = sha1($email . $secret_key);
 
     return $belife_signature;
 }
@@ -61,10 +61,9 @@ function count_item($username)
 
     $ci = get_instance();
 
-      $query = "select  * from keranjang where user_order='$username' and is_order= 0 ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select  * from keranjang where user_order='$username' and is_order= 0 ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 function count_notification($username)
@@ -72,104 +71,96 @@ function count_notification($username)
 
     $ci = get_instance();
 
-      $query = "select  * from notification where user_receive='$username' and is_view= 0 ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select  * from notification where user_receive='$username' and is_view= 0 ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 
 
 
-    function is_login()
-    {
-        $ci = get_instance();
-        $is_login = $ci->session->userdata('is_login');
+function is_login()
+{
+    $ci = get_instance();
+    $is_login = $ci->session->userdata('is_login');
 
 
-        return ($is_login === TRUE);
-    }
+    return ($is_login === TRUE);
+}
 
 
 
 function count_orderprocess()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select  * from orders where status_order='ORDER' ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select  * from orders where status_order='ORDER' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 function count_kontak()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select  * from kontak where is_reply=0 ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select  * from kontak where is_reply=0 ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 
 function count_validasiregister()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select  * from personal_customer where status_register is NULL ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select  * from personal_customer where status_register is NULL ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 
 function count_shipping()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select * FROM shipping where status_pengiriman = 'REQ' ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select * FROM shipping where status_pengiriman = 'REQ' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 function count_shipping_waiting()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select * FROM shipping where status_pengiriman = 'WAITING' ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select * FROM shipping where status_pengiriman = 'WAITING' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 function count_delivery()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select * FROM shipping where status_pengiriman = 'DELIVERY' ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select * FROM shipping where status_pengiriman = 'DELIVERY' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 
 function count_productlow()
 {
 
-     $ci = get_instance();
+    $ci = get_instance();
 
-      $query = "select * FROM product where qty <= '3' ";
-      $result =   $ci->db->query($query)->num_rows();
-      return $result;
-
+    $query = "select * FROM product where qty <= '3' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
 }
 
 
@@ -184,19 +175,15 @@ function count_productlow()
 function get_spred_harga_product($price)
 {
 
-    
+
 
     $ci = get_instance();
 
-      $query = "select (($price * value)/100) + $price  from ms_general
+    $query = "select (($price * value)/100) + $price  from ms_general
       where code='PRCHRG'";
-      $result =   $ci->db->query($query)->result_array();
+    $result =   $ci->db->query($query)->result_array();
 
 
 
-      return $result;
-
-
+    return $result;
 }
-
-

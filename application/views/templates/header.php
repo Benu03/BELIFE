@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title>
-    <link rel="Shortcut Icon" href="<?php echo base_url('assets');?>/img/belife-logo-1.png"/>
+    <link rel="Shortcut Icon" href="<?php echo base_url('assets'); ?>/img/belife-logo-1.png" />
 
-    
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -22,7 +22,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/ekko-lightbox/ekko-lightbox.css">
-  <!-- Theme style -->
+    <!-- Theme style -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/dist/css/mycss.css">
@@ -30,15 +30,15 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/homepage/css/animate.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/homepage/css/aos.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/homepage/css/icomoon.css">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/sweetalert2.min.css" >
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/sweetalert2.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>/plugins/toastr/toastr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 
     <script src="<?= base_url('assets'); ?>/plugins/chartjs/Chart.js"></script>
-    
+
 </head>
 
 

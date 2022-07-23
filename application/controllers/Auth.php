@@ -478,19 +478,21 @@ class Auth extends CI_Controller
             'protocol'         => 'smtp',
             'smtp_host'     => 'ssl://smtp.googlemail.com',
             'smtp_user'     => 'belifeindonesia@gmail.com',
-            'smtp_pass'     => 'Belife!23',
+            // 'smtp_pass'     => 'Belife!23JAP',    //password account google
+            'smtp_pass'     => 'lcljoowkougttvnk',
             'smtp_port'     => 465,
             'mailtype'         => 'html',
             'charset'         => 'utf-8',
             'smtp_timeout'     => '7',
             'newline'         => "\r\n"
+            // lcljoowkougttvnk
 
         ];
 
         $email = $this->input->post('email');
         $this->email->initialize($config);
 
-        $this->email->from('noreplay@smsfinance.co.id', 'Test');
+        $this->email->from('noreplay@belife.com', 'Test');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
