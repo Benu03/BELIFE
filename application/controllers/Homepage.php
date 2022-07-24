@@ -9,7 +9,7 @@ class Homepage extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
 
 
-        $this->load->model('users_m');
+        $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Product_m');
     }
@@ -17,15 +17,15 @@ class Homepage extends CI_Controller
     public function Index()
     {
         $data['title'] = "Homepage Belife";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('employeeid'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['kategori']       = $this->Product_m->get_all_kategori();
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
-        $data['banner1'] =  $this->users_m->Banner('IMG_banner1');
-        $data['banner2'] =  $this->users_m->Banner('IMG_banner2');
-        $data['banner3'] =  $this->users_m->Banner('IMG_banner3');
+        $data['banner1'] =  $this->Users_m->Banner('IMG_Banner1');
+        $data['banner2'] =  $this->Users_m->Banner('IMG_Banner2');
+        $data['banner3'] =  $this->Users_m->Banner('IMG_Banner3');
         $this->load->library('pagination');
         if ($this->input->post('submit')) {
             $data['cari'] =  $this->input->post('cari');
