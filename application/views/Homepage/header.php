@@ -38,11 +38,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- <link rel="stylesheet" href="<?= base_url('assets/homepage'); ?>/css/flaticon.css">
     <link rel="stylesheet" href="<?= base_url('assets/homepage'); ?>/css/icomoon.css">
   	<link rel="stylesheet" href="<?= base_url('assets/homepage'); ?>/css/style.css">
-    <link rel="stylesheet" href="<?= base_url('assets/homepage'); ?>/css/ionicons.min.css">
-	  
+    <link rel="stylesheet" href="<?= base_url('assets/homepage'); ?>/css/ionicons.min.css"> -->
 
-    <script src="<?= base_url('assets/homepage'); ?>/js/jquery.min.js"></script>
-  	<script src="<?= base_url('assets/homepage'); ?>/js/jquery-migrate-3.0.1.min.js"></script> -->
+
+  <script src="<?= base_url('assets/homepage'); ?>/js/jquery.min.js"></script>
+  <script src="<?= base_url('assets/homepage'); ?>/js/jquery-migrate-3.0.1.min.js"></script>
 
 </head>
 

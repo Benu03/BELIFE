@@ -94,8 +94,6 @@ class Homepage extends CI_Controller
 
     public function KontakSend()
     {
-
-
         $data = [
 
             'nama'  => $this->input->post('nama'),
@@ -108,18 +106,10 @@ class Homepage extends CI_Controller
 
         ];
 
-
-
         $this->db->insert('kontak', $data);
 
+        $this->session->set_flashdata('flash', 'DiKirim');
 
-        //     $this->session->set_flashdata('message', '
-        //     <div class="alert alert-success alert-dismissible">
-        //         <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
-        //         <h5><i class="icon fas fa-check"></i>Success!</h5>
-        //         Pesan Sudah Terkirim.
-        //     </div>
-        // ');
-        redirect('Homepage');
+        redirect('Homepage/Contact');
     }
 }

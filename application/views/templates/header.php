@@ -31,8 +31,8 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/homepage/css/aos.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/homepage/css/icomoon.css">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/sweetalert2.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/toastr/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">

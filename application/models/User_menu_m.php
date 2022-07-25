@@ -30,7 +30,7 @@ class User_menu_m extends CI_Model
 
     function get_menu_by_role($id_role)
     {
-        $query = $this->db->query("SELECT user_menu.id, user_menu.title, user_menu.url, user_menu.icon FROM user_menu JOIN user_access_menu ON user_menu.id = user_access_menu.menu_id WHERE user_access_menu.role_id = '{$id_role}' ORDER BY user_menu.title ASC ");
+        $query = $this->db->query("SELECT user_menu.id, user_menu.title, user_menu.url, user_menu.icon FROM user_menu JOIN user_access_menu ON user_menu.id = user_access_menu.menu_id WHERE user_access_menu.role_id = '{$id_role}' ORDER BY user_menu.queue ASC ");
         return $query->result_array();
     }
 

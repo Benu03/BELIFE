@@ -27,7 +27,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
+
           <img src="<?= base_url('assets'); ?>/auth_assets/images/undraw_deliveries_-131-a.svg" alt="Image" class="img-fluid" />
+
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
@@ -39,6 +41,7 @@
                 </a>
               </div>
               <?= $this->session->flashdata('message'); ?>
+
               <form action="<?= base_url('Auth/login'); ?>" method="post">
                 <div class="form-group first">
                   <label for="username">Username or Email</label>
@@ -66,7 +69,7 @@
 
                 <span class="d-block text-left my-4 text-muted"><a href="javascript:void(0)" onclick="location.href='<?= base_url('Auth/Registration'); ?>'" class="signup-pass">Sign Up</a></span>
 
-                <span class="d-block text-left my-4 text-center text-white">Copyright &copy;<?= date('Y'); ?> PT Betterlife Jaya Indonesia</span>
+                <span class="d-block text-left my-4 text-center text-white">Copyright &copy;<?= date('Y'); ?> PT Betterlife Jaya Indonesia <i class="fas fa-copyright font-italic ml-2"> JAP</i></span>
               </form>
             </div>
           </div>
