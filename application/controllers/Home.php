@@ -9,7 +9,7 @@ class Home extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         is_logged_in();
 
-        $this->load->model('users_m');
+        $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Product_m');
     }
@@ -21,14 +21,14 @@ class Home extends CI_Controller
     }
 
     public function MyProfile()
-    
+
     {
         $data['title']          = "My Profile";
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
-    
+
         $username  = $data['usrProfile']['username'];
         $data['datacart']    = $this->Product_m->get_data_keranjang($username)->num_rows();
 
@@ -60,7 +60,7 @@ class Home extends CI_Controller
                 redirect('Home/MyProfile');
             } else {
                 $this->load->library('upload');
-                // mkdir("./assets/img/img-profile/" . $id);
+                mkdir("./assets/img/img-profile/" . $id);
                 $default_name                = $id . ".jpg";
                 $config_img['upload_path']   = './assets/img/img-profile/' . $id . '/';
                 $config_img['allowed_types'] = 'jpg|jpeg|png';
@@ -74,10 +74,12 @@ class Home extends CI_Controller
                     }
                 }
 
+
                 $dataUpdate = array(
                     'img_user'   => $default_name,
                     'updated_at' => date('Y-m-d H:i:s')
                 );
+
 
                 $logData = [
                     'username' => $this->session->userdata('username'),
@@ -89,7 +91,7 @@ class Home extends CI_Controller
                 ];
                 $this->db->insert('log_activity', $logData);
 
-                $this->users_m->edit($id, $dataUpdate);
+                $this->Users_m->edit($id, $dataUpdate);
                 $this->session->set_flashdata('pass_message', '
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -129,7 +131,7 @@ class Home extends CI_Controller
             ];
             $this->db->insert('log_activity', $logData);
 
-            $this->users_m->edit($id, $data);
+            $this->Users_m->edit($id, $data);
             $this->session->set_flashdata('pass_message', '
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -152,7 +154,7 @@ class Home extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->MyProfile();
         } else {
-            $checkUsrPass     = $this->users_m->get_password($id);
+            $checkUsrPass     = $this->Users_m->get_password($id);
             $current_password = $this->input->post('current_password');
             $new_password     = $this->input->post('new_password1');
 
@@ -186,7 +188,7 @@ class Home extends CI_Controller
                     ];
                     $this->db->insert('log_activity', $logData);
 
-                    $this->users_m->edit_password($id, $password_hash);
+                    $this->Users_m->edit_password($id, $password_hash);
                     $this->session->set_flashdata('pass_message', '
                         <div class="alert alert-success alert-dismissible">
                             <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -204,14 +206,14 @@ class Home extends CI_Controller
     {
 
         $data['title']          = "Personal Information";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
 
         $username = $data['usrProfile']['username'];
-        $data['personaluser'] = $this->users_m->personal_customer_check($username)->result_array();
+        $data['personaluser'] = $this->Users_m->personal_customer_check($username)->result_array();
 
-    
+
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('phone', 'phone', 'required');
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
@@ -220,10 +222,8 @@ class Home extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-        $this->load->view('Home/Personal_informasi', $data);
-
-        }
-        else{
+            $this->load->view('Home/Personal_informasi', $data);
+        } else {
 
             if (empty($_FILES['image_selfie']['name'])) {
                 $this->session->set_flashdata('message', '
@@ -247,7 +247,7 @@ class Home extends CI_Controller
                 } else {
                     $this->load->library('upload');
                     mkdir("./assets/img/img-profile/" . $username);
-                    $default_name                = 'SELFIE_'.$username . ".jpg";
+                    $default_name                = 'SELFIE_' . $username . ".jpg";
                     $config_img['upload_path']   = './assets/img/img-profile/' . $username . '/';
                     $config_img['allowed_types'] = 'jpg|jpeg|png';
                     $config_img['file_name']     = $default_name;
@@ -259,32 +259,32 @@ class Home extends CI_Controller
                             $this->upload->data();
                         }
                     }
-     
-
-          
-
-            $datapersonal = array(
-                'username'     => $username,
-                'email'     => $this->input->post('email'),
-                'name_full'     => $this->input->post('name'),
-                'phone'   => $this->input->post('phone'),
-                'address'       => $this->input->post('alamat'),
-                'selfie_image' => $default_name,
-                'id_org'       => $this->input->post('id_org'),
-                'id_loc' => $this->input->post('id_loc'),
-                'datetime_post' => date('Y-m-d H:i:s')
-            );
-
-        
-
-            $this->db->insert('personal_customer', $datapersonal);
-            
-         
 
 
 
 
-            $this->session->set_flashdata('message', '
+                    $datapersonal = array(
+                        'username'     => $username,
+                        'email'     => $this->input->post('email'),
+                        'name_full'     => $this->input->post('name'),
+                        'phone'   => $this->input->post('phone'),
+                        'address'       => $this->input->post('alamat'),
+                        'selfie_image' => $default_name,
+                        'id_org'       => $this->input->post('id_org'),
+                        'id_loc' => $this->input->post('id_loc'),
+                        'datetime_post' => date('Y-m-d H:i:s')
+                    );
+
+
+
+                    $this->db->insert('personal_customer', $datapersonal);
+
+
+
+
+
+
+                    $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
@@ -295,20 +295,9 @@ class Home extends CI_Controller
 
 
 
-            redirect('Feature/Keranjang');
+                    redirect('Feature/Keranjang');
+                }
             }
-         }
         }
-
-
     }
-
-
-
-
-
-
-
-    
-    
 }

@@ -462,7 +462,7 @@ class Auth extends CI_Controller
         $data['title'] = "Access Forbidden";
         $data['user'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
 
-        $this->load->view('Auth/Blocked_v', $data);
+        $this->load->view('auth/Blocked_v', $data);
     }
 
 
