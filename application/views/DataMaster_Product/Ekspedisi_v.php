@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -86,8 +86,7 @@
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster_Product/DeleteEkspedisi/' . Encrypt_url($org['id'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
-                                                </div
-                                            </td>
+                                                </div </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -140,5 +139,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -32,4 +32,4 @@
     </section>
 </div>
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

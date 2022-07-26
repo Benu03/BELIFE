@@ -56,7 +56,7 @@ function get_signature_login($get_array = array(), $secret_key)
 
 
 
-function count_item($username)
+function Count_item($username)
 {
 
     $ci = get_instance();
@@ -66,7 +66,7 @@ function count_item($username)
     return $result;
 }
 
-function count_notification($username)
+function Count_notification($username)
 {
 
     $ci = get_instance();

@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -33,40 +33,40 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-                <div class="card-body table-responsive pad">
-                            <table id="tbuseractivity" class="table table-bordered table-striped">
-                                <thead class="text-center">
-                                    <tr>
-                                      
-                                        <th>Username</th>
-                                        <th>Activites</th>
-                                     
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($dtActivity as $dt) : ?>
-                                        <tr>
-                                           
-                                            <td width="100px"><?= $dt['username']; ?></td>
-                                            <td><?= $dt['activities']; ?></td>
-                                          
-                                           
+                    <div class="card-body table-responsive pad">
+                        <table id="tbuseractivity" class="table table-bordered table-striped">
+                            <thead class="text-center">
+                                <tr>
 
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <a href="javascript:void(0)" onclick="location.href='<?= base_url('User/UserActivity'); ?>'" class="btn btn-sm btn-default">Cancel</a>
-                        </div>
+                                    <th>Username</th>
+                                    <th>Activites</th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($dtActivity as $dt) : ?>
+                                    <tr>
+
+                                        <td width="100px"><?= $dt['username']; ?></td>
+                                        <td><?= $dt['activities']; ?></td>
+
+
+
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <a href="javascript:void(0)" onclick="location.href='<?= base_url('User/UserActivity'); ?>'" class="btn btn-sm btn-default">Cancel</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

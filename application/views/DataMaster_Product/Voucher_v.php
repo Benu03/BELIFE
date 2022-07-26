@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-12">
                     <?= $this->session->flashdata('message'); ?>
-                  
+
                     <?= form_error('value_voucher', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
                     <div class="card card-primary card-outline">
                         <div class="card-header">
@@ -56,7 +56,7 @@
                             <table id="tbvoucher" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
-                                       
+
                                         <th>Kode Voucher</th>
                                         <th>Nominal</th>
                                         <th>Deskripsi</th>
@@ -64,12 +64,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                     <?php foreach ($voucher as $v) : ?>
                                         <tr>
-                                         
+
                                             <td width="250px" class="text-center"><b><?= $v['kode_voucher']; ?></b></td>
-                                            <td width="200px" class="text-center">Rp. <?= number_format($v['value_voucher'],0 ,',','.'); ?></td>
+                                            <td width="200px" class="text-center">Rp. <?= number_format($v['value_voucher'], 0, ',', '.'); ?></td>
                                             <td><?= $v['description']; ?></td>
                                             <td width="80px" class="text-center">
                                                 <div class="btn-group-vertical">
@@ -78,14 +78,13 @@
                                                             <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                        
+
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster_Product/DeleteVoucher/' . Encrypt_url($v['kode_voucher'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
-                                                </div
-                                            </td>
+                                                </div </td>
                                         </tr>
-                                    <?php endforeach; ?> 
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -96,7 +95,7 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
- 
+
 <!-- MODAL ADD DATA -->
 <div class="modal fade" id="modal-add-data">
     <div class="modal-dialog">
@@ -109,7 +108,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                 
+
 
 
                     <div class="form-group">
@@ -121,7 +120,7 @@
 
                     <div class="form-group">
                         <label for="description">Deskripsi Voucher</label>
-                        <textarea class="form-control" style="resize:none;" id="description"  name="description"  rows="3"></textarea>
+                        <textarea class="form-control" style="resize:none;" id="description" name="description" rows="3"></textarea>
                     </div>
 
 
@@ -139,5 +138,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

@@ -1,11 +1,11 @@
-<!-- Notes: includes file views templates/header.php -->
-<?php $this->load->view('templates/header'); ?>
+<!-- Notes: includes file views Templates/header.php -->
+<?php $this->load->view('Templates/header'); ?>
 
-<!-- Notes: includes file views templates/navbar.php -->
-<?php $this->load->view('templates/navbar'); ?>
+<!-- Notes: includes file views Templates/navbar.php -->
+<?php $this->load->view('Templates/navbar'); ?>
 
-<!-- Notes: includes file views templates/sidebar.php -->
-<?php $this->load->view('templates/sidebar'); ?>
+<!-- Notes: includes file views Templates/sidebar.php -->
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -152,5 +152,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

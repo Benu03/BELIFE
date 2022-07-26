@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -90,8 +90,7 @@
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster_Product/DeleteSupplier/' . Encrypt_url($org['id'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
-                                                </div
-                                            </td>
+                                                </div </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -120,14 +119,14 @@
                     <div class="form-group row">
                         <label for="supplier_name" class="col-sm-3 col-form-label">Supplier Name</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="supplier_name" name="supplier_name" placeholder="Enter Supplier Name" required>
+                            <input type="text" class="form-control form-control-sm" id="supplier_name" name="supplier_name" placeholder="Enter Supplier Name" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                         <div class="col-sm-9">
-                        <textarea class=" col-sm-12 form-control " style="overflow:auto;resize:none" id="alamat"  name="alamat" normalizer_normalize="alamat" rows="3"   value="<?= set_value('alamat'); ?>"></textarea>
+                            <textarea class=" col-sm-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>"></textarea>
                         </div>
                     </div>
 
@@ -135,7 +134,7 @@
                     <div class="form-group row">
                         <label for="nama_kontak_supplier" class="col-sm-3 col-form-label">Nama Kontak</label>
                         <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-sm" id="nama_kontak_supplier" name="nama_kontak_supplier" placeholder="Enter Nama Kontak" required>
+                            <input type="text" class="form-control form-control-sm" id="nama_kontak_supplier" name="nama_kontak_supplier" placeholder="Enter Nama Kontak" required>
                         </div>
                     </div>
 
@@ -143,15 +142,15 @@
                     <div class="form-group row">
                         <label for="kontak_supplier" class="col-sm-3 col-form-label">Kontak</label>
                         <div class="col-sm-4">
-                        <input type="text" class="form-control form-control-sm" id="kontak_supplier" name="kontak_supplier" placeholder="Enter Kontak Supplier"  onkeypress="return hanyaAngka(event)" required>
+                            <input type="text" class="form-control form-control-sm" id="kontak_supplier" name="kontak_supplier" placeholder="Enter Kontak Supplier" onkeypress="return hanyaAngka(event)" required>
                         </div>
-                    </div>                  
+                    </div>
 
 
                     <div class="form-group row">
                         <label for="bank_supplier" class="col-sm-3 col-form-label">Bank Supplier</label>
                         <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-sm" id="bank_supplier" name="bank_supplier" placeholder="Enter Bank" required>
+                            <input type="text" class="form-control form-control-sm" id="bank_supplier" name="bank_supplier" placeholder="Enter Bank" required>
                         </div>
                     </div>
 
@@ -159,24 +158,24 @@
                     <div class="form-group row">
                         <label for="norek_supplier" class="col-sm-3 col-form-label">No Rekening Supplier</label>
                         <div class="col-sm-4">
-                        <input type="text" class="form-control form-control-sm" id="norek_supplier" name="norek_supplier" placeholder="Enter No Rekening"  onkeypress="return hanyaAngka(event)" required>
+                            <input type="text" class="form-control form-control-sm" id="norek_supplier" name="norek_supplier" placeholder="Enter No Rekening" onkeypress="return hanyaAngka(event)" required>
                         </div>
                     </div>
 
 
 
                     <div class="form-group row">
-                    <label for="is_active1" class="col-sm-3 col-form-label">Is Active ?</label>
+                        <label for="is_active1" class="col-sm-3 col-form-label">Is Active ?</label>
 
-                    <div class="col-sm-4">
-                        <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" id="is_active1" name="is_active" value="1">
-                            <label for="is_active1" class="custom-control-label">Yes</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input class="custom-control-input" type="radio" id="is_active2" name="is_active" value="0">
-                            <label for="is_active2" class="custom-control-label">No</label>
-                        </div>
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="is_active1" name="is_active" value="1">
+                                <label for="is_active1" class="custom-control-label">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="is_active2" name="is_active" value="0">
+                                <label for="is_active2" class="custom-control-label">No</label>
+                            </div>
 
                         </div>
 
@@ -199,5 +198,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -31,9 +31,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                   
 
-                <?= $this->session->flashdata('message'); ?>
+
+                    <?= $this->session->flashdata('message'); ?>
                     <?= form_error('kategori_product', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
                     <?= form_error('is_active', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
                     <div class="card card-primary card-outline">
@@ -86,7 +86,7 @@
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('Product/UpdateKategoriproduct/' . Encrypt_url($org['id'])); ?>'">Update</a></li>
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('Product/DeleteKategoriproduct/' . Encrypt_url($org['id'])); ?>')">Delete</a></li>
 
-                                                           
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -97,7 +97,6 @@
                             </table>
                         </div>
                     </div>
-                   
 
 
 
@@ -107,7 +106,8 @@
 
 
 
-                
+
+
                 </div>
             </div>
         </div>
@@ -166,4 +166,4 @@
 
 
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

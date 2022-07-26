@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -123,5 +123,5 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

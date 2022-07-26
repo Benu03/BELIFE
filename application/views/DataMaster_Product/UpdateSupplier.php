@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -48,43 +48,43 @@
 
 
                                 <div class="form-group row">
-                                <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                                <div class="col-sm-9">
-                                <textarea class=" col-sm-12 form-control " style="overflow:auto;resize:none" id="alamat"  name="alamat" normalizer_normalize="alamat" rows="3"   value="<?= set_value('alamat'); ?>"><?= $dtSupplier['alamat']; ?></textarea>
+                                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                    <div class="col-sm-9">
+                                        <textarea class=" col-sm-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>"><?= $dtSupplier['alamat']; ?></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                                            <div class="form-group row">
-                                        <label for="nama_kontak_supplier" class="col-sm-3 col-form-label">Nama Kontak</label>
-                                        <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-sm" id="nama_kontak_supplier" name="nama_kontak_supplier" placeholder="Enter Nama Kontak"  value="<?= $dtSupplier['nama_kontak_supplier']; ?>" required>
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="nama_kontak_supplier" class="col-sm-3 col-form-label">Nama Kontak</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-sm" id="nama_kontak_supplier" name="nama_kontak_supplier" placeholder="Enter Nama Kontak" value="<?= $dtSupplier['nama_kontak_supplier']; ?>" required>
                                     </div>
+                                </div>
 
 
-                                    <div class="form-group row">
-                                        <label for="kontak_supplier" class="col-sm-3 col-form-label">Kontak</label>
-                                        <div class="col-sm-4">
-                                        <input type="text" class="form-control form-control-sm" id="kontak_supplier" name="kontak_supplier" placeholder="Enter Kontak Supplier"  value="<?= $dtSupplier['kontak_supplier']; ?>"  onkeypress="return hanyaAngka(event)" required>
-                                        </div>
-                                    </div>                  
+                                <div class="form-group row">
+                                    <label for="kontak_supplier" class="col-sm-3 col-form-label">Kontak</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control form-control-sm" id="kontak_supplier" name="kontak_supplier" placeholder="Enter Kontak Supplier" value="<?= $dtSupplier['kontak_supplier']; ?>" onkeypress="return hanyaAngka(event)" required>
+                                    </div>
+                                </div>
 
 
-                                    <div class="form-group row">
-                                        <label for="bank_supplier" class="col-sm-3 col-form-label">Bank Supplier</label>
-                                        <div class="col-sm-9">
+                                <div class="form-group row">
+                                    <label for="bank_supplier" class="col-sm-3 col-form-label">Bank Supplier</label>
+                                    <div class="col-sm-9">
                                         <input type="text" class="form-control form-control-sm" id="bank_supplier" value="<?= $dtSupplier['bank_supplier']; ?>" name="bank_supplier" placeholder="Enter Bank" required>
-                                        </div>
                                     </div>
+                                </div>
 
 
-                                    <div class="form-group row">
-                                        <label for="norek_supplier" class="col-sm-3 col-form-label">No Rekening Supplier</label>
-                                        <div class="col-sm-4">
-                                        <input type="text" class="form-control form-control-sm" id="norek_supplier" name="norek_supplier" placeholder="Enter No Rekening"  value="<?= $dtSupplier['norek_supplier']; ?>" onkeypress="return hanyaAngka(event)" required>
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="norek_supplier" class="col-sm-3 col-form-label">No Rekening Supplier</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control form-control-sm" id="norek_supplier" name="norek_supplier" placeholder="Enter No Rekening" value="<?= $dtSupplier['norek_supplier']; ?>" onkeypress="return hanyaAngka(event)" required>
                                     </div>
+                                </div>
 
 
                                 <div class="form-group row">
@@ -122,4 +122,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

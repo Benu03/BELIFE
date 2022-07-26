@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -60,7 +60,7 @@
                                         <th>Tenor</th>
                                         <th>Deskripsi</th>
                                         <th>Rate (%)</th>
-                                      
+
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -72,7 +72,7 @@
                                             <td><?= $ten['tenor']; ?></td>
                                             <td><?= $ten['description']; ?></td>
                                             <td><?= $ten['rate']; ?> %</td>
-                                          
+
                                             <td width="80px" class="text-center">
                                                 <div class="btn-group-vertical">
                                                     <div class="btn-group">
@@ -80,8 +80,8 @@
                                                             <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster/UpdateTenor/'. Encrypt_url($ten['ID'])); ?>'">Update</a></li>
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster/DeleteTenor/'. Encrypt_url($ten['ID'])); ?>')">Delete</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster/UpdateTenor/' . Encrypt_url($ten['ID'])); ?>'">Update</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster/DeleteTenor/' . Encrypt_url($ten['ID'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -113,12 +113,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="tenor">Tenor</label>
-                        <input type="text" class="form-control form-control-sm" id="tenor" name="tenor" placeholder="Enter Tenor"  onkeypress="return hanyaAngka(event)"  required>
+                        <input type="text" class="form-control form-control-sm" id="tenor" name="tenor" placeholder="Enter Tenor" onkeypress="return hanyaAngka(event)" required>
                     </div>
 
                     <div class="form-group">
                         <label for="rate">Rate %</label>
-                        <input type="text" class="form-control form-control-sm" id="rate" name="rate" placeholder="Enter Rate"  onkeypress="return hanyaAngka(event)" required>
+                        <input type="text" class="form-control form-control-sm" id="rate" name="rate" placeholder="Enter Rate" onkeypress="return hanyaAngka(event)" required>
                     </div>
 
 
@@ -126,7 +126,7 @@
                         <label for="description">Deskripsi</label>
                         <input type="text" class="form-control form-control-sm" id="description" name="description" placeholder="Enter Deskription" required>
                     </div>
-                   
+
 
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -140,5 +140,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

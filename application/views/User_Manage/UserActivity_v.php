@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -47,20 +47,20 @@
                             <table id="tbuseractivity" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
-                                      
+
                                         <th>Username</th>
                                         <th>Name</th>
-                                     
+
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($dtActivity as $dt) : ?>
                                         <tr>
-                                           
+
                                             <td width="100px"><?= $dt['username']; ?></td>
                                             <td><?= $dt['name']; ?></td>
-                                           
+
                                             <td width="80px" class="text-center">
                                                 <div class="btn-group-vertical">
                                                     <div class="btn-group">
@@ -86,4 +86,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

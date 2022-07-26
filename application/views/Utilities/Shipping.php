@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -31,82 +31,82 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                   
-
-
-             
-                <?= $this->session->flashdata('message'); ?>
-                 
-                 <div class="card-header">
-                     <h3 class="card-title">
-                         <i class="far fa-file-alt mr-1"></i>
-                         List Data Shipping
-                     </h3>
-               
-                 </div>
-                 <div class="card-body table-responsive pad">
-                     <table id="tbshipping" class="table table-bordered table-striped">
-                         <thead class="text-center">
-                             <tr>
-                                 <th>No</th>
-                                 <th>Kode Pengiriman</th>
-                                 
-                                 <th>Tanggal Order</th>
-                               
-                                 <th>Nama Penerima</th>
-                                 <th>Kontak Penerima</th>
-                                 <th>Status</th>
-                                 <th>Action</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <?php $i = 1; ?>
-                             <?php foreach ($shipping as $s) : ?>
-                                 <tr>
-                                     <td width="30px" class="text-center"><?= $i++; ?></td>
-                                     <td width="150px"><?= $s['kode_shipping']; ?></td>
-                                         <td width="100px" class="text-center">
-                                     <?= $s['date_order']; ?>
-                                     </td>
-                                  
-                                     <td width="150px" class="text-center">
-                                     <?= $s['nama_penerima']; ?>
-                                     </td>
-                                     <td width="100px" class="text-center">
-                                     <?= $s['kontak_penerima']; ?>
-                                     </td>
-                                     <td width="100px" class="text-center">
-                                     <?= $s['status_pengiriman']; ?>
-                                     </td>
-
-
-                                     
-                                     <td width="120px" class="text-center">
-                                     <a class="btn btn-sm bg-warning"   href="javascript:void(0)" onclick="location.href='<?= base_url('Utilities/Detailshipping'); ?>/<?= $s['kode_shipping']; ?>' "><i class="fas fa-inbox"></i> Detail</a> 
-
-                                   
-                                     </td>
-                                 </tr>
-                             <?php endforeach; ?>
-                         </tbody>
-                     </table>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-<!-- /.content-wrapper -->
 
 
 
-                
+
+                    <?= $this->session->flashdata('message'); ?>
+
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="far fa-file-alt mr-1"></i>
+                            List Data Shipping
+                        </h3>
+
+                    </div>
+                    <div class="card-body table-responsive pad">
+                        <table id="tbshipping" class="table table-bordered table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Pengiriman</th>
+
+                                    <th>Tanggal Order</th>
+
+                                    <th>Nama Penerima</th>
+                                    <th>Kontak Penerima</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($shipping as $s) : ?>
+                                    <tr>
+                                        <td width="30px" class="text-center"><?= $i++; ?></td>
+                                        <td width="150px"><?= $s['kode_shipping']; ?></td>
+                                        <td width="100px" class="text-center">
+                                            <?= $s['date_order']; ?>
+                                        </td>
+
+                                        <td width="150px" class="text-center">
+                                            <?= $s['nama_penerima']; ?>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            <?= $s['kontak_penerima']; ?>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            <?= $s['status_pengiriman']; ?>
+                                        </td>
+
+
+
+                                        <td width="120px" class="text-center">
+                                            <a class="btn btn-sm bg-warning" href="javascript:void(0)" onclick="location.href='<?= base_url('Utilities/Detailshipping'); ?>/<?= $s['kode_shipping']; ?>' "><i class="fas fa-inbox"></i> Detail</a>
+
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /.content-wrapper -->
+
+<?php $this->load->view('Templates/footer'); ?>

@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -87,7 +87,7 @@
                                                             <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster_Product/UpdateGeneral/' . Encrypt_url($c['id'])); ?>'">Update</a></li> 
+                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster_Product/UpdateGeneral/' . Encrypt_url($c['id'])); ?>'">Update</a></li>
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster_Product/DeleteGeneral/' . Encrypt_url($c['id'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
@@ -122,12 +122,12 @@
                         <label for="code">Kode</label>
                         <input type="text" class="form-control form-control-sm" id="code" name="code" placeholder="Enter Kode" required>
                     </div>
-                 
+
                     <div class="form-group">
                         <label for="description">Deskipsi</label>
                         <input type="text" class="form-control form-control-sm" id="description" name="description" placeholder="Enter Deskripsi" required>
                     </div>
-                   
+
                     <div class="form-group">
                         <label for="value">Value</label>
                         <input type="text" class="form-control form-control-sm" id="value" name="value" placeholder="Enter Value">
@@ -135,11 +135,11 @@
 
                     <div class="form-group">
                         <label for="file_upload">File Upload</label>
-                        <input type="file" class="form-control-file" id="file_upload" name="file_upload" value="<?= set_value('file_upload'); ?>" ><br>
-                                        
+                        <input type="file" class="form-control-file" id="file_upload" name="file_upload" value="<?= set_value('file_upload'); ?>"><br>
+
                     </div>
 
-                      
+
 
                     <div class="form-group">
                         <label for="role">Is Active ?</label>
@@ -164,5 +164,5 @@
     <!-- /.modal-dialog -->
 </div>
 
-<!-- Notes: includes file views templates/footer.php -->
-<?php $this->load->view('templates/footer'); ?>
+<!-- Notes: includes file views Templates/footer.php -->
+<?php $this->load->view('Templates/footer'); ?>

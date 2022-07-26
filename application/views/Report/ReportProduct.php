@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -29,32 +29,32 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            
+
 
             <div class="row">
-            <div class="col-12">
+                <div class="col-12">
 
-            <div class="card card-primary card-outline">
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="far fa-file-alt mr-1"></i>
-                            
+
                             </h3>
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
-                                       
+
                                         <a href="javascript:void(0)" onclick="location.href='<?= base_url('Report/GenerateReportProduct'); ?>'" class="btn btn-sm btn-primary">
                                             <i class="far fa-file-excel"></i>
-                                             Generate Data </a>
-                                        
-                                       
+                                            Generate Data </a>
+
+
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-body table-responsive pad">
-                    
+
                             <table id="tbrptproduct" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
@@ -63,34 +63,38 @@
                                         <th>Kategori Product</th>
                                         <th>Harga Beli</th>
                                         <th>Harga Jual</th>
-                                      
+
                                         <th>Jumalh Stok</th>
                                         <!-- <th>user_create</th>
                                         <th>date_create</th>
                                         <th>user_update</th>
                                         <th>date_update</th> -->
-                                       
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  
+
                                     <?php foreach ($product as $p) : ?>
                                         <tr>
-                                           
-                                        <td class="text-left" style="vertical-align:middle"><?= $p['kode_product']; ?></td>
-                                        <td class="text-left" style="vertical-align:middle"><?= $p['nama_product']; ?></td>
-                                        <td class="text-left" style="vertical-align:middle"><?= $p['category_name']; ?></td>
-                                        <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['Harga_Beli'],0 ,',','.'); ?></td>
-                                        <td class="text-left" style="vertical-align:middle">Rp. <?= number_format(                           
-                                    (($p['Harga_Beli']*$spread['value'])/100) + $p['Harga_Beli'],0 ,',','.'); ?></td>
-                                        <td class="text-left" style="vertical-align:middle"><?= $p['jumlah_stok']; ?></td>
-                                        <!-- <td class="text-left" style="vertical-align:middle"><?= $p['user_create']; ?></td>
+
+                                            <td class="text-left" style="vertical-align:middle"><?= $p['kode_product']; ?></td>
+                                            <td class="text-left" style="vertical-align:middle"><?= $p['nama_product']; ?></td>
+                                            <td class="text-left" style="vertical-align:middle"><?= $p['category_name']; ?></td>
+                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['Harga_Beli'], 0, ',', '.'); ?></td>
+                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format(
+                                                                                                        (($p['Harga_Beli'] * $spread['value']) / 100) + $p['Harga_Beli'],
+                                                                                                        0,
+                                                                                                        ',',
+                                                                                                        '.'
+                                                                                                    ); ?></td>
+                                            <td class="text-left" style="vertical-align:middle"><?= $p['jumlah_stok']; ?></td>
+                                            <!-- <td class="text-left" style="vertical-align:middle"><?= $p['user_create']; ?></td>
                                         <td class="text-left" style="vertical-align:middle"><?= $p['date_create']; ?></td>
                                         <td class="text-left" style="vertical-align:middle"><?= $p['user_update']; ?></td>
                                         <td class="text-left" style="vertical-align:middle"><?= $p['date_update']; ?></td> -->
 
 
-                                          
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -99,16 +103,16 @@
 
 
 
-                    </div>
+                        </div>
                     </div>
 
 
+                </div>
             </div>
-          </div>
 
         </div>
     </div>
 </div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

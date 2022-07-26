@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -47,7 +47,7 @@
                             <table id="tbuseractivity" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
-                                      
+
                                         <th>Username</th>
                                         <th>activities</th>
                                         <th>object</th>
@@ -55,22 +55,22 @@
                                         <th>ipdevice</th>
                                         <th>at_time</th>
 
-                                     
-                                     
+
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($dtActivity as $dt) : ?>
                                         <tr>
-                                           
+
                                             <td width="100px"><?= $dt['username']; ?></td>
                                             <td><?= $dt['activities']; ?></td>
                                             <td><?= $dt['object']; ?></td>
                                             <td><?= $dt['url']; ?></td>
                                             <td><?= $dt['ipdevice']; ?></td>
                                             <td><?= $dt['at_time']; ?></td>
-                                           
-                                         
+
+
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -84,4 +84,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

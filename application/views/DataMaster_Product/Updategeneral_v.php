@@ -1,6 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
-<?php $this->load->view('templates/navbar'); ?>
-<?php $this->load->view('templates/sidebar'); ?>
+<?php $this->load->view('Templates/header'); ?>
+<?php $this->load->view('Templates/navbar'); ?>
+<?php $this->load->view('Templates/sidebar'); ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -32,10 +32,10 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-            <?= $this->session->flashdata('message'); ?>
-                    <?= form_error('is_active', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
-                    <?= form_error('code', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
-                    <?= form_error('description', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
+                <?= $this->session->flashdata('message'); ?>
+                <?= form_error('is_active', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
+                <?= form_error('code', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
+                <?= form_error('description', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
                 <div class="col-6">
                     <div class="card card-success card-outline">
                         <div class="card-header">
@@ -63,11 +63,11 @@
                                 </div>
 
                                 <div class="form-group row">
-                                <label  class="col-sm-3 col-form-label"  for="file_upload">File Upload</label>
-                                <div class="col-sm-9">
-                                <input type="file" class="form-control-file" id="file_upload" name="file_upload"  ><br>
-                             
-                                </div>          
+                                    <label class="col-sm-3 col-form-label" for="file_upload">File Upload</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control-file" id="file_upload" name="file_upload"><br>
+
+                                    </div>
                                 </div>
 
 
@@ -106,4 +106,4 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php $this->load->view('templates/footer'); ?>
+<?php $this->load->view('Templates/footer'); ?>

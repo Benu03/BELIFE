@@ -661,9 +661,9 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Change Password';
-            $this->load->view('templates/auth_header', $data);
+            $this->load->view('Templates/auth_header', $data);
             $this->load->view('auth/changepassword');
-            $this->load->view('templates/auth_footer');
+            $this->load->view('Templates/auth_footer');
         } else {
 
             $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
