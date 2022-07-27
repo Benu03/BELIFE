@@ -9,10 +9,10 @@ class Utilities extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         is_logged_in();
 
-        $this->load->model('transaction_m');
-        $this->load->model('users_m');
+        $this->load->model('Transaction_m');
+        $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
-        $this->load->model('utilities_m');
+        $this->load->model('Utilities_m');
     }
 
     public function index()
@@ -23,25 +23,25 @@ class Utilities extends CI_Controller
     public function Shipping()
     {
         $data['title']      = "Shipping Proses";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
-        $data['shipping']  =$this->utilities_m->get_all_shipping();
+        $data['shipping']  = $this->Utilities_m->get_all_shipping();
 
-         $this->load->view('Utilities/Shipping', $data);
+        $this->load->view('Utilities/Shipping', $data);
     }
-    
 
-    
+
+
     public function WaitingPODO()
     {
         $data['title']      = "Waiting Purchase Order & Delivery Order Proses";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
-        $data['waiting']  =$this->utilities_m->get_all_waiting();
+        $data['waiting']  = $this->Utilities_m->get_all_waiting();
 
-         $this->load->view('Utilities/Waiting', $data);
+        $this->load->view('Utilities/Waiting', $data);
     }
 
 
@@ -50,38 +50,36 @@ class Utilities extends CI_Controller
     public function Detailshipping($id)
     {
         $data['title']      = "Detail Pengiriman";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
-        $data['detailshipping']  =$this->utilities_m->get_all_shipping_detail($id);
-     
-
-        $data['detailshipping_item']  =$this->utilities_m->get_all_shipping__item_detail($id);
-        $data['totalharga']    = $this->utilities_m->get_data_totalharga($id)->row_array();
-
-    
-
-         $this->load->view('Utilities/Detail_Shipping', $data);
+        $data['detailshipping']  = $this->Utilities_m->get_all_shipping_detail($id);
 
 
+        $data['detailshipping_item']  = $this->Utilities_m->get_all_shipping__item_detail($id);
+        $data['totalharga']    = $this->Utilities_m->get_data_totalharga($id)->row_array();
+
+
+
+        $this->load->view('Utilities/Detail_Shipping', $data);
     }
 
     public function ShippingDelivery($id)
     {
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
 
-    
-        $this->utilities_m->update_shipping_delivery($id,$username);
 
-    
+        $this->Utilities_m->update_shipping_delivery($id, $username);
 
-        $user_order = $this->utilities_m->chekcuserorder($id);
+
+
+        $user_order = $this->Utilities_m->chekcuserorder($id);
 
         $Datanotification = [
             "user_receive"  => $user_order['user_order'],
-            'massage'     =>  'Pesanan Anda Sedang Proses Delivery  dengan Kode Shipping '. $id ,
+            'massage'     =>  'Pesanan Anda Sedang Proses Delivery  dengan Kode Shipping ' . $id,
             'is_view' => 0,
             'date_notif'  => date('Y-m-d H:i:s')
 
@@ -89,59 +87,52 @@ class Utilities extends CI_Controller
 
         $this->db->insert('notification', $Datanotification);
 
-                        
-            $logData = [
-                'username' => $this->session->userdata('username'),
-                'activities' => 'Delivery Process',
-                'object'     => $id,
-                'url'        => base_url('Utilities/ShippingDelivery'),
-                'ipdevice'   => Get_ipdevice(),
-                'at_time'    => date('Y-m-d H:i:s')
-            ];
-            $this->db->insert('log_activity', $logData);
 
-            $this->session->set_flashdata('message', '
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Delivery Process',
+            'object'     => $id,
+            'url'        => base_url('Utilities/ShippingDelivery'),
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+        $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Success!</h5>
             Pesanan Sudah Masuk Proses Delivery.
             </div> ');
-            redirect('Utilities/Shipping');
-
-
-
+        redirect('Utilities/Shipping');
     }
 
 
     public function Delivery()
     {
         $data['title']      = "Delivery Proses";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
-        $data['delivery']  =$this->utilities_m->get_all_delivery();
+        $data['delivery']  = $this->Utilities_m->get_all_delivery();
 
-         $this->load->view('Utilities/Delivery', $data);
-
-            
-
-
+        $this->load->view('Utilities/Delivery', $data);
     }
 
 
     public function GeneratePDFShipping($kode_shipping)
     {
         $data['title']    = "Report Pengiriman";
-     
-        $data['detailshipping']  =$this->utilities_m->get_all_shipping_detail($kode_shipping);
-        $data['detailshipping_item']  =$this->utilities_m->get_all_shipping__item_detail($kode_shipping);
-        $data['totalharga']    = $this->utilities_m->get_data_totalharga($kode_shipping)->row_array();
-       
-       
+
+        $data['detailshipping']  = $this->Utilities_m->get_all_shipping_detail($kode_shipping);
+        $data['detailshipping_item']  = $this->Utilities_m->get_all_shipping__item_detail($kode_shipping);
+        $data['totalharga']    = $this->Utilities_m->get_data_totalharga($kode_shipping)->row_array();
 
 
-      
-  
+
+
+
+
         $this->load->library('pdf');
         $this->pdf->setPaper('A4', 'landscape');
         $this->pdf->filename = "Print_" . $kode_shipping . ".pdf";
@@ -153,23 +144,23 @@ class Utilities extends CI_Controller
     public function DeliveryDone()
     {
 
-         
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username    = $data['usrProfile']['username'];
         $no_resi =  $this->input->post('no_resi');
         $kode_shipping =  $this->input->post('kode_shipping');
 
-        $user_order = $this->utilities_m->chekcuserorder($kode_shipping);
-       
+        $user_order = $this->Utilities_m->chekcuserorder($kode_shipping);
 
-        $this->utilities_m->update_shipping_delivery_done($kode_shipping,$username,$no_resi);
-                        
+
+        $this->Utilities_m->update_shipping_delivery_done($kode_shipping, $username, $no_resi);
+
 
 
         $Datanotification = [
             "user_receive"  =>  $user_order['user_order'],
-            'massage'     =>  'Pesanan Anda Sedang di kirim dengan No resi '. $no_resi ,
+            'massage'     =>  'Pesanan Anda Sedang di kirim dengan No resi ' . $no_resi,
             'is_view' => 0,
             'date_notif'  => date('Y-m-d H:i:s')
 
@@ -180,69 +171,57 @@ class Utilities extends CI_Controller
 
 
 
-            $logData = [
-                'username' => $this->session->userdata('username'),
-                'activities' => 'Delevery Process Done',
-                'object'     => $kode_shipping,
-                'url'        => base_url('Utilities/DeliveryDone'),
-                'ipdevice'   => Get_ipdevice(),
-                'at_time'    => date('Y-m-d H:i:s')
-            ];
-            $this->db->insert('log_activity', $logData);
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Delevery Process Done',
+            'object'     => $kode_shipping,
+            'url'        => base_url('Utilities/DeliveryDone'),
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
 
 
 
 
 
 
-            $this->session->set_flashdata('message', '
+        $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Success!</h5>
             Delivery Done.
             </div> ');
-            redirect('Utilities/Delivery');
-
-
-
+        redirect('Utilities/Delivery');
     }
 
 
     public function DeliveryCancel($kode_shipping)
     {
 
-         
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username    = $data['usrProfile']['username'];
 
-        $this->utilities_m->update_shipping_delivery_cancel($kode_shipping,$username);
-                        
-            $logData = [
-                'username' => $this->session->userdata('username'),
-                'activities' => 'Delevery Process Cnncel',
-                'object'     => $kode_shipping,
-                'url'        => base_url('Utilities/DeliveryCancel'),
-                'ipdevice'   => Get_ipdevice(),
-                'at_time'    => date('Y-m-d H:i:s')
-            ];
-            $this->db->insert('log_activity', $logData);
+        $this->Utilities_m->update_shipping_delivery_cancel($kode_shipping, $username);
 
-            $this->session->set_flashdata('message', '
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Delevery Process Cnncel',
+            'object'     => $kode_shipping,
+            'url'        => base_url('Utilities/DeliveryCancel'),
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+        $this->session->set_flashdata('message', '
             <div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Info !</h5>
             Delivery Cancel.
             </div> ');
-            redirect('Utilities/Delivery');
-
-
-
+        redirect('Utilities/Delivery');
     }
-
-
-    
-   
-
-    
 }

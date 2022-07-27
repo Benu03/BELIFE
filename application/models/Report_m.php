@@ -1,10 +1,10 @@
 <?php
-class report_m extends CI_Model
+class Report_m extends CI_Model
 {
-  
+
     function get_all_product()
     {
-     
+
         $query = "SELECT a.kode_product, a.nama_product, b.category_name, a.price_buy as Harga_Beli, 
                 qty as jumlah_stok, a.user_create, convert(date,a.date_create,103) as date_create, 
                 a.user_update, convert(date,a.date_update,103) as date_update 
@@ -12,11 +12,11 @@ class report_m extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-   
+
 
     function get_all_shipping()
     {
-     
+
         $query = "SELECT kode_shipping,
         nama_penerima,
         kontak_penerima,
@@ -33,7 +33,7 @@ class report_m extends CI_Model
 
     function get_all_shipping_param($startdate, $enddate)
     {
-     
+
         $query = "SELECT kode_shipping,
         nama_penerima,
         kontak_penerima,
@@ -46,12 +46,12 @@ class report_m extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    
+
 
 
     function get_all_transaction()
     {
-     
+
         $query = "SELECT a.kode_order
         ,a.total_order
         ,a.tenor
@@ -69,13 +69,13 @@ class report_m extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    
 
 
-    
+
+
     function get_all_transaction_param($startdate, $enddate)
     {
-     
+
         $query = "SELECT a.kode_order
         ,a.total_order
         ,a.tenor
@@ -92,7 +92,4 @@ class report_m extends CI_Model
     where a.status_order not in ('ORDER') and  a.date_proses >= '$startdate'  and  a.date_proses <= '$enddate' ";
         return $this->db->query($query)->result_array();
     }
-    
-
-    
 }

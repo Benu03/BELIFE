@@ -40,7 +40,7 @@ class Auth extends CI_Controller
     {
         $username = $this->input->post('username');
         $password   = $this->input->post('password');
-        $user       = $this->users_m->get_session($username);
+        $user       = $this->Users_m->get_session($username);
 
 
         // Jika data user ada
@@ -96,7 +96,7 @@ class Auth extends CI_Controller
                         </div>
                     ');
                         redirect('DashboardAdmin_belife');
-                    } elseif ($sessionData['id_role'] == '5') {
+                    } elseif ($sessionData['id_role'] == '4') {
 
 
 
@@ -108,7 +108,7 @@ class Auth extends CI_Controller
                         </div>
                     ');
                         redirect('DashboardAdmin_Product');
-                    } elseif ($sessionData['id_role'] == '6') {
+                    } elseif ($sessionData['id_role'] == '5') {
 
 
 
@@ -120,7 +120,7 @@ class Auth extends CI_Controller
                         </div>
                     ');
                         redirect('DashboardBOD');
-                    } elseif ($sessionData['id_role'] == '7') {
+                    } elseif ($sessionData['id_role'] == '6') {
 
 
 

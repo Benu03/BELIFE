@@ -2,26 +2,26 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 ini_set('memory_limit', '-1');
 
-ini_set('sqlsrv.ClientBufferMaxKBSize','524288'); // Setting to 512M
-ini_set('pdo_sqlsrv.client_buffer_max_kb_size','524288'); // Setting to 512M - for pdo_sqlsrv
+ini_set('sqlsrv.ClientBufferMaxKBSize', '524288'); // Setting to 512M
+ini_set('pdo_sqlsrv.client_buffer_max_kb_size', '524288'); // Setting to 512M - for pdo_sqlsrv
 
-class user_manage_m extends CI_Model
+class User_manage_m extends CI_Model
 {
 
 
     function get_all_detaildataregister($id)
     {
-     
+
 
         $query = "exec SP_BELIFE_DETAIL_PERSONAL_CUSTOMER   @id='$id'    ";
-        return $this->db->query($query)->row_array();  
+        return $this->db->query($query)->row_array();
     }
 
 
 
     function get_all_detailuser($id)
     {
-     
+
 
         $query = "select 
         a.id,
@@ -51,16 +51,16 @@ class user_manage_m extends CI_Model
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
          where a.id_role=2 and a.id ='$id'    ";
-        return $this->db->query($query)->row_array();  
+        return $this->db->query($query)->row_array();
     }
 
 
 
 
-    
+
     function get_all_detaildataregister_generate($id)
     {
-     
+
 
         $query = "
         select 
@@ -91,12 +91,12 @@ class user_manage_m extends CI_Model
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
          where a.id_role=2 and a.is_active=0 and a.username ='$id'   ";
-        return $this->db->query($query)->row_array();  
+        return $this->db->query($query)->row_array();
     }
 
     function get_all_detailuser_generate($id)
     {
-     
+
 
         $query = "
         select 
@@ -127,18 +127,18 @@ class user_manage_m extends CI_Model
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
          where a.id_role=2 and  a.username ='$id'   ";
-        return $this->db->query($query)->row_array();  
+        return $this->db->query($query)->row_array();
     }
 
 
 
-  
+
     function get_all_dataregister()
     {
-     
+
 
         $query = "exec SP_BELIFE_ALL_PERSONAL_CUSTOMER        ";
-        return $this->db->query($query)->result_array();  
+        return $this->db->query($query)->result_array();
     }
 
 
@@ -148,38 +148,35 @@ class user_manage_m extends CI_Model
         $limit = $data['limit'];
         $status_register = $data['status_register'];
 
-        
-        $query = "update personal_customer set limit=$limit,status_register='$status_register' where username ='$username' ";
-        return $this->db->query($query);  
 
+        $query = "update personal_customer set limit=$limit,status_register='$status_register' where username ='$username' ";
+        return $this->db->query($query);
     }
 
     function update_limitstatuspesonalcustomer2($data)
     {
         $username = $data['username'];
         $limit = $data['limit'];
-    
 
-        
+
+
         $query = "update personal_customer set limit=$limit where username ='$username' ";
-        return $this->db->query($query);  
-
+        return $this->db->query($query);
     }
-    
+
 
     function reject_limitstatuspesonalcustomer($username)
     {
-        
-       
-        $query = "update personal_customer set limit = 0,status_register='Reject' where username ='$username' ";
-        return $this->db->query($query);  
 
+
+        $query = "update personal_customer set limit = 0,status_register='Reject' where username ='$username' ";
+        return $this->db->query($query);
     }
 
 
     function get_list_user()
     {
-     
+
 
         $query = "select 
         a.id,
@@ -197,13 +194,13 @@ class user_manage_m extends CI_Model
         
         
         where a.id_role=2 and status_register='Approved'";
-        return $this->db->query($query)->result_array();  
+        return $this->db->query($query)->result_array();
     }
 
 
     function get_all_user_generate()
     {
-    
+
         $query = "select 
         a.id,
         a.username,
@@ -229,12 +226,6 @@ class user_manage_m extends CI_Model
 		 left join ms_kota_kabupaten f on b.kota_id = f.id_kota_kabupaten
         
         where a.id_role=2";
-        return $this->db->query($query)->result_array();  
-
-
+        return $this->db->query($query)->result_array();
     }
-    
-    
-
-    
 }

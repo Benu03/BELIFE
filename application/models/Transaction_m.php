@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class transaction_m extends CI_Model
+class Transaction_m extends CI_Model
 {
 
 
@@ -27,7 +27,8 @@ class transaction_m extends CI_Model
 
 
 
-    function get_all_kontaks(){
+    function get_all_kontaks()
+    {
 
         $query = "SELECT 
         *
@@ -35,75 +36,67 @@ class transaction_m extends CI_Model
         where is_reply = '0'
         ";
         return $this->db->query($query)->result_array();
-
-
-
     }
 
-    function getdataorderdetail($kode_order){
+    function getdataorderdetail($kode_order)
+    {
 
         $query = "SELECT * FROM orders where kode_order = '$kode_order' ";
         return $this->db->query($query)->row_array();
-
-
-
     }
 
 
-    function getcontrackno(){
+    function getcontrackno()
+    {
 
 
         $q = $this->db->query("select MAX(RIGHT(contract_no,4)) as contract_no  from contract
         where convert(date,date_post,103) = convert(date,getdate(),103) ");
         $kd = "";
-        if($q->num_rows()>0){
-            foreach($q->result() as $k){
-                $tmp = ((int)$k->contract_no)+1;
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int)$k->contract_no) + 1;
                 $kd = sprintf("%04s", $tmp);
             }
-        }else{
+        } else {
             $kd = "0001";
         }
         date_default_timezone_set('Asia/Jakarta');
         $date = date("ymd");
-        return $date.$kd;  
+        return $date . $kd;
+    }
 
-        }
-    
 
-    
-    function get_all_detail_kontak($id){
+
+    function get_all_detail_kontak($id)
+    {
 
         $query = "SELECT * FROM kontak 
         where is_reply = '0' and id='$id' ";
         return $this->db->query($query)->row_array();
-
-
-
     }
 
-    
-    function update_kontak_reply($id,$replykontak){
+
+    function update_kontak_reply($id, $replykontak)
+    {
 
         $query = "update kontak  set is_reply=1 , reply='$replykontak' where   id='$id' ";
         return $this->db->query($query);
-
     }
 
-    
-        
-    
-    
 
 
-    
+
+
+
+
+
     function getkodeshipping($kode_order)
     {
         $query = "SELECT 
        kode_shipping FROM orders 
         where kode_order = '$kode_order'";
         return $this->db->query($query)->row_array();
-
     }
 
     function updateshipping($kode_shipping)
@@ -112,7 +105,6 @@ class transaction_m extends CI_Model
         where kode_shipping = '$kode_shipping'
         ";
         return $this->db->query($query);
-
     }
 
     function updateshippingreject($kode_shipping)
@@ -121,12 +113,11 @@ class transaction_m extends CI_Model
         where kode_shipping = '$kode_shipping'
         ";
         return $this->db->query($query);
-
     }
-    
 
-    
-    
+
+
+
 
     function get_all_detail_orders($id)
     {
@@ -173,28 +164,23 @@ class transaction_m extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-  
 
-    
+
+
     function get_data_totalharga($id)
     {
         $query = "select 
         sum(price) as totalharga
         from order_detail
         where kode_order='$id' ";
-            
-        return $this->db->query($query);  
-    
+
+        return $this->db->query($query);
     }
 
 
-    function updateapproval($kode_order,$dataupdate)
+    function updateapproval($kode_order, $dataupdate)
     {
         $this->db->where('kode_order', $kode_order);
         return $this->db->update('orders', $dataupdate);
     }
-
-
-    
-
 }

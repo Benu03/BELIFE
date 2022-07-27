@@ -1,7 +1,7 @@
 <?php
-class utilities_m extends CI_Model
+class Utilities_m extends CI_Model
 {
- 
+
 
 
 
@@ -10,16 +10,14 @@ class utilities_m extends CI_Model
         $query = "SELECT 
         a.kode_shipping,
 		b.kode_order,
-        convert(date,b.date_order,103) as date_order,
+        date(b.date_order) as date_order,
         c.name_full,
         c.phone,
         a.nama_penerima,
 		a.kontak_penerima,
 		a.alamat_pengiriman,
-		a.status_pengiriman
-        
-        
-        FROM shipping a
+		a.status_pengiriman       
+        from shipping a
 		left join orders b on a.kode_shipping = b.kode_shipping
         left join personal_customer c on b.user_order = c.username
         where a.status_pengiriman = 'REQ'
@@ -33,7 +31,7 @@ class utilities_m extends CI_Model
         $query = "SELECT 
         a.kode_shipping,
 		b.kode_order,
-        convert(date,b.date_order,103) as date_order,
+        date(b.date_order) as date_order,
         c.name_full,
         c.phone,
         a.nama_penerima,
@@ -59,7 +57,7 @@ class utilities_m extends CI_Model
         $query = "SELECT 
         a.kode_shipping,
 		b.kode_order,
-        convert(date,b.date_order,103) as date_order,
+       date(b.date_order) as date_order,
         c.name_full,
         c.phone,
         a.nama_penerima,
@@ -102,7 +100,7 @@ class utilities_m extends CI_Model
         ";
         return $this->db->query($query)->result_array();
     }
-    
+
 
     function get_all_shipping__item_detail($id)
     {
@@ -131,34 +129,30 @@ class utilities_m extends CI_Model
         sum(price) as totalharga
         from order_detail
         where kode_order=(select kode_order from orders where kode_shipping='$id') ";
-            
-        return $this->db->query($query);  
-    
+
+        return $this->db->query($query);
     }
 
-    function update_shipping_delivery($id,$username)
+    function update_shipping_delivery($id, $username)
     {
         $query = "update shipping set status_pengiriman ='DELIVERY' ,user_pengiriman='$username' ,date_pengiriman=getdate() where kode_shipping='$id'";
-            
-        return $this->db->query($query);  
 
+        return $this->db->query($query);
     }
 
-    function update_shipping_delivery_done($kode_shipping,$username,$no_resi)
+    function update_shipping_delivery_done($kode_shipping, $username, $no_resi)
     {
         $query = "update shipping set status_pengiriman ='DONE' ,user_pengiriman='$username' ,no_resi='$no_resi',date_pengiriman=getdate() where kode_shipping='$kode_shipping'";
-            
-        return $this->db->query($query);  
 
+        return $this->db->query($query);
     }
-    
-    
-    function update_shipping_delivery_cancel($kode_shipping,$username)
+
+
+    function update_shipping_delivery_cancel($kode_shipping, $username)
     {
         $query = "update shipping set status_pengiriman ='CANCEL' ,user_pengiriman='$username' ,date_pengiriman=getdate() where kode_shipping='$kode_shipping'";
-            
-        return $this->db->query($query);  
 
+        return $this->db->query($query);
     }
 
     function chekcuserorder($kode_shipping)
@@ -166,16 +160,7 @@ class utilities_m extends CI_Model
 
         $query = "  select user_order from orders
         where kode_shipping='$kode_shipping'";
-            
-        return $this->db->query($query)->row_array();  
+
+        return $this->db->query($query)->row_array();
     }
-
-    
-    
-
-
-
-
-
-
 }

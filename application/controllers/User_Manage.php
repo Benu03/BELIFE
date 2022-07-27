@@ -16,7 +16,7 @@ class User_Manage extends CI_Controller
         $this->load->model('User_roles_m');
         $this->load->model('User_menu_m');
         $this->load->model('Users_m');
-        $this->load->model('log_activity_m');
+        $this->load->model('Log_activity_m');
         $this->load->model('User_manage_m');
     }
 
@@ -56,7 +56,7 @@ class User_Manage extends CI_Controller
     public function UserActivity()
     {
         $data['title']      = "User Activity";
-        $data['dtActivity'] = $this->log_activity_m->get_all();
+        $data['dtActivity'] = $this->Log_activity_m->get_all();
         $this->load->view('User_Manage/UserActivity_v', $data);
     }
 
@@ -67,7 +67,7 @@ class User_Manage extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']      = "User Activity";
-        $data['dtActivity'] = $this->log_activity_m->get_data($id);
+        $data['dtActivity'] = $this->Log_activity_m->get_data($id);
         $this->load->view('User_Manage/ViewUserActivity_v', $data);
     }
 
@@ -219,7 +219,7 @@ class User_Manage extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']      = "User Activity";
-        $data['dtActivity'] = $this->log_activity_m->get_data($id);
+        $data['dtActivity'] = $this->Log_activity_m->get_data($id);
         $this->load->view('User_Manage/ViewUserActivityd_v', $data);
     }
 

@@ -10,10 +10,10 @@ class User extends CI_Controller
         is_logged_in();
 
         $this->load->model('DataMaster_m');
-        $this->load->model('user_roles_m');
-        $this->load->model('user_menu_m');
-        $this->load->model('users_m');
-        $this->load->model('log_activity_m');
+        $this->load->model('User_roles_m');
+        $this->load->model('User_menu_m');
+        $this->load->model('Users_m');
+        $this->load->model('Log_activity_m');
     }
 
     public function index()
@@ -24,7 +24,7 @@ class User extends CI_Controller
     public function UserRoles()
     {
         $data['title']      = "User Roles";
-        $data['dtUsrRoles'] = $this->user_roles_m->get_all();
+        $data['dtUsrRoles'] = $this->User_roles_m->get_all();
         $this->load->view('User/UserRoles_v', $data);
     }
 
@@ -42,7 +42,9 @@ class User extends CI_Controller
                 'role'      => $this->input->post('role'),
                 'is_active' => strval($this->input->post('is_active'))
             );
-            $this->user_roles_m->insert($data);
+
+
+            $this->User_roles_m->insert($data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -68,7 +70,7 @@ class User extends CI_Controller
     public function AccessRole($id = NULL)
     {
         $data['title']  = "User Roles";
-        $data['dtRole'] = $this->user_roles_m->get_data($id);
+        $data['dtRole'] = $this->User_roles_m->get_data($id);
         $data['dtMenu'] = $this->user_menu_m->get_all_exc_usermenu();
         $this->load->view('User/AccessRole_v', $data);
     }
@@ -79,8 +81,8 @@ class User extends CI_Controller
         $role_id = $this->input->post('roleId');
 
         $data   = ['role_id' => $role_id, 'menu_id' => $menu_id];
-        $dtRole = $this->user_roles_m->get_data($data['role_id']);
-        $dtMenu = $this->user_menu_m->get_data($data['menu_id']);
+        $dtRole = $this->User_roles_m->get_data($data['role_id']);
+        $dtMenu = $this->User_menu_m->get_data($data['menu_id']);
         $result = $this->db->get_where('user_access_menu', $data);
 
         if ($result->num_rows() < 1) {
@@ -113,7 +115,7 @@ class User extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']  = "User Roles";
-        $data['dtRole'] = $this->user_roles_m->get_data($id);
+        $data['dtRole'] = $this->User_roles_m->get_data($id);
         $this->load->view('User/UpdateRole_v', $data);
     }
 
@@ -131,7 +133,7 @@ class User extends CI_Controller
                 'role'      => $this->input->post('role'),
                 'is_active' => $this->input->post('is_active')
             );
-            $this->user_roles_m->edit($id, $data);
+            $this->User_roles_m->edit($id, $data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -157,7 +159,7 @@ class User extends CI_Controller
     public function DeleteRole($id = NULL)
     {
         $id   = Decrypt_url($id);
-        $data = $this->user_roles_m->get_data($id);
+        $data = $this->User_roles_m->get_data($id);
 
         $logData = [
             'username' => $this->session->userdata('username'),
@@ -169,7 +171,7 @@ class User extends CI_Controller
         ];
         $this->db->insert('log_activity', $logData);
 
-        $this->user_roles_m->delete($id);
+        $this->User_roles_m->delete($id);
         $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -183,8 +185,8 @@ class User extends CI_Controller
     public function UserManagement()
     {
         $data['title']   = "User Management";
-        $data['dtUsers'] = $this->users_m->get_all();
-        $data['dtRoles'] = $this->user_roles_m->get_all_exc_admin();
+        $data['dtUsers'] = $this->Users_m->get_all();
+        $data['dtRoles'] = $this->User_roles_m->get_all_exc_admin();
         $data['dtLoc']   = $this->DataMaster_m->get_all_worklocation();
         $data['dtOrg']   = $this->DataMaster_m->get_all_organization();
         $this->load->view('User/UserManagement_v', $data);
@@ -215,7 +217,7 @@ class User extends CI_Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'is_active'  => strval($this->input->post('is_active'))
             );
-            $this->users_m->insert($data);
+            $this->Users_m->insert($data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -243,7 +245,7 @@ class User extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']  = "User Management";
-        $data['dtUser'] = $this->users_m->get_row_data($id);
+        $data['dtUser'] = $this->Users_m->get_row_data($id);
         $this->load->view('User/ViewUser_v', $data);
     }
 
@@ -252,8 +254,8 @@ class User extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']   = "User Management";
-        $data['dtUser']  = $this->users_m->get_row_data($id);
-        $data['dtRoles'] = $this->user_roles_m->get_all_exc_admin();
+        $data['dtUser']  = $this->Users_m->get_row_data($id);
+        $data['dtRoles'] = $this->User_roles_m->get_all_exc_admin();
         $data['dtLoc']   = $this->DataMaster_m->get_all_worklocation();
         $data['dtOrg']   = $this->DataMaster_m->get_all_organization();
         $this->load->view('User/UpdateUser_v', $data);
@@ -282,7 +284,7 @@ class User extends CI_Controller
                 'updated_at' => date('Y-m-d H:i:s'),
                 'is_active'  => $this->input->post('is_active')
             );
-            $this->users_m->edit_data($id, $data);
+            $this->Users_m->edit_data($id, $data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -308,7 +310,7 @@ class User extends CI_Controller
     public function ResetPassUser($id = NULL)
     {
         $id   = Decrypt_url($id);
-        $data = $this->users_m->get_row_data($id);
+        $data = $this->Users_m->get_row_data($id);
 
         $logData = [
             'username' => $this->session->userdata('username'),
@@ -324,7 +326,7 @@ class User extends CI_Controller
             'password'   => password_hash('SMSF2021', PASSWORD_DEFAULT),
             'updated_at' => date('Y-m-d H:i:s')
         );
-        $this->users_m->edit_data($id, $dtPass);
+        $this->Users_m->edit_data($id, $dtPass);
 
         $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
@@ -339,7 +341,7 @@ class User extends CI_Controller
     public function UserActivity()
     {
         $data['title']      = "User Activity";
-        $data['dtActivity'] = $this->log_activity_m->get_all();
+        $data['dtActivity'] = $this->Log_activity_m->get_all();
         $this->load->view('User/UserActivity_v', $data);
     }
 
@@ -348,7 +350,7 @@ class User extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']      = "User Activity";
-        $data['dtActivity'] = $this->log_activity_m->get_data($id);
+        $data['dtActivity'] = $this->Log_activity_m->get_data($id);
         $this->load->view('User/ViewUserActivity_v', $data);
     }
 }

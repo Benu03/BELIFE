@@ -9,8 +9,8 @@ class Navigation extends CI_Controller
         date_default_timezone_set('Asia/Jakarta');
         is_logged_in();
 
-        $this->load->model('user_menu_m');
-        $this->load->model('user_sub_menu_m');
+        $this->load->model('User_menu_m');
+        $this->load->model('User_sub_menu_m');
     }
 
     public function index()
@@ -21,7 +21,7 @@ class Navigation extends CI_Controller
     public function Menu()
     {
         $data['title']  = "Menu";
-        $data['dtMenu'] = $this->user_menu_m->get_all();
+        $data['dtMenu'] = $this->User_menu_m->get_all();
         $this->load->view('Navigation/Menu_v', $data);
     }
 
@@ -40,7 +40,7 @@ class Navigation extends CI_Controller
                 'icon'  => $this->input->post('icon'),
                 'name'  => $this->input->post('name')
             );
-            $this->user_menu_m->insert($data);
+            $this->User_menu_m->insert($data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -68,7 +68,7 @@ class Navigation extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']  = "Menu";
-        $data['dtMenu'] = $this->user_menu_m->get_data($id);
+        $data['dtMenu'] = $this->User_menu_m->get_data($id);
         $this->load->view('Navigation/UpdateMenu_v', $data);
     }
 
@@ -89,7 +89,7 @@ class Navigation extends CI_Controller
                 'icon'  => $this->input->post('icon'),
                 'name'  => $this->input->post('name')
             );
-            $this->user_menu_m->edit($id, $data);
+            $this->User_menu_m->edit($id, $data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -115,7 +115,7 @@ class Navigation extends CI_Controller
     public function DeleteMenu($id = NULL)
     {
         $id   = Decrypt_url($id);
-        $data = $this->user_menu_m->get_data($id);
+        $data = $this->User_menu_m->get_data($id);
 
         $logData = [
             'username' => $this->session->userdata('username'),
@@ -127,7 +127,7 @@ class Navigation extends CI_Controller
         ];
         $this->db->insert('log_activity', $logData);
 
-        $this->user_menu_m->delete($id);
+        $this->User_menu_m->delete($id);
         $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -141,8 +141,8 @@ class Navigation extends CI_Controller
     public function SubMenu()
     {
         $data['title']     = "Sub Menu";
-        $data['dtMenu']    = $this->user_menu_m->get_all();
-        $data['dtSubMenu'] = $this->user_sub_menu_m->get_all();
+        $data['dtMenu']    = $this->User_menu_m->get_all();
+        $data['dtSubMenu'] = $this->User_sub_menu_m->get_all();
         $this->load->view('Navigation/SubMenu_v', $data);
     }
 
@@ -162,7 +162,7 @@ class Navigation extends CI_Controller
                 'icon'       => $this->input->post('icon'),
                 'is_active' => $this->input->post('is_active')
             );
-            $this->user_sub_menu_m->insert($data);
+            $this->User_sub_menu_m->insert($data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -190,8 +190,8 @@ class Navigation extends CI_Controller
         $id = Decrypt_url($id);
 
         $data['title']     = "Sub Menu";
-        $data['dtMenu']    = $this->user_menu_m->get_all();
-        $data['dtSubMenu'] = $this->user_sub_menu_m->get_data($id);
+        $data['dtMenu']    = $this->User_menu_m->get_all();
+        $data['dtSubMenu'] = $this->User_sub_menu_m->get_data($id);
         $this->load->view('Navigation/UpdateSubMenu_v', $data);
     }
 
@@ -214,7 +214,7 @@ class Navigation extends CI_Controller
                 'icon'       => $this->input->post('icon'),
                 'is_active' => $this->input->post('is_active')
             );
-            $this->user_sub_menu_m->edit($id, $data);
+            $this->User_sub_menu_m->edit($id, $data);
 
             $logData = [
                 'username' => $this->session->userdata('username'),
@@ -240,7 +240,7 @@ class Navigation extends CI_Controller
     public function DeleteSubMenu($id = NULL)
     {
         $id   = Decrypt_url($id);
-        $data = $this->user_sub_menu_m->get_data($id);
+        $data = $this->User_sub_menu_m->get_data($id);
 
         $logData = [
             'username' => $this->session->userdata('username'),
@@ -252,7 +252,7 @@ class Navigation extends CI_Controller
         ];
         $this->db->insert('log_activity', $logData);
 
-        $this->user_sub_menu_m->delete($id);
+        $this->User_sub_menu_m->delete($id);
         $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
