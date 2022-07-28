@@ -232,7 +232,9 @@ class Auth extends CI_Controller
                 } else {
 
                     $this->load->library('upload');
-                    mkdir("./assets/img/img-profile/" . $userNameRandom2);
+
+
+                    mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
 
 
 
@@ -328,8 +330,8 @@ class Auth extends CI_Controller
 
 
 
-                    $this->users_m->insert($dataregister);
-                    $this->users_m->insert_datapersonal($datapersonal);
+                    $this->Users_m->insert($dataregister);
+                    $this->Users_m->insert_datapersonal($datapersonal);
 
 
 
