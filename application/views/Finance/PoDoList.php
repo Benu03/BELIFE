@@ -53,7 +53,7 @@
                                     <div class="card card-solid">
                                         <div class="card-body">
 
-                                            <table id="tblistpodoreq" class="table table-bordered">
+                                            <table id="tblistpodoreq" class="table table-bordered" style="font-size: 10px;">
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th>Kode PO DO</th>

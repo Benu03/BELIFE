@@ -1,68 +1,55 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ini_set('memory_limit', '-1');
 
-ini_set('sqlsrv.ClientBufferMaxKBSize','524288'); // Setting to 512M
-ini_set('pdo_sqlsrv.client_buffer_max_kb_size','524288'); // Setting to 512M - for pdo_sqlsrv
+ini_set('sqlsrv.ClientBufferMaxKBSize', '524288'); // Setting to 512M
+ini_set('pdo_sqlsrv.client_buffer_max_kb_size', '524288'); // Setting to 512M - for pdo_sqlsrv
 
 
-class Bod_m  extends CI_Model {
+class Bod_m  extends CI_Model
+{
 
 
-
-
-    
-
-
- 
     public function get_all_po_do_list_req_apv()
     {
-    
-            $query = "SELECT 
-            a.kode_po_do,
-            a.total_req,
-            a.count_detail,
-             b.Description,
-            a.user_request,
-            convert(SmallDateTime,a.date_request) as date_request
-            
-            
-            from po_do  a 
-            left join po_do_type  b on a.po_do_type =b.id
-            where a.status_po_do ='REQ APV'";
-    
-        
-            return $this->db->query($query)->result_array();  
-    
-           
+
+        $query = "SELECT 
+                a.kode_po_do,
+                a.total_req,
+                a.count_detail,
+                b.*,
+                a.user_request,
+                date(a.date_request) as date_request          
+                from po_do  a 
+                left join po_do_type b on a.po_do_type = b.id
+                where a.status_po_do ='REQ APV'";
+        return $this->db->query($query)->result_array();
     }
-    
-
-    
-public function chekcpodotype($kode_po_do)
-{
-
-    $query = "SELECT   po_do_type  from po_do     where kode_po_do='$kode_po_do'";
-    return $this->db->query($query)->row_array();  
-
-}
-
-public function get_podo_data($kode_po_do)
-{
-
-    $query = "SELECT   *  from po_do     where kode_po_do='$kode_po_do'";
-    return $this->db->query($query)->row_array();  
-
-}
-
- 
 
 
 
-    
-public function get_all_po_do_list_D1($kode_po_do)
-{
+    public function chekcpodotype($kode_po_do)
+    {
+
+        $query = "SELECT  po_do_type  from po_do     where kode_po_do='$kode_po_do'";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function get_podo_data($kode_po_do)
+    {
+
+        $query = "SELECT   *  from po_do     where kode_po_do='$kode_po_do'";
+        return $this->db->query($query)->row_array();
+    }
+
+
+
+
+
+
+    public function get_all_po_do_list_D1($kode_po_do)
+    {
 
         $query = "SELECT 
         a.kode_po_do,
@@ -82,15 +69,13 @@ public function get_all_po_do_list_D1($kode_po_do)
         
         where a.kode_po_do='$kode_po_do'";
 
-    
-        return $this->db->query($query)->result_array();  
 
-       
-}
+        return $this->db->query($query)->result_array();
+    }
 
 
-public function get_all_po_do_list_D2($kode_po_do)
-{
+    public function get_all_po_do_list_D2($kode_po_do)
+    {
 
         $query = "SELECT 
         a.kode_po_do,
@@ -110,25 +95,15 @@ public function get_all_po_do_list_D2($kode_po_do)
         
         where a.kode_po_do='$kode_po_do'";
 
-    
-        return $this->db->query($query)->result_array();  
 
-       
-}
+        return $this->db->query($query)->result_array();
+    }
 
 
 
-public function PostPoDo_Review_Upd_M($kode_po_do, $dataupdate)
-{
-    $this->db->where('kode_po_do', $kode_po_do);
-    return $this->db->update('po_do', $dataupdate);
-
-
-}
-
-
-
-
-
-
+    public function PostPoDo_Review_Upd_M($kode_po_do, $dataupdate)
+    {
+        $this->db->where('kode_po_do', $kode_po_do);
+        return $this->db->update('po_do', $dataupdate);
+    }
 }

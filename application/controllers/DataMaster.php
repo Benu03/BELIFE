@@ -135,11 +135,11 @@ class DataMaster extends CI_Controller
         $this->form_validation->set_rules('tenor', 'Tenor', 'required|trim');
         $this->form_validation->set_rules('rate', 'Rate %', 'required');
         $this->form_validation->set_rules('description', 'Deskripsi', 'required');
-    
+
 
         if ($this->form_validation->run() == false) {
 
-            
+
             $this->UpdateTenor($id);
         } else {
             $data = array(
@@ -149,9 +149,9 @@ class DataMaster extends CI_Controller
             );
 
 
-            
 
-           
+
+
             $this->DataMaster_m->edit_tenor($id, $data);
 
             $logData = [
@@ -242,7 +242,7 @@ class DataMaster extends CI_Controller
     {
         $id   = Decrypt_url($id);
         $data = $this->DataMaster_m->get_tenor_byid($id);
-     
+
         $logData = [
             'username' => $this->session->userdata('username'),
             'activities' => 'Delete data Tenor',
@@ -368,7 +368,7 @@ class DataMaster extends CI_Controller
         $data['fintech'] = $this->DataMaster_m->get_fintech_byid($id);
         $this->load->view('DataMaster/Updatefintech_v', $data);
     }
-    
+
 
     public function EditOrganization($id = NULL)
     {
@@ -668,7 +668,7 @@ class DataMaster extends CI_Controller
                 'date_update'           => date('Y-m-d H:i:s')
             );
 
-         
+
 
 
 
@@ -775,12 +775,4 @@ class DataMaster extends CI_Controller
             redirect('DataMaster/GeneralSetting');
         }
     }
-
-
-
-    
-
-
-    
-
 }

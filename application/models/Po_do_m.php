@@ -9,11 +9,10 @@ class Po_do_m extends CI_Model
     {
 
 
-        $query = "
-            SELECT 
+        $query = "SELECT 
             contract.kode_order,
             user_order,
-            convert(date,date_order,103) as date_order,
+            date(date_order) as date_order,
             contract.total_amount,
             angsuran,
             b.price_buy as total_harga_beli,
@@ -31,9 +30,7 @@ class Po_do_m extends CI_Model
 
     function list_supplier()
     {
-        $query = "
-            SELECT 
-            * from supplier where is_active =1 ";
+        $query = "SELECT * from supplier where is_active = 1 ";
         return $this->db->query($query)->result_array();
     }
 
@@ -43,8 +40,8 @@ class Po_do_m extends CI_Model
     {
 
 
-        $q = $this->db->query("select MAX(RIGHT(kode_po_do,4)) as kode_po_do  from po_do
-        where convert(date,date_request,103) = convert(date,getdate(),103) ");
+        $q = $this->db->query("SELECT MAX(RIGHT(kode_po_do,4)) as kode_po_do  from po_do
+        where date(date_request) = date(now()) ");
         $kd = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $k) {
@@ -71,7 +68,7 @@ class Po_do_m extends CI_Model
             is_request,
             is_add,
             user_post,
-            convert(date,date_post,103) as date_post
+            date(date_post)
             from po_do_detail
       
             where is_add=1 and kode_po_do='$kode_po_do' and  po_do_type=1";
@@ -82,21 +79,20 @@ class Po_do_m extends CI_Model
     {
 
         $query = " SELECT 
-            a.id,
-            a.kode_po_do,
-            a.kode_parent,
-            b.supplier_name,
-            a.price,
-            b.bank_supplier,
-            b.norek_supplier,
-            a.user_post,
-            convert(date,a.date_post,103) as date_post
-            
-             from po_do_supplier_detail a
-             left join supplier b on a.kode_parent = b.id
+                        a.id,
+                    a.kode_po_do,
+                    a.kode_parent,
+                    b.supplier_name,
+                    a.price,
+                    b.bank_supplier,
+                    b.norek_supplier,
+                    a.user_post,
+                    date(date_post)
+                    from po_do_supplier_detail a
+                    left join supplier b on a.kode_parent = b.id
           
       
-            where a.is_add=1 and a.kode_po_do='$kode_po_do' and a.po_do_type=2";
+            where a.is_add=  1 and a.kode_po_do='$kode_po_do' and a.po_do_type = 2";
         return $this->db->query($query);
     }
 
@@ -113,8 +109,7 @@ class Po_do_m extends CI_Model
     {
 
 
-        $query = "SELECT *
-        from supplier      
+        $query = "SELECT * from supplier      
         where id ='$id_supplier'";
         return $this->db->query($query)->row_array();
     }
@@ -129,7 +124,7 @@ class Po_do_m extends CI_Model
 
         $query = "SELECT sum(price) as price
             from po_do_detail      
-            where is_add=1 and kode_po_do='$kode_po_do'";
+            where is_add = 1 and kode_po_do='$kode_po_do'";
         return $this->db->query($query)->row_array();
     }
 

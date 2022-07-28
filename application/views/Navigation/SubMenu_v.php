@@ -140,7 +140,7 @@
                             <option></option>
                             <?php foreach ($dtMenu as $m) : ?>
                                 <option value="<?= $m['id']; ?>">
-                                    <?= $m['title']; ?>
+                                    <?= $m['name']; ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>

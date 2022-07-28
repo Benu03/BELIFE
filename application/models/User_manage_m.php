@@ -13,7 +13,34 @@ class User_manage_m extends CI_Model
     {
 
 
-        $query = "exec SP_BELIFE_DETAIL_PERSONAL_CUSTOMER   @id='$id'    ";
+        $query = "SELECT 
+        a.id,
+        a.username,
+        b.name_full,
+        a.email,
+        b.phone,
+        b.nik,
+        date(b.tgl_lahir) as tgl_lahir,
+        b.tempat_lahir,
+        b.jenis_kelamin,
+        c.nama_provinsi,
+        d.nama_kota_kabupaten,
+        b.address_ktp,
+        b.selfie_image,
+        b.ktp_image,
+        b.selfie_ktp_image,
+        b.limit,
+        b.id_loc,
+        e.patner_name,
+        a.is_active,
+        b.datetime_post
+        
+         from users a
+        left join personal_customer b on a.username = b.username 
+        left join ms_provinsi c on b.provinsi_id = c.id_provinsi
+        left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
+        left join patner e on b.id_org = e.id
+         where a.id_role=2 and a.is_active=0 and a.id = '$id'";
         return $this->db->query($query)->row_array();
     }
 
@@ -23,14 +50,14 @@ class User_manage_m extends CI_Model
     {
 
 
-        $query = "select 
+        $query = "SELECT 
         a.id,
         a.username,
         b.name_full,
         a.email,
         b.phone,
         b.nik,
-        convert(date,b.tgl_lahir,103) as tgl_lahir,
+        date(b.tgl_lahir) as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,
@@ -70,7 +97,7 @@ class User_manage_m extends CI_Model
         a.email,
         b.phone,
         b.nik,
-        convert(date,b.tgl_lahir,103) as tgl_lahir,
+        date(b.tgl_lahir) as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,
@@ -90,7 +117,7 @@ class User_manage_m extends CI_Model
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
-         where a.id_role=2 and a.is_active=0 and a.username ='$id'   ";
+         where a.id_role= 2 and a.is_active=0 and a.username ='$id'   ";
         return $this->db->query($query)->row_array();
     }
 
@@ -106,7 +133,7 @@ class User_manage_m extends CI_Model
         a.email,
         b.phone,
         b.nik,
-        convert(date,b.tgl_lahir,103) as tgl_lahir,
+        date(b.tgl_lahir) as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,
@@ -137,7 +164,22 @@ class User_manage_m extends CI_Model
     {
 
 
-        $query = "exec SP_BELIFE_ALL_PERSONAL_CUSTOMER        ";
+        $query = "SELECT 
+                    a.id,
+                    a.username,
+                    b.name_full,
+                    a.email,
+                    b.phone,                    
+                    e.patner_name,
+                    a.is_active                    
+                    from users a
+                    left join personal_customer b on a.username = b.username 
+                    --left join ms_provinsi c on b.provinsi_id = c.id_provinsi
+                    --left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
+                    left join patner e on b.id_org = e.id
+                    where a.id_role= 2 and a.is_active = 0
+                    and b.status_register is null
+        ";
         return $this->db->query($query)->result_array();
     }
 

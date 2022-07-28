@@ -9,6 +9,7 @@ class User_menu_m extends CI_Model
 
     function get_all()
     {
+        $this->db->where('id !=', 2);
         $query = $this->db->get($this->table_name);
         return $query->result_array();
     }

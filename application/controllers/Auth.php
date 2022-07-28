@@ -8,7 +8,7 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         date_default_timezone_set('Asia/Jakarta');
-        $this->load->model('users_m');
+        $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
     }
 
@@ -111,7 +111,6 @@ class Auth extends CI_Controller
                     } elseif ($sessionData['id_role'] == '5') {
 
 
-
                         $this->session->set_flashdata('wlcmsg', '
                         <div class="alert alert-success alert-dismissible">
                             <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -121,7 +120,6 @@ class Auth extends CI_Controller
                     ');
                         redirect('DashboardBOD');
                     } elseif ($sessionData['id_role'] == '6') {
-
 
 
                         $this->session->set_flashdata('wlcmsg', '

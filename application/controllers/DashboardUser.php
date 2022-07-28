@@ -13,7 +13,7 @@ class DashboardUser extends CI_Controller
         $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Product_m');
-        $this->load->model('master_m');
+        $this->load->model('Master_m');
         $this->load->model('Feature_m');
     }
 
@@ -94,7 +94,7 @@ class DashboardUser extends CI_Controller
 
         $data['start'] = $this->uri->segment(3);
 
-        $data['spread'] = $this->master_m->get_spred_harga_product();
+        $data['spread'] = $this->Master_m->get_spred_harga_product();
         $data['product'] = $this->Product_m->get_all_product_pag($config['per_page'], $data['start'], $data['cari']);
 
 
@@ -122,7 +122,7 @@ class DashboardUser extends CI_Controller
 
 
 
-        $spread = $this->master_m->get_spred_harga_product();
+        $spread = $this->Master_m->get_spred_harga_product();
         $hargabarang = $data['product']['price_sell'];
         // $hargajual = (($hargabarang * $spread['value']) / 100) + $hargabarang;
         $hargajual = $hargabarang;
@@ -200,7 +200,7 @@ class DashboardUser extends CI_Controller
 
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['product'] = $this->Product_m->find_product($id);
-        $spread = $this->master_m->get_spred_harga_product();
+        $spread = $this->Master_m->get_spred_harga_product();
         $hargabarang = $data['product']['price_sell'];
         $hargajual = (($hargabarang * $spread['value']) / 100) + $hargabarang;
         $hargabeli = $data['product']['price_buy'];

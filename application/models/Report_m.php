@@ -6,8 +6,8 @@ class Report_m extends CI_Model
     {
 
         $query = "SELECT a.kode_product, a.nama_product, b.category_name, a.price_buy as Harga_Beli, 
-                qty as jumlah_stok, a.user_create, convert(date,a.date_create,103) as date_create, 
-                a.user_update, convert(date,a.date_update,103) as date_update 
+                qty as jumlah_stok, a.user_create, date(a.date_create) as date_create, 
+                a.user_update, date(a.date_update) as date_update 
                 from product a left join product_category b on a.id_category_product = b.id order by a.qty desc";
         return $this->db->query($query)->result_array();
     }

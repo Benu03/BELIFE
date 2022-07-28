@@ -74,7 +74,6 @@ class Home extends CI_Controller
                     }
                 }
 
-
                 $dataUpdate = array(
                     'img_user'   => $default_name,
                     'updated_at' => date('Y-m-d H:i:s')

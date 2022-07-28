@@ -59,11 +59,11 @@
                                             <?php foreach ($dtMenu as $m) : ?>
                                                 <?php if (strtolower($m['id']) === strtolower($dtSubMenu['menu_id'])) : ?>
                                                     <option value="<?= $m['id']; ?>" selected="selected">
-                                                        <?= $m['title']; ?>
+                                                        <?= $m['name']; ?>
                                                     </option>
                                                 <?php else : ?>
                                                     <option value="<?= $m['id']; ?>">
-                                                        <?= $m['title']; ?>
+                                                        <?= $m['name']; ?>
                                                     </option>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>

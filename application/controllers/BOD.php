@@ -25,7 +25,6 @@ class BOD extends CI_Controller
 
         $data['listreqapv'] = $this->Bod_m->get_all_po_do_list_req_apv();
 
-
         $this->load->view('BOD/Approval_List', $data);
     }
 

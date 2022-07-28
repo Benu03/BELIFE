@@ -244,9 +244,6 @@ class Report extends CI_Controller
             'USER PENGIRIMAN' => 'string',
             'TANGGAL PENGIRIMAN' => 'string',
 
-
-
-
         );
 
         $writer = new XLSXWriter();

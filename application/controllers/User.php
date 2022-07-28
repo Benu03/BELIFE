@@ -30,6 +30,7 @@ class User extends CI_Controller
 
     public function AddRole()
     {
+
         $this->form_validation->set_rules('role', 'Role', 'required|trim|is_unique[user_roles.role]', [
             'is_unique' => 'Data Role has already added.'
         ]);
@@ -71,7 +72,7 @@ class User extends CI_Controller
     {
         $data['title']  = "User Roles";
         $data['dtRole'] = $this->User_roles_m->get_data($id);
-        $data['dtMenu'] = $this->user_menu_m->get_all_exc_usermenu();
+        $data['dtMenu'] = $this->User_menu_m->get_all_exc_usermenu();
         $this->load->view('User/AccessRole_v', $data);
     }
 

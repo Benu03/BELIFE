@@ -11,7 +11,7 @@ class DataMaster_m extends CI_Model
         return $query->result_array();
     }
 
-    
+
 
     function get_worklocation_byid($id)
     {
@@ -59,7 +59,7 @@ class DataMaster_m extends CI_Model
         return $query->result_array();
     }
 
-    
+
 
 
     function get_all_fintect()
@@ -111,7 +111,7 @@ class DataMaster_m extends CI_Model
     }
 
 
-    
+
     function get_Ekspedisi_byid($id)
     {
         $this->db->select('*');
@@ -146,7 +146,7 @@ class DataMaster_m extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('ms_tenor');
-        $this->db->where('ID', $id);
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -219,7 +219,7 @@ class DataMaster_m extends CI_Model
     }
 
 
-    
+
     function edit_fintech($id, $data)
     {
         $this->db->where('id', $id);
@@ -259,17 +259,15 @@ class DataMaster_m extends CI_Model
     function get_all_provinsi()
     {
         $query = "SELECT * FROM ms_provinsi ";
-    
-        
-        return $this->db->query($query)->result_array();  
-    
+
+
+        return $this->db->query($query)->result_array();
     }
 
     function get_all_kota()
     {
-        $query = "SELECT * FROM ms_kota_kabupaten " ;
-        return $this->db->query($query)->result_array();  
-    
+        $query = "SELECT * FROM ms_kota_kabupaten ";
+        return $this->db->query($query)->result_array();
     }
 
 
@@ -288,7 +286,7 @@ class DataMaster_m extends CI_Model
 
 
 
-    
+
     function get_all_general_setting()
     {
         $this->db->select('*');
@@ -331,19 +329,17 @@ class DataMaster_m extends CI_Model
 
     function get_all_voucher()
     {
-        $query = "select * from voucher where is_used=0 " ;
-        return $this->db->query($query)->result_array();  
-    
+        $query = "select * from voucher where is_used=0 ";
+        return $this->db->query($query)->result_array();
     }
 
 
 
-    
+
     function get_code_voucher()
     {
-        $query = "select * from voucher where is_used=0" ;
-        return $this->db->query($query)->result_array();  
-    
+        $query = "select * from voucher where is_used=0";
+        return $this->db->query($query)->result_array();
     }
 
     function insert_Voucher($data)
@@ -352,8 +348,8 @@ class DataMaster_m extends CI_Model
     }
 
 
-    
-    
+
+
     function get_voucher_byid($id)
     {
         $this->db->select('*');
@@ -363,17 +359,12 @@ class DataMaster_m extends CI_Model
         return $query->row_array();
     }
 
-    
 
 
-    
+
+
     function delete_voucher($id)
     {
         return $this->db->delete('voucher', array('kode_voucher' => $id));
     }
-
-    
-
-
-
 }

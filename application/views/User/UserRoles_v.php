@@ -119,11 +119,11 @@
                     <div class="form-group">
                         <label for="role">Is Active ?</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="is_active1" name="is_active" value="1">
+                            <input class="form-check-label" type="radio" id="is_active1" name="is_active" value="1">
                             <label for="is_active1">Yes</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="is_active2" name="is_active" value="0">
+                            <input class="form-check-label" type="radio" id="is_active2" name="is_active" value="0">
                             <label for="is_active2">No</label>
                         </div>
                     </div>

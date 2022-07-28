@@ -59,7 +59,7 @@
                                         <?php if ($title == $sm['title']) : ?>
                                             <a href="javascript:void(0)" onclick="location.href='<?= base_url($sm['url']); ?>'" class="nav-link active">
                                             <?php else : ?>
-                                                <a href="javascript:void(0)" onclick="location.href='<?= base_url($sm['url']); ?>'" class="nav-link">
+                                                <a href="<?= base_url($sm['url']); ?>" class="nav-link">
                                                 <?php endif; ?>
                                                 <i class="nav-icon <?= $sm['icon']; ?>"></i>
                                                 <p>

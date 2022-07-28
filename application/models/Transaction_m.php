@@ -10,7 +10,7 @@ class Transaction_m extends CI_Model
     {
         $query = "SELECT 
         a.kode_order,
-        convert(date,a.date_order,103) as date_order,
+        date(a.date_order),
         b.name_full,
         b.phone,
         a.total_order,

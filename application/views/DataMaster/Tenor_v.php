@@ -80,8 +80,8 @@
                                                             <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" role="menu">
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster/UpdateTenor/' . Encrypt_url($ten['ID'])); ?>'">Update</a></li>
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster/DeleteTenor/' . Encrypt_url($ten['ID'])); ?>')">Delete</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('DataMaster/UpdateTenor/' . Encrypt_url($ten['id'])); ?>'">Update</a></li>
+                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster/DeleteTenor/' . Encrypt_url($ten['id'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
