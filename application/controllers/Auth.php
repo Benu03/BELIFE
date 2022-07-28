@@ -413,7 +413,7 @@ class Auth extends CI_Controller
     public function Logout()
     {
 
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username = $data['usrProfile']['username'];
 
         $logData = [
