@@ -260,6 +260,7 @@ class Auth extends CI_Controller
                     $config_img['file_name']     = $default_name_selfie;
                     $config_img['overwrite']     = TRUE;
                     $config_img['max_size']      = 512; /* max 512kb */
+                    chmod($config_img['upload_path'], 0777);
                     $this->upload->initialize($config_img);
                     if (($_FILES['selfie_image']['name'])) {
                         if ($this->upload->do_upload('selfie_image')) {

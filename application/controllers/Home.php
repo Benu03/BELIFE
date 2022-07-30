@@ -60,19 +60,25 @@ class Home extends CI_Controller
                 redirect('Home/MyProfile');
             } else {
                 $this->load->library('upload');
-                mkdir("./assets/img/img-profile/" . $id);
+                mkdir("./assets/img/img-profile/" . $id, 0777, true);
                 $default_name                = $id . ".jpg";
-                $config_img['upload_path']   = './assets/img/img-profile/' . $id . '/';
+                $config_img['upload_path']   = './assets/img/img-profile/' . $id;
                 $config_img['allowed_types'] = 'jpg|jpeg|png';
                 $config_img['file_name']     = $default_name;
                 $config_img['overwrite']     = TRUE;
                 $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
                 $this->upload->initialize($config_img);
+
+
                 if (($_FILES['img_user']['name'])) {
                     if ($this->upload->do_upload('img_user')) {
                         $this->upload->data();
                     }
                 }
+
+
 
                 $dataUpdate = array(
                     'img_user'   => $default_name,
