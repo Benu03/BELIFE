@@ -506,7 +506,7 @@ class Auth extends CI_Controller
                 Best Regards<br>
                 Betterlife Jaya indonesia<br>
                 <br>
-                <img src=" ' . base_url('assets/img/belife-logo-2.png') . '"   width="190" height="40"  class="img-fluid" >
+                <img src=" ' . base_url('assets/img/belife-logo-email.png') . '"   width="190" height="40"  class="img-fluid" >
                 <hr><b> 
                 PT Betterlife Jaya indonesia<br>
                 Jl. Ciputat Raya No.28D, RT.3/RW.10, Kby. Lama Sel., Kec. Kby. Lama, Kota Jakarta Selatan<br>
@@ -535,7 +535,7 @@ class Auth extends CI_Controller
                 Best Regards<br>
                 Betterlife Jaya indonesia<br>
                 <br>
-                <img src=" ' . base_url('assets/img/belife-logo-2.png') . '"   width="190" height="40"  class="img-fluid" >
+                <img src=" ' . base_url('assets/img/belife-logo-email.png') . '"   width="190" height="40"  class="img-fluid" >
                 <hr><b>
                 PT Betterlife Jaya indonesia<br>
                 Jl. Ciputat Raya No.28D, RT.3/RW.10, Kby. Lama Sel., Kec. Kby. Lama, Kota Jakarta Selatan<br>
