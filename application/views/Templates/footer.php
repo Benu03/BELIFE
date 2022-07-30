@@ -23,11 +23,11 @@
 <!-- Main Footer -->
 <footer class="main-footer">
     <!-- To the right -->
-    <div class="float-right d-none d-sm-block">
+    <!-- <div class="float-right d-none d-sm-block">
         Developer Team
-    </div>
+    </div> -->
     <!-- Default to the left -->
-    <strong>Copyright &copy;<?= date('Y'); ?> <a href="javascript:void(0)"> PT Betterlife Jaya Indonesia</a>. <i class="fas fa-copyright font-italic ml-2"> JAP</i></strong>
+    <strong><a href="javascript:void(0)"> PT Betterlife Jaya Indonesia </a>. <i class="fas fa-copyright font-italic ml-2"> <?= date('Y'); ?> JAP</i></strong>
 </footer>
 </div>
 <!-- ./wrapper -->

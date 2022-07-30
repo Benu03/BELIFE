@@ -655,15 +655,14 @@ class Auth extends CI_Controller
             redirect('auth');
         }
 
-
         $this->form_validation->set_rules('password1', 'Passsword', 'required|trim|min_length[6]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Repeat Passsword', 'required|trim|min_length[6]|matches[password1]');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Change Password';
-            $this->load->view('Templates/auth_header', $data);
-            $this->load->view('auth/changepassword');
-            $this->load->view('Templates/auth_footer');
+            // $this->load->view('Templates/auth_header', $data);
+            $this->load->view('auth/changepassword', $data);
+            // $this->load->view('Templates/auth_footer');
         } else {
 
             $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);

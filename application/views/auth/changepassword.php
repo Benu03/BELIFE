@@ -34,8 +34,8 @@
             <div class="col-md-8">
               <div class="mb-4">
                 <img src="<?= base_url('assets'); ?>/auth_assets/images/belife-logo-full.png" alt="Image" class="img-fluid" />
-                <p class="d-block text-left my-4 text-center">Change Your Password for!!!</p>
-                <p class="d-block text-left my-4 text-center"><?= $this->session->userdata('reset_email');  ?></p>
+                <p class="d-block text-left my-2 text-center text-white">Change Your Password for!!!</p>
+                <p class="d-block text-left my-2 text-center text-white"><?= $this->session->userdata('reset_email');  ?></p>
 
               </div>
               <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -69,7 +69,8 @@
 
                 <span class="d-block text-left my-4 text-muted"><a href="javascript:void(0)" onclick="location.href='<?= base_url('Auth/Registration'); ?>'" class="signup-pass">Sign Up</a></span>
 
-                <span class="d-block text-left my-4 text-center text-white">Copyright &copy;<?= date('Y'); ?> PT Betterlife Jaya Indonesia <i class="fas fa-copyright font-italic ml-2"> JAP</i></span>
+                <span class="d-block text-left my-1 text-center text-white">PT Betterlife Jaya Indonesia </span>
+                <span class="d-block text-left my-1 text-center text-white">Copyright &copy;<?= date('Y'); ?> JAP</span>
               </form>
             </div>
           </div>

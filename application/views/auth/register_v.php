@@ -52,7 +52,8 @@
                     <img src="<?= base_url('assets'); ?>/auth_assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Image" class="img-fluid" />
                     <p>Belife Apps Change Your Life Become Better</p>
                     <br>
-                    <span class="d-block text-left my-4 text-center">Copyright &copy;<?= date('Y'); ?> PT Betterlife Jaya Indonesia <i class="fas fa-copyright font-italic ml-2"> JAP</i></span>
+                    <span class="d-block text-left my-1 text-center text-white">PT Betterlife Jaya Indonesia </span>
+                    <span class="d-block text-left my-1 text-center text-white">Copyright &copy;<?= date('Y'); ?> JAP</span>
                 </div>
                 <div class="col-md-9 register-right">
 
