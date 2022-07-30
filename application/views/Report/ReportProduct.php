@@ -80,13 +80,8 @@
                                             <td class="text-left" style="vertical-align:middle"><?= $p['kode_product']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['nama_product']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['category_name']; ?></td>
-                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['Harga_Beli'], 0, ',', '.'); ?></td>
-                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format(
-                                                                                                        (($p['Harga_Beli'] * $spread['value']) / 100) + $p['Harga_Beli'],
-                                                                                                        0,
-                                                                                                        ',',
-                                                                                                        '.'
-                                                                                                    ); ?></td>
+                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['harga_beli'], 0, ',', '.'); ?></td>
+                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format((($p['harga_beli'] * $spread['value']) / 100) + $p['harga_beli'], 0, ',', '.'); ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['jumlah_stok']; ?></td>
                                             <!-- <td class="text-left" style="vertical-align:middle"><?= $p['user_create']; ?></td>
                                         <td class="text-left" style="vertical-align:middle"><?= $p['date_create']; ?></td>

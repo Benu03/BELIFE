@@ -247,13 +247,13 @@ class DataMaster_m extends CI_Model
 
     function delete_tenor($id)
     {
-        return $this->db->delete('ms_tenor', array('ID' => $id));
+        return $this->db->delete('ms_tenor', array('id' => $id));
     }
     /* DATA ORGANIZATION */
 
     function delete_Ekspedisi($id)
     {
-        return $this->db->delete('ekspedisi', array('ID' => $id));
+        return $this->db->delete('ekspedisi', array('id' => $id));
     }
 
     function get_all_provinsi()

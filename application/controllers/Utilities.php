@@ -129,10 +129,6 @@ class Utilities extends CI_Controller
         $data['totalharga']    = $this->Utilities_m->get_data_totalharga($kode_shipping)->row_array();
 
 
-
-
-
-
         $this->load->library('pdf');
         $this->pdf->setPaper('A4', 'landscape');
         $this->pdf->filename = "Print_" . $kode_shipping . ".pdf";

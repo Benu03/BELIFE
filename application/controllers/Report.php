@@ -21,6 +21,8 @@ class Report extends CI_Controller
     {
         $data['title']      = "Report Data Product";
         $data['product'] = $this->Report_m->get_all_product();
+
+
         $data['spread'] = $this->Master_m->get_spred_harga_product();
         $this->load->view('Report/ReportProduct', $data);
     }

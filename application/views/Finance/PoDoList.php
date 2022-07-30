@@ -120,14 +120,14 @@
 
 
 
-                                            <table id="tblistpodoapv" class="table table-bordered" style="font-size: 10px;">
+                                            <table id="tblistpodoapv" class="table table-bordered" style="font-size: 11px;">
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th>Kode PO DO</th>
                                                         <th>Nominal (Rp)</th>
                                                         <th>Count</th>
                                                         <th>Tipe Request</th>
-                                                        <th>User Request</th>
+                                                        <!-- <th>User Request</th> -->
                                                         <th>Date Request</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -147,9 +147,9 @@
                                                             <td class="text-center" style="vertical-align:middle">
                                                                 <?= $lr['Description']; ?>
                                                             </td>
-                                                            <td class="text-center" style="vertical-align:middle">
+                                                            <!-- <td class="text-center" style="vertical-align:middle">
                                                                 <?= $lr['user_request']; ?>
-                                                            </td>
+                                                            </td> -->
                                                             <td class="text-center" style="vertical-align:middle">
                                                                 <?= $lr['date_request']; ?>
                                                             </td>
@@ -157,11 +157,11 @@
 
 
 
-                                                                <a href="<?= base_url('Finance/PrintPodoList/' . Encrypt_url($lr['kode_po_do'])); ?>" class="btn  btn-sm btn-info float-center" target="_blank">
+                                                                <a href="<?= base_url('Finance/PrintPodoList/' . Encrypt_url($lr['kode_po_do'])); ?>" class="btn  btn-sm btn-info" target="_blank">
                                                                     <i class="fas fa-print"></i> Print</a>
 
 
-                                                                <a href="javascript:void(0)" onclick="location.href='<?= base_url('Finance/PrintPodoListDone/' . Encrypt_url($lr['kode_po_do'])); ?>'" class="btn  btn-sm btn-success float-center">
+                                                                <a href="javascript:void(0)" onclick="location.href='<?= base_url('Finance/PrintPodoListDone/' . Encrypt_url($lr['kode_po_do'])); ?>'" class="btn  btn-sm btn-success">
                                                                     <i class="fas fa-clipboard-check"></i> Done</a>
 
 

@@ -51,7 +51,7 @@ class Bod_m  extends CI_Model
     public function get_all_po_do_list_D1($kode_po_do)
     {
 
-        $query = "SELECT 
+        $query = "SELECT distinct
         a.kode_po_do,
         b.kode_order,
         a.price as amount_req,
@@ -61,7 +61,7 @@ class Bod_m  extends CI_Model
         c.fintech_name,
         b.user_order,
        
-        convert(SmallDateTime, b.date_order) as date_order
+        date(b.date_order) as date_order
         
         from po_do_detail a
         left join contract b on a.kode_parent = b.kode_order
@@ -86,7 +86,7 @@ class Bod_m  extends CI_Model
         b.bank_supplier,
         b.norek_supplier,
         a.user_post,
-        convert(SmallDateTime, a.date_post) as date_post
+        date(a.date_post) as date_post
         
     
         

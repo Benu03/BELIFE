@@ -203,8 +203,8 @@ class Feature extends CI_Controller
         $totalharga = $this->input->post('totalharga');
         $rate = $this->Master_m->ratetenor($tenor);
 
-        $data = ((($totalharga * $rate['rate']) / 100) + $totalharga) / $tenor;
 
+        $data = ((($totalharga * $rate['rate']) / 100) + $totalharga) / $tenor;
 
         echo json_encode($data);
     }

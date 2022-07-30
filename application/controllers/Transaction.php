@@ -120,22 +120,22 @@ class Transaction extends CI_Controller
 
             $duedateadjustment =  date('Y-m-25');
 
-            $datainstallment = array();
-            $tenor = $dataorderdetail['tenor'];
+            // $datainstallment = array();
+            // $tenor = $dataorderdetail['tenor'];
 
-            for ($i = 1; $i <= $tenor; $i++) {
-                $datainstallment[] = array(
-                    'contract_no'           => $contractno,
-                    'installment_no'        => $i,  // Ambil dan set data nama sesuai index array dari $index
-                    'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  // Ambil dan set data telepon sesuai index array dari $index
-                    'amount'                => $dataorderdetail['angsuran'],  // Ambil dan set data alamat sesuai index array dari $index
+            // for ($i = 1; $i <= $tenor; $i++) {
+            //     $datainstallment[] = array(
+            //         'contract_no'           => $contractno,
+            //         'installment_no'        => $i,  // Ambil dan set data nama sesuai index array dari $index
+            //         'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  // Ambil dan set data telepon sesuai index array dari $index
+            //         'amount'                => $dataorderdetail['angsuran'],  // Ambil dan set data alamat sesuai index array dari $index
 
-                );
-            }
+            //     );
+            // }
 
 
 
-            $this->db->insert_batch('installment_customer', $datainstallment);
+            // $this->db->insert_batch('installment_customer', $datainstallment);
 
 
 

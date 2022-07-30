@@ -29,7 +29,7 @@ class User_manage_m extends CI_Model
         b.selfie_image,
         b.ktp_image,
         b.selfie_ktp_image,
-        b.limit,
+        b.limit_user,
         b.id_loc,
         e.patner_name,
         a.is_active,
@@ -66,7 +66,7 @@ class User_manage_m extends CI_Model
         b.selfie_image,
         b.ktp_image,
         b.selfie_ktp_image,
-        b.limit,
+        b.limit_user,
         b.id_loc,
         e.patner_name,
         a.is_active,
@@ -106,7 +106,7 @@ class User_manage_m extends CI_Model
         b.selfie_image,
         b.ktp_image,
         b.selfie_ktp_image,
-        b.limit,
+        b.limit_user,
         b.id_loc,
         e.patner_name,
         a.is_active,
@@ -142,7 +142,7 @@ class User_manage_m extends CI_Model
         b.selfie_image,
         b.ktp_image,
         b.selfie_ktp_image,
-        b.limit,
+        b.limit_user,
         b.id_loc,
         e.patner_name,
         a.is_active,
@@ -191,7 +191,7 @@ class User_manage_m extends CI_Model
         $status_register = $data['status_register'];
 
 
-        $query = "update personal_customer set limit=$limit,status_register='$status_register' where username ='$username' ";
+        $query = "update personal_customer set limit_user = $limit, status_register='$status_register' where username ='$username' ";
         return $this->db->query($query);
     }
 
@@ -200,9 +200,7 @@ class User_manage_m extends CI_Model
         $username = $data['username'];
         $limit = $data['limit'];
 
-
-
-        $query = "update personal_customer set limit=$limit where username ='$username' ";
+        $query = "update personal_customer set limit_user=$limit where username ='$username' ";
         return $this->db->query($query);
     }
 
@@ -211,7 +209,7 @@ class User_manage_m extends CI_Model
     {
 
 
-        $query = "update personal_customer set limit = 0,status_register='Reject' where username ='$username' ";
+        $query = "update personal_customer set limit_user = 0,status_register='Reject' where username ='$username' ";
         return $this->db->query($query);
     }
 
@@ -256,9 +254,8 @@ class User_manage_m extends CI_Model
 		e.nama_provinsi ,
 		f.nama_kota_kabupaten,
 		b.address_ktp,
-		b.limit,
-        d.patner_name
-        
+		b.limit_user,
+        d.patner_name        
         
         
          from users a

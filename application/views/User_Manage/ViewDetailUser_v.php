@@ -130,7 +130,7 @@
                         <div class="row">
                             <label for="staticEmail" class="col-sm-4 col-form-label">Limit</label>
                             <div class="col-sm-8">
-                                <label for="staticEmail" class="col-form-label">Rp. <?= number_format($detailUser['limit'], 0, ',', '.'); ?></label>
+                                <label for="staticEmail" class="col-form-label">Rp. <?= number_format($detailUser['limit_user'], 0, ',', '.'); ?></label>
                             </div>
                         </div>
 

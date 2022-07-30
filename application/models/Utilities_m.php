@@ -84,7 +84,7 @@ class Utilities_m extends CI_Model
         $query = "SELECT 
         a.kode_shipping,
 		b.kode_order,
-        convert(date,b.date_order,103) as date_order,
+       date(b.date_order) as date_order,
         c.name_full,
         c.phone,
         a.nama_penerima,
@@ -104,15 +104,13 @@ class Utilities_m extends CI_Model
 
     function get_all_shipping__item_detail($id)
     {
-        $query = "
-		SELECT 
-
+        $query = "SELECT
         a.id,
         a.kode_product,
         b.nama_product,
         a.qty,
         a.price,
-        convert(date,a.date_order,103) as date_order
+        date(a.date_order) as date_order
         FROM order_detail a
         left join product b on a.kode_product = b.kode_product
         where a.kode_order = (select kode_order from orders where kode_shipping='$id')
@@ -135,14 +133,14 @@ class Utilities_m extends CI_Model
 
     function update_shipping_delivery($id, $username)
     {
-        $query = "update shipping set status_pengiriman ='DELIVERY' ,user_pengiriman='$username' ,date_pengiriman=getdate() where kode_shipping='$id'";
+        $query = "update shipping set status_pengiriman ='DELIVERY' , user_pengiriman='$username' ,date_pengiriman= now() where kode_shipping='$id'";
 
         return $this->db->query($query);
     }
 
     function update_shipping_delivery_done($kode_shipping, $username, $no_resi)
     {
-        $query = "update shipping set status_pengiriman ='DONE' ,user_pengiriman='$username' ,no_resi='$no_resi',date_pengiriman=getdate() where kode_shipping='$kode_shipping'";
+        $query = "update shipping set status_pengiriman ='DONE' ,user_pengiriman='$username' ,no_resi='$no_resi',date_pengiriman=now() where kode_shipping='$kode_shipping'";
 
         return $this->db->query($query);
     }
@@ -150,7 +148,7 @@ class Utilities_m extends CI_Model
 
     function update_shipping_delivery_cancel($kode_shipping, $username)
     {
-        $query = "update shipping set status_pengiriman ='CANCEL' ,user_pengiriman='$username' ,date_pengiriman=getdate() where kode_shipping='$kode_shipping'";
+        $query = "update shipping set status_pengiriman ='CANCEL' ,user_pengiriman='$username' ,date_pengiriman=now() where kode_shipping='$kode_shipping'";
 
         return $this->db->query($query);
     }

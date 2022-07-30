@@ -129,7 +129,7 @@
                                                 <div class="card-body">
 
                                                     <div class="table-responsive">
-                                                        <table id="tblpodoreview_d2" class="table table-bordered" style="font-size: 10px;">
+                                                        <table id="tblpodoreview_d2" class="table table-bordered" style="font-size: 10px;" data-searching="false" data-paging="false" data-info="false">
                                                             <thead class="text-center">
                                                                 <tr>
                                                                     <th>Kode PODO</th>

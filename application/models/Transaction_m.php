@@ -10,7 +10,7 @@ class Transaction_m extends CI_Model
     {
         $query = "SELECT 
         a.kode_order,
-        date(a.date_order),
+        date(a.date_order) as date_order, 
         b.name_full,
         b.phone,
         a.total_order,
@@ -51,7 +51,7 @@ class Transaction_m extends CI_Model
 
 
         $q = $this->db->query("select MAX(RIGHT(contract_no,4)) as contract_no  from contract
-        where convert(date,date_post,103) = convert(date,getdate(),103) ");
+        where date(date_post) = date(now()) ");
         $kd = "";
         if ($q->num_rows() > 0) {
             foreach ($q->result() as $k) {

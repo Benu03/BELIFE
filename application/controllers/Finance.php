@@ -32,6 +32,7 @@ class Finance extends CI_Controller
 
 
         $data['listreq'] = $this->Finance_m->get_all_po_do_list_req();
+
         $data['listapv'] = $this->Finance_m->get_all_po_do_list_apv();
 
 
@@ -67,6 +68,9 @@ class Finance extends CI_Controller
         $data['title']          = "Purchase Order & Delivery Review";
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['DetailData']     = $this->Finance_m->get_all_po_do_list_D1($kode_po_do);
+
+
+
         $data['pododata']     = $this->Finance_m->get_podo_data($kode_po_do);
 
 
@@ -371,7 +375,6 @@ class Finance extends CI_Controller
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Success!</h5>
                 Data Success Di Reset! </div> ');
-
         redirect('Finance/Billing');
     }
 
@@ -386,8 +389,10 @@ class Finance extends CI_Controller
 
         $this->Finance_m->get_all_po_do_list_DONE($kode_po_do);
 
+        $this->Finance_m->get_all_po_do_list_f_done($kode_po_do);
+
         $this->session->set_flashdata('message', '
-    <div class="alert alert-success alert-dismissible">
+        <div class="alert alert-success alert-dismissible">
          <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
          <h5><i class="icon fas fa-check"></i>Success!</h5>
          PO DO Done Process! </div> ');

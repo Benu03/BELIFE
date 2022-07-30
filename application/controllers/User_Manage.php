@@ -237,7 +237,7 @@ class User_Manage extends CI_Controller
         );
 
 
-        $this->users_m->update_actived_user($data['username']);
+        $this->Users_m->update_actived_user($data['username']);
         $this->User_manage_m->update_limitstatuspesonalcustomer($data);
 
 

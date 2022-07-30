@@ -9,21 +9,21 @@ class Po_do_m extends CI_Model
     {
 
 
-        $query = "SELECT 
-            contract.kode_order,
-            user_order,
-            date(date_order) as date_order,
-            contract.total_amount,
-            angsuran,
-            b.price_buy as total_harga_beli,
-            c.fintech_name
-            FROM contract
-            left join (select kode_order,sum(price_buy) as price_buy  from order_detail
-            group by kode_order) b on contract.kode_order = b.kode_order
-            left join fintech c on contract.id_fintech = c.id
-            WHERE 
-            kode_shipping IN (SELECT kode_shipping  from shipping where status_pengiriman='WAITING')
-			and contract.kode_order not in (select kode_parent from po_do_detail where is_add=1)";
+        $query = "SELECT  distinct
+                        contract.kode_order,
+                        user_order,
+                        date(date_order) as date_order,
+                        contract.total_amount,
+                        angsuran,
+                        b.price_buy as total_harga_beli,
+                        c.fintech_name
+                        FROM contract
+                        left join (select kode_order,sum(price_buy) as price_buy  from order_detail
+                        group by kode_order) b on contract.kode_order = b.kode_order
+                        left join fintech c on contract.id_fintech = c.id
+                        WHERE 
+                        kode_shipping IN (SELECT kode_shipping  from shipping where status_pengiriman='WAITING')
+                        and contract.kode_order not in (select kode_parent from po_do_detail where is_add=1)";
         return $this->db->query($query)->result_array();
     }
 
@@ -68,7 +68,7 @@ class Po_do_m extends CI_Model
             is_request,
             is_add,
             user_post,
-            date(date_post)
+            date(date_post) as date_post
             from po_do_detail
       
             where is_add=1 and kode_po_do='$kode_po_do' and  po_do_type=1";
@@ -87,7 +87,7 @@ class Po_do_m extends CI_Model
                     b.bank_supplier,
                     b.norek_supplier,
                     a.user_post,
-                    date(date_post)
+                    date(date_post) as date_post
                     from po_do_supplier_detail a
                     left join supplier b on a.kode_parent = b.id
           
@@ -131,14 +131,14 @@ class Po_do_m extends CI_Model
     function del_wating_podo($id)
     {
 
-        $query = "delete po_do_detail where id='$id'";
+        $query = "delete from po_do_detail where id= '$id'";
         return $this->db->query($query);
     }
 
     function del_wating_podo_sup($id)
     {
 
-        $query = "delete po_do_supplier_detail where id='$id'";
+        $query = "delete  from po_do_supplier_detail where id='$id'";
         return $this->db->query($query);
     }
 

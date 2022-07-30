@@ -49,7 +49,7 @@ class Finance_m  extends CI_Model
                         a.count_detail,
                         b.*,
                         a.user_request,
-                        date(a.date_request) 
+                        date(a.date_request)  as  date_request
                         
         
         from po_do  a 
@@ -73,12 +73,14 @@ class Finance_m  extends CI_Model
                 a.count_detail,
                 b.*,
                 a.user_request,
-                date(a.date_request)
-                
-                
+                a.is_podo_done,
+                date(a.date_request) as date_request             
                 from po_do  a 
                 left join po_do_type  b on a.po_do_type =b.id
-                where a.status_po_do ='APV' ORDER BY a.date_request desc";
+                where a.status_po_do ='APV'
+	            and a.is_podo_done isnull
+                ORDER BY a.date_request desc
+";
 
 
                 return $this->db->query($query)->result_array();
@@ -123,7 +125,7 @@ class Finance_m  extends CI_Model
         public function get_all_po_do_list_D1($kode_po_do)
         {
 
-                $query = "SELECT 
+                $query = "SELECT distinct
                         a.kode_po_do,
                         b.kode_order,
                         a.price as amount_req,
@@ -132,8 +134,8 @@ class Finance_m  extends CI_Model
                         b.tenor,
                         c.fintech_name,
                         b.user_order,
-                
-                        convert(SmallDateTime, b.date_order) as date_order
+                        date(b.date_order ) as date_order
+     
                         
                         from po_do_detail a
                         left join contract b on a.kode_parent = b.kode_order
@@ -258,9 +260,9 @@ class Finance_m  extends CI_Model
 
         public function get_all_po_do_list_DONE($id)
         {
-                $query = "UPDATE  shipping SET status_pengiriman='REQ' 
-        WHERE kode_shipping IN (SELECT kode_shipping FROM contract WHERE kode_order IN (select kode_parent from po_do_detail
-        WHERE kode_po_do='$id'))";
+                $query = "      UPDATE  shipping SET status_pengiriman='REQ' 
+                                WHERE kode_shipping IN (SELECT kode_shipping FROM contract WHERE kode_order IN (select kode_parent from po_do_detail
+                                WHERE kode_po_do='$id'))";
                 return $this->db->query($query);
         }
 
@@ -271,6 +273,14 @@ class Finance_m  extends CI_Model
                 $query = "UPDATE po_do set is_print = 1 where kode_po_do='$kode_po_do'";
                 return $this->db->query($query);
         }
+
+        public function get_all_po_do_list_f_done($kode_po_do)
+        {
+
+                $query = "UPDATE po_do set is_podo_done = 1 where kode_po_do='$kode_po_do'";
+                return $this->db->query($query);
+        }
+
 
 
 

@@ -492,7 +492,7 @@ class Auth extends CI_Controller
         $email = $this->input->post('email');
         $this->email->initialize($config);
 
-        $this->email->from('noreplay@belife.com', 'Test');
+        $this->email->from('noreplay@belife.com', 'BELIFE INDONESIA');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
@@ -530,7 +530,7 @@ class Auth extends CI_Controller
             $this->email->message('
                 <b>Dear Sahabat Belife </b><br>
                 <br>
-                Silakan Klik Link Untuk Mereset Password : <a class="btn btn-info" href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"  >Reset Password</a><br>
+                Silakan Klik Link Untuk Mereset Password : <a class="btn btn-info" href="' . base_url() . 'Auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '"  >Reset Password</a><br>
                 <br>
                 Best Regards<br>
                 Betterlife Jaya indonesia<br>

@@ -32,13 +32,14 @@ class BOD extends CI_Controller
 
     public function PoDoReq_Review($id = NULL)
     {
+
         $kode_po_do = Decrypt_url($id);
 
         $podotype = $this->Bod_m->chekcpodotype($kode_po_do);
 
 
 
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
 
         if ($podotype['po_do_type'] == 1) {
@@ -56,7 +57,7 @@ class BOD extends CI_Controller
     {
 
         $data['title']          = "Purchase Order & Delivery Review";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['DetailData']     = $this->Bod_m->get_all_po_do_list_D1($kode_po_do);
         $data['pododata']     = $this->Bod_m->get_podo_data($kode_po_do);
 
@@ -70,7 +71,7 @@ class BOD extends CI_Controller
     {
 
         $data['title']          = "Purchase Order & Delivery Review";
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['DetailData']     = $this->Bod_m->get_all_po_do_list_D2($kode_po_do);
         $data['pododata']     = $this->Bod_m->get_podo_data($kode_po_do);
 
@@ -86,7 +87,7 @@ class BOD extends CI_Controller
     public function PostPoDo_Review_Upd()
     {
 
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
         $kode_po_do = $this->input->post('kodepodo');
 
@@ -116,7 +117,7 @@ class BOD extends CI_Controller
     public function PostPoDo_Review_Upd_rjt()
     {
 
-        $data['usrProfile']     = $this->users_m->get_user_profile($this->session->userdata('username'));
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
 
         $kode_po_do = $this->input->post('kode_po_do');
