@@ -40,7 +40,7 @@ class User_manage_m extends CI_Model
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
-         where a.id_role=2 and a.is_active=0 and a.id = '$id'";
+         where a.id_role=2 and a.id = '$id'";
         return $this->db->query($query)->row_array();
     }
 
@@ -117,7 +117,7 @@ class User_manage_m extends CI_Model
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join patner e on b.id_org = e.id
-         where a.id_role= 2 and a.is_active=0 and a.username ='$id'   ";
+         where a.id_role= 2 and a.username ='$id'   ";
         return $this->db->query($query)->row_array();
     }
 
@@ -177,8 +177,8 @@ class User_manage_m extends CI_Model
                     --left join ms_provinsi c on b.provinsi_id = c.id_provinsi
                     --left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
                     left join patner e on b.id_org = e.id
-                    where a.id_role= 2 and a.is_active = 0
-                    and b.status_register is null
+                    where a.id_role= 2 
+                    and b.status_register ='Update'
         ";
         return $this->db->query($query)->result_array();
     }

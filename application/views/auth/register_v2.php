@@ -199,59 +199,59 @@
 
 
 
-    $(document).ready(function(){
+    // $(document).ready(function(){
  
-    $('#selfie_image').submit(function(e){
-        var username = $(this).data('username');
-        var email = $(this).data('email');
-        e.preventDefault(); 
-            $.ajax({
-                url:'<?= base_url('Auth/Upload_selfie_image') ?>',
-                type:"post",
-                data:new FormData(this),
-                processData:false,
-                contentType:false,
-                cache:false,
-                async:false,
-                success: function(data){
-                    alert("Upload Image Berhasil.");
-                }
-            });
-        });
+    // $('#selfie_image').submit(function(e){
+    //     var username = $(this).data('username');
+    //     var email = $(this).data('email');
+    //     e.preventDefault(); 
+    //         $.ajax({
+    //             url:'<?= base_url('Auth/Upload_selfie_image') ?>',
+    //             type:"post",
+    //             data:new FormData(this),
+    //             processData:false,
+    //             contentType:false,
+    //             cache:false,
+    //             async:false,
+    //             success: function(data){
+    //                 alert("Upload Image Berhasil.");
+    //             }
+    //         });
+    //     });
     
 
-    });
+    // });
 
 
 
 
-    function suppliergetpodo() {
-        var username = $("#username").val();
-        var email = $("#email").val();
+    // function suppliergetpodo() {
+    //     var username = $("#username").val();
+    //     var email = $("#email").val();
 
-        $.ajax({
-            type: "POST",
-            url: "<?= base_url('Auth/Upload_selfie_image') ?>",
-            dataType: "JSON",
-            data: {
-                username: username,
-                email: email
-            },
-            // cache: false,
-            success: function(data) {
-
-
-                $("#namakontaksup").val(data.nama_kontak_supplier);
-                $("#kontaksup").val(data.kontak_supplier);
-                $("#bankaccountsup").val(data.bank_supplier);
-                $("#noreksup").val(data.norek_supplier);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "<?= base_url('Auth/Upload_selfie_image') ?>",
+    //         dataType: "JSON",
+    //         data: {
+    //             username: username,
+    //             email: email
+    //         },
+    //         // cache: false,
+    //         success: function(data) {
 
 
-            }
-        });
+    //             $("#namakontaksup").val(data.nama_kontak_supplier);
+    //             $("#kontaksup").val(data.kontak_supplier);
+    //             $("#bankaccountsup").val(data.bank_supplier);
+    //             $("#noreksup").val(data.norek_supplier);
 
 
-    }
+    //         }
+    //     });
+
+
+    // }
 
 
     </script>

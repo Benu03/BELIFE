@@ -64,10 +64,9 @@
 
 
                         </div>
-                        <!-- /.card-body -->
-                        <!-- <div class="card-footer text-right">
-                        <a class="btn btn-sm bg-success " href="<?= base_url('Home/PersonalCustomer'); ?>/<?= $usrProfile['username']; ?>" ><i class="fas fa-inbox"></i> Personal Informasi</a> 
-                            </div> -->
+                        <div class="card-footer text-right">
+                        <a href="<?= base_url('Home/PersonalData') ?>" class="btn btn-warning btn-sm active" role="button" aria-pressed="true"><i class="fas fa-user-tag"></i> Personal Data</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -83,9 +82,9 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#imageprofile" data-toggle="tab">Image Profile</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#imageprofile" data-toggle="tab"><i class="fas fa-user-circle"></i> Image Profile</a></li>
                                 <!-- <li class="nav-item"><a class="nav-link" href="#editprofile" data-toggle="tab">Edit Profile</a></li> -->
-                                <li class="nav-item"><a class="nav-link" href="#changepassword" data-toggle="tab">Change Password</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#changepassword" data-toggle="tab"><i class="fas fa-key"></i> Change Password</a></li>
                             </ul>
                         </div>
                         <div class="card-body">

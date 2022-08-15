@@ -177,15 +177,14 @@ class Auth extends CI_Controller
 
     public function Registration()
     {
-        // if ($this->session->userdata('username')) {
-        //     redirect('Home');
-        // }
+        if ($this->session->userdata('username')) {
+            redirect('Home');
+        }
 
         $data['title'] = "Registration";
 
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['patner'] = $this->DataMaster_m->get_all_patner();
-
         $data['provinsi'] = $this->DataMaster_m->get_all_provinsi();
         $data['kota'] = $this->DataMaster_m->get_all_kota();
 
@@ -218,7 +217,7 @@ class Auth extends CI_Controller
                         'password'      => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                         'created_at'    => date('Y-m-d H:i:s'),
                         'id_role'       => 2,
-                        'is_active'     => '0'
+                        'is_active'     => '1'
                     );
 
 
@@ -245,25 +244,39 @@ class Auth extends CI_Controller
                         'limit_user'        => 0,
                         'id_loc'            => 1,
                         'id_org'            => $this->input->post('id_org', true),
-                        'datetime_post'     => date('Y-m-d H:i:s')
-
+                        'datetime_post'     => date('Y-m-d H:i:s'),
+                        'status_register'   => 'not_update'
                     );
 
 
-                    // $this->Users_m->insert($dataregister);
-                    // $this->Users_m->insert_datapersonal($datapersonal);
+                    $this->Users_m->insert($dataregister);
+                    $this->Users_m->insert_datapersonal($datapersonal);
                     mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
+
                     
+                    $email  = $this->input->post('email', true);
 
-                    $sessionData = [
-                        'username'          => $userNameRandom2,
-                        'email'             => $this->input->post('email', true)
+                    $token = base64_encode(random_bytes(32));
+                    $user_token = [
+                        'email' => $email,
+                        'token' => $token,
+                        'date_create' => time()
                     ];
-                    $this->session->set_userdata($sessionData);       
 
-                    redirect('Auth/Registration_upload');
-            //     }
-            // }
+                    $this->db->insert('user_token', $user_token);
+
+                    $this->_sendEmail($token, 'verify');
+
+                    
+                    $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Anda Berhasil Registrasi, Silakan Login dan Melengkapi Data Personal.
+                    </div> ');
+                   
+                    redirect('Auth');
+           
         }
     }
 
@@ -317,8 +330,7 @@ class Auth extends CI_Controller
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
                     Anda Berhasil Registrasi, Silakan Menunggu Verifikasi Dari Admin.
-                </div>
-            ');
+                </div> ');
                     redirect('Auth');
                  }
              
@@ -496,8 +508,7 @@ class Auth extends CI_Controller
             $this->email->message('
                 <b>Dear Sahabat Belife </b><br>
                 <br>
-                    Akun Anda Sedang di Verifikasi oleh admin, mohon untuk ditunggu.
-                    Status Akun akan di informasikan kembali.
+                    Silakan Melengkapi Data Personal Anda Terlebih Dahulu Sebelum Akun Anda di Verifikasi oleh admin,dan mohon untuk Menunggu Status Akun and sebelum melakukan transaksi.
                 <br> <br>
                 Best Regards<br>
                 Betterlife Jaya indonesia<br>
