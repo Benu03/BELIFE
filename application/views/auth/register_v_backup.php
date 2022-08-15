@@ -42,6 +42,8 @@
 
     <div class="content">
 
+
+
         <div class="container register">
             <div class="row">
                 <div class="col-md-3 register-left">
@@ -75,22 +77,22 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  />
+                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)"  />
+                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  />
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>" required />
 
                                 </div>
 
 
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>"  />
+                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" required />
                                 </div>
 
                                 <div class="form-group">
@@ -105,18 +107,6 @@
                                         </label>
                                     </div>
                                 </div>
-
-                               
-
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"></textarea>
-                                </div>
-
-
 
                                 <div class="form-group">
                                     <select class="form-control" id="provinsi" name="provinsi">
@@ -140,7 +130,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" >
+                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" required>
                                         <option hidden>Nama Perusahaan</option>
                                         <?php foreach ($patner as $dt) : ?>
 
@@ -154,7 +144,15 @@
 
 
 
-                                <!-- <div class="form-group">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"></textarea>
+                                </div>
+
+
+                                <div class="form-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="selfie_image" name="selfie_image" value="<?= set_value('selfie_image'); ?>">
                                         <label class="custom-file-label" for="selfie_image">Foto Selfie *</label>
@@ -195,20 +193,23 @@
                                         <input type="file" class="custom-file-input" id="slip_gaji" name="slip_gaji" value="<?= set_value('slip_gaji'); ?>">
                                         <label class="custom-file-label" for="slip_gaji">Foto Slip Gaji*</label>
                                     </div>
-                                </div> -->
+                                </div>
 
 
 
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1"  />
+                                    <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1" required />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2"  />
+                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2" required />
                                 </div>
+
+
+
+
 
                             </div>
                             <a href="<?= base_url('Auth'); ?>" class="btnSignIn text-center">Sign In</a>
-
                             <button type="submit" class="btnRegister">Register</button>
 
 

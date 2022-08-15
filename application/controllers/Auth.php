@@ -175,11 +175,11 @@ class Auth extends CI_Controller
         }
     }
 
-    public function registration()
+    public function Registration()
     {
-        if ($this->session->userdata('username')) {
-            redirect('Home');
-        }
+        // if ($this->session->userdata('username')) {
+        //     redirect('Home');
+        // }
 
         $data['title'] = "Registration";
 
@@ -191,11 +191,11 @@ class Auth extends CI_Controller
 
         //Validasi Form Register
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        // $this->form_validation->set_rules('username', 'Employee ID', 'required|trim|is_unique[users.username]');
+    
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
             'is_unique' => 'This email has already registered!'
         ]);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[1]|matches[password2]', [
             'matches' => 'Password didnt match!',
             'min_length' => 'Password to short!'
         ]);
@@ -208,34 +208,6 @@ class Auth extends CI_Controller
 
             $userNameRandom = $this->input->post('name', true);
             $userNameRandom2 = strtoupper(substr($userNameRandom, 0, 4)) . date('Hs');
-
-
-            if (empty($_FILES['selfie_image']['name']) && empty($_FILES['ktp_image']['name']) && empty($_FILES['selfie_ktp_image']['name'])) {
-                $this->session->set_flashdata('message', '
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                        Your file is empty.
-                    </div>
-                ');
-                redirect('registration');
-            } else {
-                if ($_FILES['selfie_image']['size'] >= 524288  && $_FILES['ktp_image']['size'] >= 524288 && $_FILES['selfie_ktp_image']['size'] >= 524288) {
-                    $this->session->set_flashdata('message', '
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                            File size cannot be more than 512kb.
-                        </div>
-                    ');
-                    redirect('registration');
-                } else {
-
-                    $this->load->library('upload');
-
-
-                    mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
-
 
 
                     $dataregister = array(
@@ -251,57 +223,8 @@ class Auth extends CI_Controller
 
 
 
-
-
-
-                    $default_name_selfie          = 'SELFIE_' . $userNameRandom2 . ".jpg";
-                    $config_img['upload_path']   = './assets/img/img-profile/' . $userNameRandom2 . '/';
-                    $config_img['allowed_types'] = 'jpg|jpeg|png';
-                    $config_img['file_name']     = $default_name_selfie;
-                    $config_img['overwrite']     = TRUE;
-                    $config_img['max_size']      = 512; /* max 512kb */
-                    chmod($config_img['upload_path'], 0777);
-                    $this->upload->initialize($config_img);
-                    if (($_FILES['selfie_image']['name'])) {
-                        if ($this->upload->do_upload('selfie_image')) {
-                            $this->upload->data();
-                        }
-                    }
-
-
-                    $default_name_ktp                = 'KTP_' . $userNameRandom2 . ".jpg";
-                    $config_img['upload_path']   = './assets/img/img-profile/' . $userNameRandom2 . '/';
-                    $config_img['allowed_types'] = 'jpg|jpeg|png';
-                    $config_img['file_name']     = $default_name_ktp;
-                    $config_img['overwrite']     = TRUE;
-                    $config_img['max_size']      = 512; /* max 512kb */
-                    $this->upload->initialize($config_img);
-                    if (($_FILES['ktp_image']['name'])) {
-                        if ($this->upload->do_upload('ktp_image')) {
-                            $this->upload->data();
-                        }
-                    }
-
-
-                    $default_name_selfie_ktp     = 'SELFIE_KTP_' . $userNameRandom2 . ".jpg";
-                    $config_img['upload_path']   = './assets/img/img-profile/' . $userNameRandom2 . '/';
-                    $config_img['allowed_types'] = 'jpg|jpeg|png';
-                    $config_img['file_name']     = $default_name_selfie_ktp;
-                    $config_img['overwrite']     = TRUE;
-                    $config_img['max_size']      = 512; /* max 512kb */
-                    $this->upload->initialize($config_img);
-                    if (($_FILES['selfie_ktp_image']['name'])) {
-                        if ($this->upload->do_upload('selfie_ktp_image')) {
-                            $this->upload->data();
-                        }
-                    }
-
-
                     $originalDate = $this->input->post('tgl_lahir', true);
                     $tgl_lahir =  str_replace('/', '-', $originalDate);
-
-
-
 
                     $datapersonal = array(
 
@@ -316,9 +239,9 @@ class Auth extends CI_Controller
                         'provinsi_id'       => $this->input->post('provinsi', true),
                         'kota_id'           => $this->input->post('kota', true),
                         'address_ktp'       => $this->input->post('alamat', true),
-                        'selfie_image'      => $default_name_selfie,
-                        'ktp_image'         => $default_name_ktp,
-                        'selfie_ktp_image'  => $default_name_selfie_ktp,
+                        // 'selfie_image'      => $default_name_selfie,
+                        // 'ktp_image'         => $default_name_ktp,
+                        // 'selfie_ktp_image'  => $default_name_selfie_ktp,
                         'limit_user'        => 0,
                         'id_loc'            => 1,
                         'id_org'            => $this->input->post('id_org', true),
@@ -327,16 +250,55 @@ class Auth extends CI_Controller
                     );
 
 
+                    // $this->Users_m->insert($dataregister);
+                    // $this->Users_m->insert_datapersonal($datapersonal);
+                    mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
+                    
+
+                    $sessionData = [
+                        'username'          => $userNameRandom2,
+                        'email'             => $this->input->post('email', true)
+                    ];
+                    $this->session->set_userdata($sessionData);       
+
+                    redirect('Auth/Registration_upload');
+            //     }
+            // }
+        }
+    }
+
+
+    
+    public function Registration_upload()
+    {
+       
+        $data['title'] = "Registration";
+
+        $datasession = $this->session->userdata();
+        
+
+        $data['username'] = $this->session->userdata('username');
+        $data['email'] =$this->session->userdata('email');
 
 
 
+        if ($this->form_validation->run() == false) {
+            $this->load->view('auth/register_v2', $data);
+        } else {
+      
+            if (empty($_FILES['selfie_image']['name']) && empty($_FILES['ktp_image']['name']) && empty($_FILES['selfie_ktp_image']['name']) && empty($_FILES['buku_tabungan']['name']) && empty($_FILES['slip_gaji']['name'])) {
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                        Your file is empty.
+                    </div>
+                ');
+                redirect('Registration_upload');
+            } else {
+              
+                    $email  = $datasession['email'];
 
-                    $this->Users_m->insert($dataregister);
-                    $this->Users_m->insert_datapersonal($datapersonal);
-
-
-
-                    $email = $this->input->post('email', true);
                     $token = base64_encode(random_bytes(32));
                     $user_token = [
                         'email' => $email,
@@ -348,10 +310,8 @@ class Auth extends CI_Controller
 
                     $this->_sendEmail($token, 'verify');
 
-
-                    // end ibnu tambahan
-
-
+                    $this->session->unset_userdata('username');
+                    $this->session->unset_userdata('email');
                     $this->session->set_flashdata('message', '
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -360,10 +320,45 @@ class Auth extends CI_Controller
                 </div>
             ');
                     redirect('Auth');
-                }
-            }
-        }
+                 }
+             
+             }
     }
+
+    
+
+    function Upload_selfie_image(){
+
+        $username= $this->input->post('username');
+        $email= $this->input->post('email');
+
+        var_dump($username);
+
+        $default_name_selfie          = 'SELFIE_' . $username . ".jpg";
+        $config_img['upload_path']   = './assets/img/img-profile/' . $username . '/';
+        $config_img['allowed_types'] = 'jpg|jpeg|png';
+        $config_img['file_name']     = $default_name_selfie;
+        $config_img['overwrite']     = TRUE;
+        $config['encrypt_name']     = TRUE;
+        $config_img['max_size']      = 512; /* max 512kb */
+         
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload("file")){
+            $data = array('upload_data' => $this->upload->data());
+
+             
+            $result= $this->Users_m->update_selfie_image($username,$default_name_selfie);
+            echo json_decode($result);
+        }
+ 
+     }
+
+
+
+
+
+
+
 
 
     // START IBNU TAMBAHAN 

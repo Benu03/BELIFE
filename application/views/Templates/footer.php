@@ -717,7 +717,6 @@
 
     function podoaddoder(event) {
 
-
         $(document).on('click', '#addorderspodo', function() {
             var kode_po_do = $(this).data('kode_po_do');
             var kode_parent = $(this).data('kode_parent');

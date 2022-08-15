@@ -144,7 +144,17 @@ class Users_m extends CI_Model
         return $this->db->query($query);  
 
     }
-    
+
+    function update_selfie_image($username,$default_name_selfie)
+    {
+
+        $query = "update personal_customer set selfie_image='$default_name_selfie'
+        where username ='$username' ";
+        return $this->db->query($query);  
+
+
+    }
+ 
 
     
 

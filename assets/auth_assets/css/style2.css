@@ -89,7 +89,20 @@ body {
 	background: #fd7e14;
 	color: #fff;
 	font-weight: 600;
-	width: 50%;
+	width: 45%;
+	cursor: pointer;
+}
+
+.btnRegister2 {
+	float: center;
+	margin-top: 10%;
+	border: none;
+	border-radius: 1.5rem;
+	padding: 2%;
+	background: #fd7e14;
+	color: #fff;
+	font-weight: 450;
+	width: 45%;
 	cursor: pointer;
 }
 
@@ -101,7 +114,36 @@ body {
 	padding: 2%;
 	background: #fd7e14;
 	color: #fff;
+	margin-right: 10%;
 	font-weight: 600;
+	width: 45%;
+	cursor: pointer;
+}
+
+.btnBack {
+	float: right;
+	margin-top: 10%;
+	border: none;
+	border-radius: 1.5rem;
+	padding: 2%;
+	background: #fd7e14;
+	color: #fff;
+	margin-right: 10%;
+	font-weight: 450;
+	width: 45%;
+	cursor: pointer;
+}
+
+.btnimage {
+	float: right;
+	border: none;
+	margin-top: -5%;
+	border-radius: 1.5rem;
+	background: #747474;
+	padding: 0.5%;
+	color: #fff;
+	margin-left: 10%;
+	font-weight: 300;
 	width: 50%;
 	cursor: pointer;
 }

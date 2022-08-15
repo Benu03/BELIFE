@@ -42,6 +42,8 @@
 
     <div class="content">
 
+
+
         <div class="container register">
             <div class="row">
                 <div class="col-md-3 register-left">
@@ -58,114 +60,35 @@
                 <div class="col-md-9 register-right">
 
 
-                    <h3 class="register-heading">Registrasi</h3>
+                    <h3 class="register-heading">Upload File</h3>
                     <?= form_error('name', '<small class="text-danger">', '</small>'); ?>
                     <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
                     <?= $this->session->flashdata('message'); ?>
-                    <form action="<?= base_url('Auth/Registration') ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="<?= base_url('Auth/Registration_upload') ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         <div class="row register-form">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" />
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  />
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)"  />
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  />
-
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>"  />
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline">
-                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="laki-laki" checked>
-                                            <span>Laki-Laki </span>
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="perempuan">
-                                            <span>Perempuan</span>
-                                        </label>
-                                    </div>
-                                </div>
-
+                                <div class="col-md-8">
                                
+                                <input type="text" class="form-control" id="username" name="username"  data="username" value="<?= $username; ?>" hidden />
+                                
+                                <input type="text" class="form-control" id="email" name="email"  data="email" value="<?= $email; ?>"  hidden />
 
 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"></textarea>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <select class="form-control" id="provinsi" name="provinsi">
-                                        <option value="" hidden>Provinsi</option>
-
-                                        <?php foreach ($provinsi as $r) :   ?>
-                                            <option value="<?= $r['id_provinsi']; ?>"> <?= $r['nama_provinsi'];  ?></option>
-                                        <?php endforeach;   ?>
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <select class="form-control" id="kota" name="kota">
-                                        <option value="" hidden>Kota</option>
-
-                                        <?php foreach ($kota as $r) :   ?>
-                                            <option value="<?= $r['id_kota_kabupaten']; ?>"> <?= $r['nama_kota_kabupaten'];  ?></option>
-                                        <?php endforeach;   ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" >
-                                        <option hidden>Nama Perusahaan</option>
-                                        <?php foreach ($patner as $dt) : ?>
-
-                                            <option value="<?= $dt['id']; ?>">
-                                                <?= $dt['patner_name']; ?>
-                                            </option>
-
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-
-
-
-                                <!-- <div class="form-group">
+                                <div class="form-row">
+                             
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="selfie_image" name="selfie_image" value="<?= set_value('selfie_image'); ?>">
+                                        <input type="file" class="custom-file-input" id="selfie_image" name="selfie_image" value="<?= set_value('selfie_image'); ?>"  required> 
                                         <label class="custom-file-label" for="selfie_image">Foto Selfie *</label>
+                                       
                                     </div>
+                                    
                                 </div>
-
-
+                              
 
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="ktp_image" name="ktp_image" value="<?= set_value('ktp_image'); ?>">
+                                        <input type="file" class="custom-file-input" id="ktp_image" name="ktp_image" value="<?= set_value('ktp_image'); ?>" required> 
                                         <label class="custom-file-label" for="ktp_image">Foto KTP *</label>
                                     </div>
                                 </div>
@@ -175,7 +98,7 @@
 
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="selfie_ktp_image" name="selfie_ktp_image" value="<?= set_value('selfie_ktp_image'); ?>">
+                                        <input type="file" class="custom-file-input" id="selfie_ktp_image" name="selfie_ktp_image" value="<?= set_value('selfie_ktp_image'); ?>"> 
                                         <label class="custom-file-label" for="selfie_ktp_image">Foto Selfie Dengan KTP *</label>
                                     </div>
                                 </div>
@@ -184,7 +107,7 @@
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="buku_tabungan" name="buku_tabungan" value="<?= set_value('buku_tabungan'); ?>">
-                                        <label class="custom-file-label" for="selfie_ktp_image">Foto Buku Tabungan*</label>
+                                        <label class="custom-file-label" for="buku_tabungan">Foto Buku Tabungan*</label>
                                     </div>
                                 </div>
 
@@ -192,25 +115,22 @@
 
                                 <div class="form-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="slip_gaji" name="slip_gaji" value="<?= set_value('slip_gaji'); ?>">
+                                        <input type="file" class="custom-file-input" id="slip_gaji" name="slip_gaji" value="<?= set_value('slip_gaji'); ?>" require> 
                                         <label class="custom-file-label" for="slip_gaji">Foto Slip Gaji*</label>
                                     </div>
-                                </div> -->
+                                </div>                             
 
-
-
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1"  />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2"  />
-                                </div>
 
                             </div>
-                            <a href="<?= base_url('Auth'); ?>" class="btnSignIn text-center">Sign In</a>
 
-                            <button type="submit" class="btnRegister">Register</button>
+                            
+                       
+                            <a href="<?= base_url('Auth/Registration'); ?>" class="btnBack text-center">Kembali</a>
+                            
+                            <button type="submit" class="btnRegister2">Register</button>
 
+
+                            </div>
 
 
                     </form>
@@ -272,6 +192,68 @@
                     return false;
             return true;
         }
+
+
+
+
+
+
+
+    $(document).ready(function(){
+ 
+    $('#selfie_image').submit(function(e){
+        var username = $(this).data('username');
+        var email = $(this).data('email');
+        e.preventDefault(); 
+            $.ajax({
+                url:'<?= base_url('Auth/Upload_selfie_image') ?>',
+                type:"post",
+                data:new FormData(this),
+                processData:false,
+                contentType:false,
+                cache:false,
+                async:false,
+                success: function(data){
+                    alert("Upload Image Berhasil.");
+                }
+            });
+        });
+    
+
+    });
+
+
+
+
+    function suppliergetpodo() {
+        var username = $("#username").val();
+        var email = $("#email").val();
+
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('Auth/Upload_selfie_image') ?>",
+            dataType: "JSON",
+            data: {
+                username: username,
+                email: email
+            },
+            // cache: false,
+            success: function(data) {
+
+
+                $("#namakontaksup").val(data.nama_kontak_supplier);
+                $("#kontaksup").val(data.kontak_supplier);
+                $("#bankaccountsup").val(data.bank_supplier);
+                $("#noreksup").val(data.norek_supplier);
+
+
+            }
+        });
+
+
+    }
+
+
     </script>
 
     <script>
