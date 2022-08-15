@@ -2,7 +2,7 @@
  <footer class="main-footer">
    <!-- To the right -->
 
-
+   <strong><a href="javascript:void(0)"> PT Betterlife Jaya Indonesia </a>. <i class="fas fa-copyright font-italic ml-1"> <?= date('Y'); ?> JAP</i></strong>
 
 
 

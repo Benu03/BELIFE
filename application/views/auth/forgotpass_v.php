@@ -27,7 +27,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
+        <a href="<?= base_url(); ?>">
           <img src="<?= base_url('assets'); ?>/auth_assets/images/undraw_searching_p-5-ux.svg" alt="Image" class="img-fluid" />
+          </a>
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">

@@ -319,7 +319,7 @@ class Auth extends CI_Controller
                         'selfie_image'      => $default_name_selfie,
                         'ktp_image'         => $default_name_ktp,
                         'selfie_ktp_image'  => $default_name_selfie_ktp,
-                        'limit'             => 0,
+                        'limit_user'        => 0,
                         'id_loc'            => 1,
                         'id_org'            => $this->input->post('id_org', true),
                         'datetime_post'     => date('Y-m-d H:i:s')
@@ -460,10 +460,10 @@ class Auth extends CI_Controller
             redirect('Auth');
         }
 
-        $data['title'] = "Access Forbidden";
+        $data['title'] = "403 Access Forbidden";
         $data['user'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
 
-        $this->load->view('auth/Blocked_v', $data);
+        $this->load->view('auth/blocked_v', $data);
     }
 
 

@@ -45,6 +45,6 @@
 <body class="sidebar-mini layout-fixed layout-navbar-fixed accent-orange text-sm">
     <div class="wrapper">
         <!-- Preloader -->
-        <!-- <div class="preloader flex-column justify-content-center align-items-center" style="background-color: #595858">
+        <div class="preloader flex-column justify-content-center align-items-center" style="background-color: #595858">
             <img class="animation__shake" src="<?= base_url('assets/img/belife-logo-1.png'); ?>" alt="BeLife Logo" height="60" width="60">
-        </div> -->
+        </div>

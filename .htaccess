@@ -1,13 +1,17 @@
  <IfModule mod_rewrite.c>
-   RewriteEngine On
 
-  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteEngine on
+  #1) redirect the client from "/index.php/foo/bar" to "/foo/bar"
+  RewriteCond %{THE_REQUEST} /index\.php/(.+)\sHTTP [NC]
+  RewriteRule ^ /%1 [NE,L,R]
+  #2)internally map "/foo/bar" to "/index.php/foo/bar"
   RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.+)$ /index.php/$1 [L]
 
-  # Rewrite all other URLs to index.php/URL
-  RewriteRule ^(.*)$ index.php?url=$1 [PT,L] 
 
    </IfModule>
    <IfModule !mod_rewrite.c>
         ErrorDocument 404 index.php
    </IfModule>
+

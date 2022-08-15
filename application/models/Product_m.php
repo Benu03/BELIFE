@@ -33,6 +33,21 @@ class Product_m extends CI_Model
 
 
 
+    function get_all_product_home()
+    {
+
+
+
+        $this->db->select('product.*,ms_general.value diskon_value');
+        $this->db->from($this->table_name);
+        $this->db->join('ms_general', 'product.diskon_id = ms_general.id', 'left');
+        $this->db->limit(8);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
+
     function count_all_product()
     {
 
@@ -154,7 +169,7 @@ class Product_m extends CI_Model
     function delete_dataproduct_keranjang($id, $username)
     {
 
-        $query = "delete keranjang 
+        $query = "delete from keranjang 
         where user_order ='$username' and id='$id' ";
         return $this->db->query($query);
     }
@@ -162,7 +177,7 @@ class Product_m extends CI_Model
     function delete_data_keranjang_detail($id)
     {
 
-        $query = "delete keranjang 
+        $query = "delete from keranjang 
         where id ='$id' ";
         return $this->db->query($query);
     }

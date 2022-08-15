@@ -69,7 +69,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Left navbar links -->
           <ul class="order-1 order-md-3 navbar-nav  ml-auto">
             <li class="nav-item">
-              <a href="<?= base_url(''); ?>" class="nav-link text-light"><span class="fas fa-home"></span> Home</a>
+              <a href="<?= base_url(''); ?>" class="nav-link text-light"><span class="fas fa-home"></span> Beranda</a>
             </li>
             <li class="nav-item">
               <a href="<?= base_url('Homepage/About'); ?>" class="nav-link text-light"><span class="fas fa-building"></span> Tetang Kami</a>

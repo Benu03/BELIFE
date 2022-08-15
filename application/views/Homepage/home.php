@@ -41,76 +41,94 @@
 
         </div>
       </div>
-      <!--  -->
-      <section class="content">
 
-        <!-- /.box -->
+  
 
-        <!-- /.content -->
-        <div class="row text-center mt-2">
-          <?php foreach ($product as $p) : ?>
-            <div class="col-6 col-sm-4 col-md-3 d-flex align-items-stretch flex-column">
+    <section>
+    <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h4><strong> Featured Products </strong></h4>
+                     <hr style="background-color: #fc7c19; height: 3px; border: 0;">
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+            <?php foreach ($product as $p) : ?>
+
+              <div class="col-6 col-sm-4 col-md-3 d-flex align-items-stretch flex-column">
               <div class="card  d-flex flex-fill">
-                <div class="card-header text-muted border-bottom-0">
-                </div>
-                <div class="card-body  pt-0">
+         
+                <div class="card-body">
                   <div class="row">
-                    <div class="col-12 text-center">
-                      <div class="img-hover-zoom">
+                   
+                    <div class="col-12 ">
+                      <div class="img-hover-zoom card-img-top text-center">
                         <a href="<?= base_url('Feature/DetailProduct/') ?><?= $p['kode_product']; ?>">
-                          <img src="<?= base_url('assets/img/product/') ?><?= $p['image_product']; ?>" class="img-square img-fluid mb-2" style="height:100px;max-width:100%;">
+                          <img src="<?= base_url('assets/img/product/') ?><?= $p['image_product']; ?>" class="img-square img-fluid mb-2" style="height:150px;max-width:100%;">
+                        
                         </a>
+                        <strong>
+                        <p class="card-title text-dark" ><?= $p['title_product']; ?></p>
+                        </strong>
                       </div>
                     </div>
+
                   </div>
                 </div>
-                <div class="text-center">
-                  <b class="text-sm"> <?= $p['title_product']; ?> </b>
-                </div>
-                <div class="text-center">
-
-                  <?php if ($p['is_diskon'] == '1') : ?>
-
-                    <!-- harga yang di strip  -->
-
-                    <b class="text-xs text-left text-secondary ml-3"><del>Rp. <?= number_format(
-                                                                                ($p['price_sell'] * $p['diskon_value']) / 100 +
-                                                                                  $p['price_sell'],
-                                                                                0,
-                                                                                ',',
-                                                                                '.'
-                                                                              ); ?> </del></b>
-
-                    <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
-
-
-                  <?php elseif ($p['is_diskon'] <> '1') : ?>
-                    <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
-
-                  <?php endif; ?>
-
-
-
-                </div>
-
-                <div class="card-footer">
-                  <div class="btn-group text-center">
-                    <a href="<?= base_url('DashboardUser/AddBucketProduct/') ?><?= $p['kode_product']; ?>" class="btn btn-xs bg-teal">
-                      <small><i class="fas fa-shopping-basket"></i> Keranjang</small> </a>
-                    <a href="<?= base_url('Feature/DetailProduct/') ?><?= $p['kode_product']; ?>" class="btn btn-xs btn-primary">
-                      <small><i class="fas fa-external-link-square-alt "></i> Detail</small> </a>
-                  </div>
-                </div>
+       
               </div>
             </div>
-          <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="card-footer">
-      <?= $this->pagination->create_links(); ?>
-    </div>
-  </div>
-  </section>
+
+              <?php endforeach; ?>
+            </div>
+      </div>
+      
+    </section>
+
+    <section>
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <h3><strong> Solusi Barang Impian Anda</strong></h3>
+                  </div>
+               </div>
+            </div>
+
+
+            <div class="row">
+               <div class="col-sm-6">
+												<div class="card-body">
+													<h5 class="card-title"> </h5>
+												</div>
+                        <a href="">
+												<img  class="img-fluid d-block w-100 rounded mx-auto d-block" src="<?= base_url('assets/auth_assets/images/1.png'); ?>" style="">
+                        </a>
+										  </div>
+
+               <div class="col-sm-6">
+                    <div class="card-body">
+													<h5 class="card-title"> </h5>
+												</div>
+                        <a href="">
+												<img  class="img-fluid d-block w-100 rounded mx-auto d-block" src="<?= base_url('assets/auth_assets/images/2.png'); ?>" style="">
+
+                        </a>
+										  </div>
+             
+
+               </div>
+            </div>
+
+    </section>
+
+
+
+
+
+
+
 </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->

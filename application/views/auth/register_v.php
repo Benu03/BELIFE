@@ -47,9 +47,11 @@
         <div class="container register">
             <div class="row">
                 <div class="col-md-3 register-left">
+                <a href="<?= base_url(); ?>">
                     <img src="<?= base_url('assets'); ?>/auth_assets/images/belife-logo-full.png" alt="Image" class="img-fluid" />
 
                     <img src="<?= base_url('assets'); ?>/auth_assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Image" class="img-fluid" />
+                </a>
                     <p>Belife Apps Change Your Life Become Better</p>
                     <br>
                     <span class="d-block text-left my-1 text-center text-white">PT Betterlife Jaya Indonesia </span>
@@ -71,26 +73,26 @@
                                     <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" required />
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" />
+                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="nohp" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)" required />
+                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="nik" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)" required />
+                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="tgl_lahir" class="form-control" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>" required />
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>" required />
 
                                 </div>
 
 
 
                                 <div class="form-group">
-                                    <input type="tempat_lahir" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" required />
+                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" required />
                                 </div>
 
                                 <div class="form-group">
@@ -127,6 +129,18 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" required>
+                                        <option hidden>Nama Perusahaan</option>
+                                        <?php foreach ($patner as $dt) : ?>
+
+                                            <option value="<?= $dt['id']; ?>">
+                                                <?= $dt['patner_name']; ?>
+                                            </option>
+
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
 
 
 
@@ -165,21 +179,22 @@
                                 </div>
 
 
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="buku_tabungan" name="buku_tabungan" value="<?= set_value('buku_tabungan'); ?>">
+                                        <label class="custom-file-label" for="selfie_ktp_image">Foto Buku Tabungan*</label>
+                                    </div>
+                                </div>
 
 
 
                                 <div class="form-group">
-                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" required>
-                                        <option hidden>Nama Perusahaan</option>
-                                        <?php foreach ($patner as $dt) : ?>
-
-                                            <option value="<?= $dt['id']; ?>">
-                                                <?= $dt['patner_name']; ?>
-                                            </option>
-
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="slip_gaji" name="slip_gaji" value="<?= set_value('slip_gaji'); ?>">
+                                        <label class="custom-file-label" for="slip_gaji">Foto Slip Gaji*</label>
+                                    </div>
                                 </div>
+
 
 
                                 <div class="form-group">
@@ -230,15 +245,16 @@
 
 
     <script>
-        $(document).ready(function() {
-            $('#tgl_lahir').datepicker({
-                autoclose: true,
-                format: "dd/mm/yyyy"
-            });
-        });
-    </script>
+    
 
-    <script>
+        $(function(){
+        $(".datepicker").datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        });
+
         function hanyaAngka(event) {
             var nohp = event.which ? event.which : event.keyCode;
             var nik = event.which ? event.which : event.keyCode;
