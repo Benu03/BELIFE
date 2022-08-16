@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar main-sidebar-custom sidebar-light-orange elevation-4">
     <!-- Brand Logo -->
-    <a href="javascript:void(0)" class="brand-link logo-switch navbar-orange" onclick="location.href='<?= base_url(''); ?>'">
+    <a href="<?= base_url(''); ?>" class="brand-link logo-switch navbar-orange" >
         <img src="<?= base_url('assets/img/belife-logo-1.png'); ?>" alt="BeLife Logo" class="brand-image-xl logo-xs img-circle elevation-3" style="opacity: .8">
         <img src="<?= base_url('assets/img/belife-logo-2.png'); ?>" alt="BeLife Logo Large" class="brand-image-xs logo-xl" style="left: 12px">
     </a>
@@ -12,13 +12,13 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <?php if (($this->session->userdata('img_user') == "default_img_user.png") or ($this->session->userdata('img_user') == NULL)) : ?>
-                    <a class="d-block" href="javascript:void(0)" onclick="location.href='<?= base_url('Home/MyProfile'); ?>'"> <img src="<?= base_url('assets/img/img-profile/default_img_user.png'); ?>" class="img-circle elevation-2" alt="User Image"> </a>
+                    <a class="d-block" href="<?= base_url('/Home'); ?>" > <img src="<?= base_url('assets/img/img-profile/default_img_user.png'); ?>" class="img-circle elevation-2" alt="User Image"> </a>
                 <?php else : ?>
-                    <a class="d-block" href="javascript:void(0)" onclick="location.href='<?= base_url('Home/MyProfile'); ?>'"> <img src="<?= base_url('assets/img/img-profile/' . $this->session->userdata('username') . '/' . $this->session->userdata('img_user')); ?>" class="img-circle elevation-2" alt="User Image"> </a>
+                    <a class="d-block" href="<?= base_url('/Home'); ?>" > <img src="<?= base_url('assets/img/img-profile/' . $this->session->userdata('username') . '/' . $this->session->userdata('img_user')); ?>" class="img-circle elevation-2" alt="User Image"> </a>
                 <?php endif; ?>
             </div>
             <div class="info">
-                <a class="d-block" href="javascript:void(0)" onclick="location.href='<?= base_url('Home/MyProfile'); ?>'"><?= $this->session->userdata('name'); ?></a>
+                <a class="d-block" href="<?= base_url('/Home'); ?>" ><?= $this->session->userdata('name'); ?></a>
             </div>
         </div>
 

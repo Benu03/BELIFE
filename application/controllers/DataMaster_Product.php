@@ -30,6 +30,138 @@ class DataMaster_Product extends CI_Controller
         $this->load->view('DataMaster_Product/Supplier', $data);
     }
 
+    public function TenorSetting()
+    {
+        $data['title']      = "Tenor Setting";
+        $data['rate'] = $this->DataMaster_m->get_all_rate();
+        $this->load->view('DataMaster_Product/Tenor_v', $data);
+    }
+
+    public function UpdateTenor($id = NULL)
+    {
+        $id = Decrypt_url($id);
+
+        $data['title']      = "Tenor Setting";
+        $data['tenor'] = $this->DataMaster_m->get_tenor_byid($id);
+        $this->load->view('DataMaster_Product/UpdateTenor_v', $data);
+    }
+
+
+    public function AddTenor()
+    {
+        $this->form_validation->set_rules('tenor', 'Tenor', 'required|trim|is_unique[ms_tenor.tenor]', ['is_unique' => 'Tenor has already added.']);
+        $this->form_validation->set_rules('rate', 'Rate %', 'required');
+        $this->form_validation->set_rules('description', 'Deskripsi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->TenorSetting();
+        } else {
+            $data = array(
+                'tenor' => $this->input->post('tenor'),
+                'User_post' => $this->session->userdata('username'),
+                'Datetime_post' => date('Y-m-d H:i:s'),
+                'rate'     => $this->input->post('rate'),
+                'description'     => $this->input->post('description')
+            );
+            $this->DataMaster_m->insert_tenor($data);
+
+            $logData = [
+                'username' => $this->session->userdata('username'),
+                'activities' => 'Add new Tenor',
+                'url'        => base_url('DataMaster_Product/AddTenor'),
+                'object'     => $data['description'],
+                'ipdevice'   => Get_ipdevice(),
+                'at_time'    => date('Y-m-d H:i:s')
+            ];
+            $this->db->insert('log_activity', $logData);
+
+            $this->session->set_flashdata('message', '
+               <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i>Success!</h5>
+                    Data has been added.
+                </div>
+            ');
+            redirect('DataMaster_Product/TenorSetting');
+        }
+    }
+
+
+    public function EditTenor($id = NULL)
+    {
+        $id = Decrypt_url($id);
+
+        $this->form_validation->set_rules('tenor', 'Tenor', 'required|trim');
+        $this->form_validation->set_rules('rate', 'Rate %', 'required');
+        $this->form_validation->set_rules('description', 'Deskripsi', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+
+
+            $this->UpdateTenor($id);
+        } else {
+            $data = array(
+                'tenor' => $this->input->post('tenor'),
+                'rate'     => $this->input->post('rate'),
+                'description'     => $this->input->post('description')
+            );
+
+
+
+
+
+            $this->DataMaster_m->edit_tenor($id, $data);
+
+            $logData = [
+                'username' => $this->session->userdata('username'),
+                'activities' => 'Update data Tenor',
+                'object'     => $data['description'],
+                'url'        => base_url('DataMaster_Product/EditTenor'),
+                'ipdevice'   => Get_ipdevice(),
+                'at_time'    => date('Y-m-d H:i:s')
+            ];
+            $this->db->insert('log_activity', $logData);
+
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i>Success!</h5>
+                    Data has been updated.
+                </div>
+            ');
+            redirect('DataMaster_Product/TenorSetting');
+        }
+    }
+
+
+    public function DeleteTenor($id = NULL)
+    {
+        $id   = Decrypt_url($id);
+        $data = $this->DataMaster_m->get_tenor_byid($id);
+
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Delete data Tenor',
+            'object'     => $data['description'],
+            'url'        => base_url('DataMaster/DeleteTenor'),
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+        $this->DataMaster_m->delete_tenor($id);
+        $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i>Success!</h5>
+                Data has been deleted.
+            </div>
+        ');
+        redirect('DataMaster/TenorSetting');
+    }
+
+
 
     public function AddSupplier()
     {

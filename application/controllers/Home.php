@@ -207,10 +207,10 @@ class Home extends CI_Controller
         }
     }
 
-    public function PersonalCustomer()
+    public function PersonalData()
     {
 
-        $data['title']          = "Personal Information";
+        $data['title']          = "Personal Data";
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();

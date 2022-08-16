@@ -71,26 +71,26 @@
                                     <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" required />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" />
+                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  />
+                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)"  />
+                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)"  required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  />
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  required/>
 
                                 </div>
 
 
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>"  />
+                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>"  required/>
                                 </div>
 
                                 <div class="form-group">
