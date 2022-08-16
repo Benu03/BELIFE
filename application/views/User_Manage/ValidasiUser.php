@@ -81,7 +81,7 @@
 
                                                             <!-- <li><a class="dropdown-item" href="javascript:void(0)" onclick="location.href='<?= base_url('User_Manage/RejectRegister/' . Encrypt_url($p['username'])); ?>'">Reject</a></li> -->
 
-                                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('User_Manage/RejectRegister/' . Encrypt_url($p['username'])); ?>')">Reject</a></li>
+                                                            <!-- <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('User_Manage/RejectRegister/' . Encrypt_url($p['username'])); ?>')">Reject</a></li> -->
 
                                                         </ul>
                                                     </div>

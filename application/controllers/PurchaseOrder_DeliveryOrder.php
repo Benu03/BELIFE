@@ -267,12 +267,10 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
             'date_post'  => date('Y-m-d H:i:s')
         ];
 
-
-
-
-
-
+    
         $this->db->insert('po_do_supplier_detail', $data);
+
+
 
 
         $data['countoderpodo']    =   $this->Po_do_m->list_wating_podo_add_supplier($kode_po_do)->num_rows();
@@ -284,6 +282,7 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
             'sumpodoadd'  => $data['sumpodoadd']['price']
 
         ];
+
 
 
         echo json_encode($data2);

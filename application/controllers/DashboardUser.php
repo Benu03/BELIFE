@@ -113,23 +113,43 @@ class DashboardUser extends CI_Controller
     public function AddBucketProduct($id)
     {
 
+
+
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
+        $datapersonal = $this->Users_m->personal_customer_check($username)->row_array();
+
+         if($datapersonal['selfie_image']==NULL && $datapersonal['ktp_image']==NULL && $datapersonal['selfie_ktp_image']==NULL && $datapersonal['buku_tabungan']==NULL && $datapersonal['slip_gaji']==NULL){
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-info alert-dismissible">
+                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                     <h5><i class="icon fas fa-check"></i>Info!</h5>
+                   Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+                 </div>');
+                redirect('Home/PersonalData');
+            
+
+         }
+         elseif($datapersonal['status_register'] !== "approved"){
+
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Akun Anda Sedang Menunggu Verifikasi Admin Belife ...!!!
+             </div>');
+            redirect('Home');
+
+        }
+
+         else{
+
         $data['product'] = $this->Product_m->find_product($id);
-
-
-
-
-
-
         $spread = $this->Master_m->get_spred_harga_product();
         $hargabarang = $data['product']['price_sell'];
         // $hargajual = (($hargabarang * $spread['value']) / 100) + $hargabarang;
         $hargajual = $hargabarang;
         $hargabeli = $data['product']['price_buy'];
-
-
-
 
         $checkdatakeranjang = $this->Feature_m->check_keranjang($id, $username);
         $checkstok = $this->Feature_m->check_stokproduct($id);
@@ -190,6 +210,7 @@ class DashboardUser extends CI_Controller
 
 
             redirect('Feature/Keranjang');
+        }
         }
     }
 

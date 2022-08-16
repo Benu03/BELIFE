@@ -205,9 +205,6 @@
                                 </div>
 
 
-
-
-
                             </div>
                             <a href="<?= base_url('Auth'); ?>" class="btnSignIn text-center">Sign In</a>
                             <button type="submit" class="btnRegister">Register</button>

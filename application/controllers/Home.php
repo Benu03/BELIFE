@@ -27,9 +27,10 @@ class Home extends CI_Controller
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-
+       
 
         $username  = $data['usrProfile']['username'];
+        $data['personal']  = $this->Users_m->personal_customer_check($username)->row_array();
         $data['datacart']    = $this->Product_m->get_data_keranjang($username)->num_rows();
 
         $this->load->view('Home/MyProfile_v', $data);
@@ -44,7 +45,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    Your file is empty.
+                    File Belu Di pilih.
                 </div>
             ');
             redirect('Home/MyProfile');
@@ -216,7 +217,8 @@ class Home extends CI_Controller
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
 
         $username = $data['usrProfile']['username'];
-        $data['personaluser'] = $this->Users_m->personal_customer_check($username)->result_array();
+        $data['personaluser'] = $this->Users_m->personal_customer_get($username)->row_array();
+   
 
 
         $this->form_validation->set_rules('name', 'Name', 'required');
@@ -305,4 +307,353 @@ class Home extends CI_Controller
             }
         }
     }
+
+
+
+    public function Upload_ktp()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        if(empty($_FILES['ktp_image']['name'])) {
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                    File Belum Di pilih.
+                </div>
+            ');
+            redirect('Home/PersonalData');
+        } else {
+                $this->load->library('upload');
+                mkdir("./assets/img/img-profile/" . $username, 0777, true);
+                $default_name                = "KTP_".$username.".jpg";
+                $config_img['upload_path']   = './assets/img/img-profile/' . $username;
+                $config_img['allowed_types'] = 'jpg|jpeg|png';
+                $config_img['file_name']     = $default_name;
+                $config_img['overwrite']     = TRUE;
+                $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
+                $this->upload->initialize($config_img);
+
+
+                if (($_FILES['ktp_image']['name'])) {
+                    if ($this->upload->do_upload('ktp_image')) {
+                        $this->upload->data();
+                    }
+                }
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload ktp_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_ktp'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+                $this->Users_m->upload_ktp($username, $default_name);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        KTP sudah terupload.
+                    </div>
+                ');
+                redirect('Home/PersonalData');
+            
+        }
+
+    }
+
+    
+    public function Upload_selfie()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        if(empty($_FILES['selfie_image']['name'])) {
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                    File Belum Di pilih.
+                </div>
+            ');
+            redirect('Home/PersonalData');
+        } else {
+                $this->load->library('upload');
+                mkdir("./assets/img/img-profile/" . $username, 0777, true);
+                $default_name                = "SELFIE_".$username.".jpg";
+                $config_img['upload_path']   = './assets/img/img-profile/' . $username;
+                $config_img['allowed_types'] = 'jpg|jpeg|png';
+                $config_img['file_name']     = $default_name;
+                $config_img['overwrite']     = TRUE;
+                $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
+                $this->upload->initialize($config_img);
+
+
+                if (($_FILES['selfie_image']['name'])) {
+                    if ($this->upload->do_upload('selfie_image')) {
+                        $this->upload->data();
+                    }
+                }
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload selfie_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_selfie'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+                $this->Users_m->upload_selfie($username, $default_name);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Selfie sudah terupload.
+                    </div>
+                ');
+                redirect('Home/PersonalData');
+            
+        }
+
+    }
+
+
+     
+    public function Upload_selfie_ktp()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        if(empty($_FILES['selfie_ktp_image']['name'])) {
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                    File Belum Di pilih.
+                </div>
+            ');
+            redirect('Home/PersonalData');
+        } else {
+                $this->load->library('upload');
+                mkdir("./assets/img/img-profile/" . $username, 0777, true);
+                $default_name                = "SELFIE_KTP_".$username.".jpg";
+                $config_img['upload_path']   = './assets/img/img-profile/' . $username;
+                $config_img['allowed_types'] = 'jpg|jpeg|png';
+                $config_img['file_name']     = $default_name;
+                $config_img['overwrite']     = TRUE;
+                $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
+                $this->upload->initialize($config_img);
+
+
+                if (($_FILES['selfie_ktp_image']['name'])) {
+                    if ($this->upload->do_upload('selfie_ktp_image')) {
+                        $this->upload->data();
+                    }
+                }
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload selfie_ktp_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_selfie_ktp'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+                $this->Users_m->upload_selfie_ktp($username, $default_name);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Selfie KTP sudah terupload.
+                    </div>
+                ');
+                redirect('Home/PersonalData');
+            
+        }
+
+    }
+
+
+    public function Upload_buku_tabungan()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        if(empty($_FILES['buku_tabungan_image']['name'])) {
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                    File Belum Di pilih.
+                </div>
+            ');
+            redirect('Home/PersonalData');
+        } else {
+                $this->load->library('upload');
+                mkdir("./assets/img/img-profile/" . $username, 0777, true);
+                $default_name                = "BUKU_TABUNGAN_".$username.".jpg";
+                $config_img['upload_path']   = './assets/img/img-profile/' . $username;
+                $config_img['allowed_types'] = 'jpg|jpeg|png';
+                $config_img['file_name']     = $default_name;
+                $config_img['overwrite']     = TRUE;
+                $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
+                $this->upload->initialize($config_img);
+
+
+                if (($_FILES['buku_tabungan_image']['name'])) {
+                    if ($this->upload->do_upload('buku_tabungan_image')) {
+                        $this->upload->data();
+                    }
+                }
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload buku_tabungan_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_buku_tabungan'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+                $this->Users_m->upload_buku_tabungan($username, $default_name);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Buku Tabungan sudah terupload.
+                    </div>
+                ');
+                redirect('Home/PersonalData');
+            
+        }
+
+    }
+
+
+
+    public function Upload_slip_gaji()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        if(empty($_FILES['slip_gaji_image']['name'])) {
+            $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                    File Belum Di pilih.
+                </div>
+            ');
+            redirect('Home/PersonalData');
+        } else {
+                $this->load->library('upload');
+                mkdir("./assets/img/img-profile/" . $username, 0777, true);
+                $default_name                = "SLIP_GAJI_".$username.".jpg";
+                $config_img['upload_path']   = './assets/img/img-profile/' . $username;
+                $config_img['allowed_types'] = 'jpg|jpeg|png';
+                $config_img['file_name']     = $default_name;
+                $config_img['overwrite']     = TRUE;
+                $config_img['max_size']      = 512; /* max 512kb */
+                chmod($config_img['upload_path'], 0777);
+
+                $this->upload->initialize($config_img);
+
+
+                if (($_FILES['slip_gaji_image']['name'])) {
+                    if ($this->upload->do_upload('slip_gaji_image')) {
+                        $this->upload->data();
+                    }
+                }
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload slip_gaji_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_slip_gaji'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+                $this->Users_m->upload_slip_gaji($username, $default_name);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Slip Gaji sudah terupload.
+                    </div>
+                ');
+                redirect('Home/PersonalData');
+            
+        }
+
+    }
+
+
+
+    public function UpdateRegisterStatus()
+    {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username = $data['usrProfile']['username'];
+
+        $datapersonal = $this->Users_m->personal_customer_check($username)->row_array();
+
+        if($datapersonal['selfie_image']==NULL && $datapersonal['ktp_image']==NULL && $datapersonal['selfie_ktp_image']==NULL && $datapersonal['buku_tabungan']==NULL && $datapersonal['slip_gaji']==NULL){
+               $this->session->set_flashdata('message', '
+               <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i>Info!</h5>
+                  Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu...!!!
+                </div>');
+               redirect('Home/PersonalData');
+           
+        }else{
+        
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload slip_gaji_image',
+                    'object'     => $username,
+                    'url'        => base_url('Home/Upload_slip_gaji'),
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+                $statusregister ='update';
+                $this->Users_m->upload_status_register($username, $statusregister);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
+                        Data Anda Akan Di verifikasi Admin...!
+                    </div>
+                ');
+                redirect('Home');
+            
+            }
+
+    }
+
+
+    
+
 }
+
+
+

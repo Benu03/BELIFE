@@ -116,7 +116,7 @@ function count_validasiregister()
 
     $ci = get_instance();
 
-    $query = "select  * from personal_customer where status_register is NULL ";
+    $query = "select  * from personal_customer where status_register='update'";
     $result =   $ci->db->query($query)->num_rows();
     return $result;
 }

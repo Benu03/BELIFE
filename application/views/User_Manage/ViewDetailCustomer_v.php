@@ -151,25 +151,45 @@
 
 
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie_image']); ?>" data-toggle="lightbox" data-title="Foto Selfie" data-gallery="gallery">
-                                    <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie_image']); ?>" class="img-fluid mb-2">
+                        <div class="row text-center">
+                        <div class="col-sm-1">
+                        </div>
+                            <div class="col-sm-2">
+                                <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie']); ?>" data-toggle="lightbox" data-title="Foto Selfie" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-2 text-center">
                                 <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['ktp_image']); ?>" data-toggle="lightbox" data-title="Foto KTP" data-gallery="gallery">
                                     <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['ktp_image']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
 
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-2 text-center">
                                 <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie_ktp_image']); ?>" data-toggle="lightbox" data-title="Foto Selfie Dengan KTP" data-gallery="gallery">
                                     <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['selfie_ktp_image']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
 
+                            <div class="col-sm-2 text-center">
+                                <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['buku_tabungan']); ?>" data-toggle="lightbox" data-title="Foto Buku Tabungan" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['buku_tabungan']); ?>" class="img-fluid mb-2">
+                                </a>
+                            </div>
+
+
+                            <div class="col-sm-2 text-center">
+                                <a href="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['slip_gaji']); ?>" data-toggle="lightbox" data-title="Foto Slip Gaji" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $datadetailregister['username'] . '/' . $datadetailregister['slip_gaji']); ?>" class="img-fluid mb-2">
+                                </a>
+                            </div>
+                            
+                            <div class="col-sm-1">
                         </div>
+
+
+                        </div>
+
                     </div>
 
 
@@ -201,7 +221,7 @@
                     </div>
                     <div class="card-footer text-right">
 
-                        <a class="btn btn-md bg-info mr-2" href="<?= base_url('User_Manage/GeneratePdfRegister/' . Encrypt_url($datadetailregister['username'])); ?>" target="_blank"><i class="fas fa-file-pdf"></i> Generate PDF</a>
+                        <!-- <a class="btn btn-md bg-info mr-2" href="<?= base_url('User_Manage/GeneratePdfRegister/' . Encrypt_url($datadetailregister['username'])); ?>" target="_blank"><i class="fas fa-file-pdf"></i> Generate PDF</a> -->
 
                         <a class="btn btn-md bg-danger  mr-2 " href="<?= base_url('User_Manage/RejectRegister/' . Encrypt_url($datadetailregister['username'])); ?>"><i class="fas fa-thumbs-down"></i> Reject</a>
 

@@ -32,6 +32,7 @@
 
         <div class="container-fluid">
             <?= $this->session->flashdata('wlcmsg'); ?>
+            <?= $this->session->flashdata('message'); ?>
             <div class="row">
 
                 <div class="col-md-4">
@@ -64,9 +65,13 @@
 
 
                         </div>
+
+                        <?php if (($this->session->userdata('id_role') == 2) && $personal['status_register'] == 'not_update')  : ?>
                         <div class="card-footer text-right">
-                        <a href="<?= base_url('Home/PersonalData') ?>" class="btn btn-warning btn-sm active" role="button" aria-pressed="true"><i class="fas fa-user-tag"></i> Personal Data</a>
+                        <a href="<?= base_url('Home/PersonalData') ?>" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-user-tag"></i> Personal Data</a>
                         </div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
                 <div class="col-md-8">

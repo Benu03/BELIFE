@@ -194,7 +194,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
             'is_unique' => 'This email has already registered!'
         ]);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[1]|matches[password2]', [
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
             'matches' => 'Password didnt match!',
             'min_length' => 'Password to short!'
         ]);
@@ -251,7 +251,7 @@ class Auth extends CI_Controller
 
                     $this->Users_m->insert($dataregister);
                     $this->Users_m->insert_datapersonal($datapersonal);
-                    mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
+                    // mkdir("./assets/img/img-profile/" . $userNameRandom2, 0777, true);
 
                     
                     $email  = $this->input->post('email', true);

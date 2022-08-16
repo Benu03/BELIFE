@@ -26,9 +26,11 @@ class User_manage_m extends CI_Model
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
-        b.selfie_image,
+        b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
+        b.buku_tabungan,
+        b.slip_gaji,
         b.limit_user,
         b.id_loc,
         e.patner_name,
@@ -63,9 +65,11 @@ class User_manage_m extends CI_Model
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
-        b.selfie_image,
+        b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
+        b.buku_tabungan,
+        b.slip_gaji,
         b.limit_user,
         b.id_loc,
         e.patner_name,
@@ -103,9 +107,11 @@ class User_manage_m extends CI_Model
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
-        b.selfie_image,
+        b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
+        b.buku_tabungan,
+        b.slip_gaji,
         b.limit_user,
         b.id_loc,
         e.patner_name,
@@ -139,9 +145,11 @@ class User_manage_m extends CI_Model
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
-        b.selfie_image,
+        b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
+        b.buku_tabungan,
+        b.slip_gaji,
         b.limit_user,
         b.id_loc,
         e.patner_name,
@@ -178,7 +186,7 @@ class User_manage_m extends CI_Model
                     --left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
                     left join patner e on b.id_org = e.id
                     where a.id_role= 2 
-                    and b.status_register ='Update'
+                    and b.status_register ='update'
         ";
         return $this->db->query($query)->result_array();
     }
@@ -209,7 +217,7 @@ class User_manage_m extends CI_Model
     {
 
 
-        $query = "update personal_customer set limit_user = 0,status_register='Reject' where username ='$username' ";
+        $query = "update personal_customer set limit_user = 0,status_register='reject' where username ='$username' ";
         return $this->db->query($query);
     }
 
@@ -233,10 +241,9 @@ class User_manage_m extends CI_Model
          left join patner d on b.id_org = d.id
         
         
-        where a.id_role=2 and status_register='Approved'";
+        where a.id_role=2 and status_register='approved'";
         return $this->db->query($query)->result_array();
     }
-
 
     function get_all_user_generate()
     {

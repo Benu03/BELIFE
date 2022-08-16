@@ -49,6 +49,8 @@ class Users_m extends CI_Model
         return $query->row_array();
     }
 
+
+
  
 
     /* FOR USER SESSION DATA */
@@ -126,12 +128,29 @@ class Users_m extends CI_Model
 
     }
 
+
+    function personal_customer_get($username)
+    {
+
+        $query = "SELECT username, name_full, email, phone, nik, tgl_lahir, tempat_lahir, jenis_kelamin,
+        mp.nama_provinsi, mkk.nama_kota_kabupaten , address_ktp, ktp_image, selfie_ktp_image, limit_user, 
+        id_loc, id_org, date(datetime_post) as datetime_post, status_register, buku_tabungan, slip_gaji,selfie
+        FROM public.personal_customer a
+        left join ms_provinsi mp ON a.provinsi_id = mp.id_provinsi 
+        left join ms_kota_kabupaten mkk on a.kota_id = mkk.id_kota_kabupaten 
+        where a.username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+
+
+
     function Banner($id)
     {
         $query = "select file_upload from ms_general
         where code ='$id' ";
-        return $this->db->query($query)->row_array();  
-
+        return $this->db->query($query)->row_array(); 
 
     }
     
@@ -154,6 +173,72 @@ class Users_m extends CI_Model
 
 
     }
+
+    function upload_ktp($username,$default_name)
+    {
+
+        $query = "update personal_customer set ktp_image='$default_name'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+    
+
+    
+    function upload_selfie($username,$default_name)
+    {
+
+        $query = "update personal_customer set selfie='$default_name'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+    
+      
+    function upload_selfie_ktp($username,$default_name)
+    {
+
+        $query = "update personal_customer set selfie_ktp_image='$default_name'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+
+         
+    function upload_buku_tabungan($username,$default_name)
+    {
+
+        $query = "update personal_customer set buku_tabungan='$default_name'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+
+    function upload_slip_gaji($username,$default_name)
+    {
+
+        $query = "update personal_customer set slip_gaji='$default_name'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+
+    function upload_status_register($username,$statusregister)
+    {
+
+        $query = "update personal_customer set status_register='$statusregister'
+        where username ='$username' ";
+        return $this->db->query($query); 
+
+
+    }
+ 
+ 
  
 
     

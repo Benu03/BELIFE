@@ -233,7 +233,7 @@ class User_Manage extends CI_Controller
         $data = array(
             'username'          => $this->input->post('username'),
             'limit'             => $this->input->post('limit'),
-            'status_register'   => 'Approved'
+            'status_register'   => 'approved'
         );
 
 
@@ -267,6 +267,17 @@ class User_Manage extends CI_Controller
             'at_time'    => date('Y-m-d H:i:s')
         ];
         $this->db->insert('log_activity', $logData);
+
+        $Datanotification = [
+            "user_receive"  => $this->input->post('username'),
+            'massage'     =>  'Akun Anda Sudah Di Approve Admin Belife, Silakan Melakukan Transaksi',
+            'is_view' => 0,
+            'date_notif'  => date('Y-m-d H:i:s')
+
+        ];
+
+        $this->db->insert('notification', $Datanotification);
+
 
         $this->session->set_flashdata('message', '
            <div class="alert alert-success alert-dismissible">
