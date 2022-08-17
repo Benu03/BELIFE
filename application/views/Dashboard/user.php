@@ -61,18 +61,18 @@
             <div class="row text-center mt-2">
 
 
-
                 <?php foreach ($product as $p) : ?>
 
 
                     <div class="col-6 col-sm-4 col-md-2 d-flex align-items-stretch flex-column">
                         <div class="card  d-flex flex-fill">
                             <div class="card-header text-muted border-bottom-0">
-
+                            <b style="font-size: 0.7rem;"> <?= $p['title_product']; ?> </b>
                             </div>
                             <div class="card-body  pt-0">
                                 <div class="row">
                                     <div class="col-12 text-center">
+                                    
                                         <div class="img-hover-zoom">
                                             <a href="<?= base_url('Feature/DetailProduct/') ?><?= $p['kode_product']; ?>">
                                                 <img src="<?= base_url('assets/img/product/') ?><?= $p['image_product']; ?>" class="img-square img-fluid mb-2" style="height:100px;max-width:100%;">
@@ -85,19 +85,16 @@
 
                             </div>
                             <div class="text-center">
-                                <b> <?= $p['title_product']; ?> </b>
+                               
 
                             </div>
                             <div class="text-left">
-
-
-                            <?php  $p['is_diskon']?>
 
                                 <?php if ($p['is_diskon'] == 1) : ?>
 
                                     <!-- harga yang di strip  -->
 
-                                    <b class="text-xs text-left text-secondary ml-3"><del>Rp. <?= number_format(
+                                    <b class="text-left text-secondary ml-3" style="font-size: 0.7rem;"><del>Rp. <?= number_format(
                                                                                                     ($p['price_sell'] * $p['diskon_value']) / 100 +
                                                                                                         $p['price_sell'],
                                                                                                     0,
@@ -105,11 +102,11 @@
                                                                                                     '.'
                                                                                                 ); ?> </del></b>
 
-                                    <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
+                                    <b class="text-right text-warning ml-3" style="font-size: 0.7rem;">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
 
 
                                 <?php else: ?>
-                                    <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
+                                    <b class="text-center text-warning ml-3" style="font-size: 0.7rem;">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
 
                                 <?php endif; ?>
 
