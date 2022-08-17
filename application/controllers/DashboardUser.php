@@ -19,7 +19,7 @@ class DashboardUser extends CI_Controller
 
 
 
-    public function index()
+    public function Index()
     {
         $data['title']          = "Dashboard";
 
@@ -34,69 +34,42 @@ class DashboardUser extends CI_Controller
         $data['banner3'] =  $this->Users_m->Banner('IMG_Banner3');
 
 
-
-
-
-
         $this->load->library('pagination');
 
-        if ($this->input->post('submit')) {
-            $data['cari'] =  $this->input->post('cari');
+        if ($this->input->post('submit')) {         
+            $data['cari']   =  $this->input->post('cari');
             $this->session->set_userdata('cari', $data['cari']);
-        } else {
+  
+  
+        } 
+        else {
             $data['cari'] = $this->session->userdata('cari');
+    
+        }
+
+        if ($this->input->post('submit2')) {         
+         
+            $data['kategoridata'] =  $this->input->post('kategori_dashboard');
+          
+            $this->session->set_userdata('kategori', $data['kategori']);
+  
+        } 
+        else {
+            $data['kategoridata'] = null;
         }
 
 
 
-        //config
-        $this->db->like('nama_product', $data['cari']);
+
+        $this->db->where('id_category_product', $data['kategoridata']);
+        $this->db->like('title_product', $data['cari']);
+        $this->db->or_like('nama_product', $data['cari']);
         $this->db->from('product');
         $config['total_rows'] = $this->db->count_all_results();
         $config['per_page'] = 12;
-
-
-        $config['base_url'] = base_url('DashboardUser/index');
-
-
-        $config['num_links'] = 3;
-
-
-        //styling
-        $config['full_tag_open'] = '<nav><ul class="pagination justify-content-center">';
-        $config['full_tag_close'] = '</ul></nav>';
-
-        $config['first_link'] = 'First';
-        $config['first_tag_open'] = '<li class="page-item">';
-        $config['first_tag_close'] = '</li>';
-
-        $config['last_link'] = 'Last';
-        $config['last_tag_open'] = '<li class="page-item">';
-        $config['last_tag_close'] = '</li>';
-
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li class="page-item">';
-        $config['next_tag_close'] = '</li>';
-
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="page-item">';
-        $config['prev_tag_close'] = '</li>';
-
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#" >';
-        $config['cur_tag_close'] = '</a></li>';
-
-        $config['num_tag_open'] = '<li class="page-item">';
-        $config['num_tag_close'] = '</li>';
-
-        $config['attributes'] = array('class' => 'page-link');
-
         $this->pagination->initialize($config);
-
-
         $data['start'] = $this->uri->segment(3);
-        $data['spread'] = $this->Master_m->get_spred_harga_product();
-        $data['product'] = $this->Product_m->get_all_product_pag($config['per_page'], $data['start'], $data['cari']);
-
+        $data['product'] = $this->Product_m->get_all_product_pag($config['per_page'], $data['start'],$data['cari'],$data['kategoridata']);
 
 
         $this->load->view('Dashboard/user', $data);

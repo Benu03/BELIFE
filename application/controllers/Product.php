@@ -228,13 +228,13 @@ class Product extends CI_Controller
 
                      $is_diskon =  $this->input->post('diskon');
                      if($is_diskon == 0){
-                        $diskon_id = NULL;
+                        $diskon_value = NULL;
                         $date_expired_diskon = NULL;
 
                      }  
                      else{
 
-                        $diskon_id = $this->input->post('diskon_value');
+                        $diskon_value = $this->input->post('diskon_value');
                         $date_expired_diskon = $this->input->post('dateexpired_diskon');
 
                      }
@@ -248,7 +248,7 @@ class Product extends CI_Controller
                         'price_buy'             => $this->input->post('hargaproductbeli'),
                         'price_sell'            => $this->input->post('hargaproduct'),
                         'is_diskon'             => $is_diskon,
-                        'diskon_id'             => $diskon_id,
+                        // 'diskon_id'             => $diskon_id,
                         'status'                => $this->input->post('status'),
                         'qty'                   => $this->input->post('qty'),
                         'image_product'         => $default_name,
@@ -257,7 +257,8 @@ class Product extends CI_Controller
                         'price_belife'          => $this->input->post('hargaproductbelife'),
                         'rate_beli'             => $this->input->post('rateproductbeli'),
                         'rate_belife'           => $this->input->post('rateproductbelife'),
-                        'date_expired_diskon'   => $date_expired_diskon
+                        'date_expired_diskon'   => $date_expired_diskon,
+                        'diskon_value'          => $diskon_value
                         
                     );
 
@@ -341,7 +342,18 @@ class Product extends CI_Controller
                 }
 
 
+                $is_diskon =  $this->input->post('diskon');
+                if($is_diskon == 0){
+                   $diskon_value = NULL;
+                   $date_expired_diskon = NULL;
 
+                }  
+                else{
+
+                   $diskon_value = $this->input->post('diskon_value');
+                   $date_expired_diskon = $this->input->post('dateexpired_diskon');
+
+                }
 
 
 
@@ -352,24 +364,23 @@ class Product extends CI_Controller
                     'id_category_product'   => $this->input->post('kategori'),
                     'price_buy'             => $this->input->post('hargaproductbeli'),
                     'price_sell'            => $this->input->post('hargaproduct'),
-                    'is_diskon'             => $this->input->post('diskon'),
-                    'diskon_id'             => $this->input->post('diskon_value'),
+                    'is_diskon'             => $is_diskon,
+                    // 'diskon_id'             => $diskon_id,
                     'status'                => $this->input->post('status'),
                     'qty'                   => $this->input->post('qty'),
                     'image_product'         => $default_name,
                     'user_update'           => $this->session->userdata('username'),
-                    'date_update'           => date('Y-m-d H:i:s')
+                    'date_update'           => date('Y-m-d H:i:s'),
+                    'price_belife'          => $this->input->post('hargaproductbelife'),
+                    'rate_beli'             => $this->input->post('rateproductbeli'),
+                    'rate_belife'           => $this->input->post('rateproductbelife'),
+                    'date_expired_diskon'   => $date_expired_diskon,
+                    'diskon_value'          => $diskon_value
                 );
 
 
 
                 $this->Product_m->edit_product($id, $data);
-
-
-
-
-                // $this->Product_m->insert_product($data);
-
                 $logData = [
                     'username' => $this->session->userdata('username'),
                     'activities' => 'Add new  Product',

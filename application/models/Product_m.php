@@ -12,20 +12,24 @@ class Product_m extends CI_Model
         return $query->result_array();
     }
 
-    function get_all_product_pag($limit, $start, $cari = null)
+    function get_all_product_pag($limit, $start, $cari = null, $kategoridata = null)
     {
 
         if ($cari) {
-
-
+          
             $this->db->like('nama_product', $cari);
+            $this->db->or_like('title_product', $cari);
+        }
+        elseif($kategoridata){
+
+            $this->db->where('id_category_product', $kategoridata);
+
         }
 
 
-
-        $this->db->select('product.*,ms_general.value diskon_value');
+        $this->db->where(1, 1);
+        $this->db->select('*');
         $this->db->from($this->table_name);
-        $this->db->join('ms_general', 'product.diskon_id = ms_general.id', 'left');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result_array();
@@ -251,7 +255,8 @@ class Product_m extends CI_Model
 
     function get_all_productshow_byid($id)
     {
-        $query = "select * from product where kode_product='$id' ";
+        $query = "SELECT kode_product, title_product, nama_product, description, id_category_product, price_buy, price_sell, is_diskon, diskon_id, qty, status, image_product, user_create, date_create, user_update, date_update, price_belife, rate_beli, rate_belife, to_char(date_expired_diskon,'YYYY-MM-DD') as date_expired_diskon,diskon_value
+        FROM product where kode_product='$id' ";
         return $this->db->query($query)->row_array();
     }
 

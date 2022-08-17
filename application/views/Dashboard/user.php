@@ -40,9 +40,9 @@
 
         </div>
 
+       
 
-
-
+        
 
         </section>
         <?= $this->session->flashdata('message'); ?>
@@ -56,9 +56,9 @@
         <section class="content">
             <!-- /.content -->
 
+          
 
-
-            <div class="row text-center mt-2">
+            <div class="row text-center">
 
 
                 <?php foreach ($product as $p) : ?>
@@ -90,13 +90,13 @@
                             </div>
                             <div class="text-left">
 
-                                <?php if ($p['is_diskon'] == 1) : ?>
+                                <?php if ($p['is_diskon'] == 1 && $p['date_expired_diskon'] >= date("Y-m-d")) : ?>
 
                                     <!-- harga yang di strip  -->
 
+
                                     <b class="text-left text-secondary ml-3" style="font-size: 0.7rem;"><del>Rp. <?= number_format(
-                                                                                                    ($p['price_sell'] * $p['diskon_value']) / 100 +
-                                                                                                        $p['price_sell'],
+                                                                                                    $p['diskon_value'],
                                                                                                     0,
                                                                                                     ',',
                                                                                                     '.'
@@ -130,26 +130,24 @@
                 <?php endforeach; ?>
 
 
-
-
             </div>
 
 
     </div>
+   
+   
+</div>
 
-    <div class="card-footer">
-
-        <?= $this->pagination->create_links(); ?>
-    </div>
+</section>
+<section class="content">
+<div class="row text-center">
+<div class="col-12">
+<div class="d-flex justify-content-center">
+<?= $this->pagination->create_links(); ?>
+</div>
+</div>
 </div>
 </section>
-
-
-
-
-
-
-
 
 </div>
 </div>

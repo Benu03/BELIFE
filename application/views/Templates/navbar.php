@@ -53,33 +53,37 @@
             </li>
 
 
-
-
-
-
-
-            <li class="nav-item">
+            <li class="nav-item ml-2">
                 <?php if (($this->session->userdata('id_role') == 2)) : ?>
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search text-light"></i>
-                    <?php endif; ?>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <form action="<?= base_url('DashboardUser/index'); ?>" method="post" class="form-inline">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control form-control-sm" placeholder="Cari Barang">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-navbar" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                        <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
+                    <form action="<?= base_url('DashboardUser/Index'); ?>" method="post" class="form-inline">
+                    <div class="input-group input-group-sm">
+                    <input class="form-control form-control-sm" id="cari" name="cari" type="text" placeholder="Search" aria-label="Search" autocomplete="off">                   
+                    <span class="input-group-append">
+                    <input class="btn btn-outline-light my-2 my-sm-0 btn-sm" type="submit" name="submit" value="Cari">
+                    </span>
+                      </div>
+                    </form>   
+                <?php endif; ?>
+             
+            </li>
+
+            <li class="nav-item ml-2">
+                <?php if (($this->session->userdata('id_role') == 2)) : ?>
+                    <form action="<?= base_url('DashboardUser/Index'); ?>" method="post" class="form-inline">
+                    <div class="input-group input-group-sm">
+                            <select name="kategori_dashboard" id="kategori_dashboard" class="form-control">
+                                <option value="" hidden> Kategori</option>
+                                <?php foreach ($kategori as $r) :   ?>
+                                    <option value="<?= $r['id']; ?>"> <?= $r['category_name'];  ?></option>
+                                <?php endforeach;   ?>
+                            </select>
+                        <div class="input-group-append">
+                        <input class="btn btn-outline-light my-2 my-sm-0 btn-sm" type="submit" name="submit2" value="Pilih">
+                        </div>
+                        </div>
+                    </form>   
+                <?php endif; ?>
+             
             </li>
 
         </ul>

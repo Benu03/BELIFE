@@ -242,13 +242,7 @@
                     <div class="form-group row " id="diskon_label" style="display: none">
                         <label for="diskon_value" class="col-sm-3 col-form-label">Diskon Value</label>
                         <div class="col-sm-3">
-                            <select name="diskon_value" id="diskon_value" class="form-control">
-                                <option value="0" hidden>Select Diskon</option>
-
-                                <?php foreach ($diskon as $r) :   ?>
-                                    <option value="<?= $r['id']; ?>"> <?= $r['description'];  ?></option>
-                                <?php endforeach;   ?>
-                            </select>
+                        <input type="text" class="form-control form-control-sm" id="diskon_value" name="diskon_value" onkeypress="return hanyaAngka(event)" required>
                         </div>
                         <label for="diskon_value" class="col-sm-2 col-form-label">Date Expired</label>
                         <div class="col-sm-2">

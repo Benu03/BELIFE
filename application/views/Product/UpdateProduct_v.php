@@ -44,7 +44,7 @@
             <div class="row">
 
 
-                <div class="col-8">
+                <div class="col-10">
                     <div class="card card-success card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Update Data</h3>
@@ -98,11 +98,27 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="hargaproductbeli" class="col-sm-3 col-form-label">Harga Beli</label>
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" value="<?= $product['price_buy']; ?>" required>
-                                    </div>
+                                <label for="hargaproductbeli" class="col-sm-3 col-form-label">Harga Beli</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)"  value="<?= $product['price_buy']; ?>" required>
                                 </div>
+                                <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli %</label>
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()"  value="<?= $product['rate_beli']; ?>" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="hargaproductbelife" class="col-sm-3 col-form-label">Harga Belife</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" value="<?= $product['price_belife']; ?>" required>
+                                </div>
+                                <label for="rateproductbelife" class="col-sm-2 col-form-label">Rate Belife %</label>
+                                <div class="col-sm-1">
+                                    <input type="text" class="form-control form-control-sm" id="rateproductbelife" name="rateproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" value="<?= $product['rate_belife']; ?>" required>
+                                </div>
+                            </div>
 
 
                                 <div class="form-group row">
@@ -158,19 +174,14 @@
                                                                                                 } ?>
                                 ">
                                     <label for="diskon_value" class="col-sm-3 col-form-label">Diskon Value</label>
-                                    <div class="col-sm-4">
-                                        <select name="diskon_value" id="diskon_value" class="form-control">
-                                            <option value="" hidden>Select Diskon</option>
-
-                                            <?php foreach ($diskon as $r) :   ?>
-                                                <?php if (strtolower($r['id']) === strtolower($product['diskon_id'])) : ?>
-                                                    <option value="<?= $r['id']; ?>" selected="selected"> <?= $r['description'];  ?></option>
-                                                <?php else : ?>
-                                                    <option value="<?= $r['id']; ?>"> <?= $r['description'];  ?> </option>
-                                                <?php endif; ?>
-                                            <?php endforeach;   ?>
-                                        </select>
+                                    <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="diskon_value" name="diskon_value" onkeypress="return hanyaAngka(event)" value="<?= $product['diskon_value']; ?>" required>
                                     </div>
+                                    <label for="diskon_value" class="col-sm-2 col-form-label">Date Expired</label>
+                                    <div class="col-sm-2">
+                                        <input type="dateexpired_diskon" class="form-control" placeholder="(YYYY-MM-DD)" id="dateexpired_diskon" name="dateexpired_diskon" value="<?= $product['date_expired_diskon']; ?>"  />
+                                        </div>
+
                                 </div>
 
 
@@ -206,7 +217,7 @@
                                         <div class="row">
                                             <div class="col-sm-3">
 
-                                                <img src="<?= base_url('assets/img/product/default.png'); ?>" class="img-thumbnail">
+                                                <img src="<?= base_url('assets/img/product/'); ?><?= $product['kode_product']; ?>.jpg" class="img-thumbnail">
                                             </div>
                                             <div class="col-sm-6">
 
