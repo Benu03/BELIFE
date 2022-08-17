@@ -37,6 +37,7 @@ class DashboardUser extends CI_Controller
 
 
 
+
         $this->load->library('pagination');
 
         if ($this->input->post('submit')) {
@@ -93,7 +94,6 @@ class DashboardUser extends CI_Controller
 
 
         $data['start'] = $this->uri->segment(3);
-
         $data['spread'] = $this->Master_m->get_spred_harga_product();
         $data['product'] = $this->Product_m->get_all_product_pag($config['per_page'], $data['start'], $data['cari']);
 

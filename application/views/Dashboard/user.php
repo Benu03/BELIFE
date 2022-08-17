@@ -91,8 +91,9 @@
                             <div class="text-left">
 
 
+                            <?php  $p['is_diskon']?>
 
-                                <?php if ($p['is_diskon'] == '1') : ?>
+                                <?php if ($p['is_diskon'] == 1) : ?>
 
                                     <!-- harga yang di strip  -->
 
@@ -107,7 +108,7 @@
                                     <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
 
 
-                                <?php elseif ($p['is_diskon'] <> '1') : ?>
+                                <?php else: ?>
                                     <b class="text-sm text-right text-warning ml-3">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></b>
 
                                 <?php endif; ?>
