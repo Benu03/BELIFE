@@ -65,13 +65,14 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive pad">
-                            <table id="tbproduct" class="table table-bordered table-striped">
+                            <table id="tbproduct" class="table table-bordered table-striped table-sm">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Image</th>
                                         <th>Nama Product</th>
                                         <th>Kategori Product</th>
                                         <th>Harga Beli</th>
+                                        <th>Harga Belife</th>
                                         <th>Harga Jual</th>
                                         <th>Status</th>
                                         <th>Qty</th>
@@ -90,6 +91,7 @@
                                             <td class="text-left" style="vertical-align:middle"><?= $p['nama_product']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['category_name']; ?></td>
                                             <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['price_buy'], 0, ',', '.'); ?></td>
+                                            <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['price_belife'], 0, ',', '.'); ?></td>
                                             <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($p['price_sell'], 0, ',', '.'); ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['status']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['qty']; ?></td>
@@ -136,7 +138,7 @@
 
 <!-- MODAL ADD DATA -->
 <div class="modal fade" id="modal-add-data">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form action="<?= base_url('Product/AddProduct'); ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
@@ -183,14 +185,31 @@
 
                     <div class="form-group row">
                         <label for="hargaproductbeli" class="col-sm-3 col-form-label">Harga Beli</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" required>
+                        </div>
+                        <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli %</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()" required>
                         </div>
                     </div>
 
+
+                    <div class="form-group row">
+                        <label for="hargaproductbelife" class="col-sm-3 col-form-label">Harga Belife</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" required>
+                        </div>
+                        <label for="rateproductbelife" class="col-sm-2 col-form-label">Rate Belife %</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control form-control-sm" id="rateproductbelife" name="rateproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" required>
+                        </div>
+                    </div>
+
+
                     <div class="form-group row">
                         <label for="hargaproduct" class="col-sm-3 col-form-label">Harga Jual</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <input type="text" class="form-control form-control-sm" id="hargaproduct" name="hargaproduct" onkeypress="return hanyaAngka(event)" required>
                         </div>
                     </div>
@@ -199,14 +218,14 @@
                         <label for="diskon" class="col-sm-3 col-form-label">Diskon</label>
                         <div class="col-sm-9">
                             <div class="form-group row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="custom-control custom-radio">
                                         <input class="custom-control-input" type="radio" id="diskon1" name="diskon" value="1">
                                         <label for="diskon1" class="custom-control-label">Yes</label>
                                     </div>
 
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
                                     <div class="custom-control custom-radio">
                                         <input class="custom-control-input" type="radio" id="diskon2" name="diskon" value="0">
                                         <label for="diskon2" class="custom-control-label">No</label>
@@ -217,25 +236,24 @@
 
                             </div>
 
-
-
-
                         </div>
                     </div>
 
-
-
                     <div class="form-group row " id="diskon_label" style="display: none">
                         <label for="diskon_value" class="col-sm-3 col-form-label">Diskon Value</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <select name="diskon_value" id="diskon_value" class="form-control">
-                                <option value="" hidden>Select Diskon</option>
+                                <option value="0" hidden>Select Diskon</option>
 
                                 <?php foreach ($diskon as $r) :   ?>
                                     <option value="<?= $r['id']; ?>"> <?= $r['description'];  ?></option>
                                 <?php endforeach;   ?>
                             </select>
                         </div>
+                        <label for="diskon_value" class="col-sm-2 col-form-label">Date Expired</label>
+                        <div class="col-sm-2">
+                            <input type="dateexpired_diskon" class="form-control" placeholder="(YYYY-MM-DD)" id="dateexpired_diskon" name="dateexpired_diskon" value="<?= set_value('dateexpired_diskon'); ?>"  />
+                            </div>
                     </div>
 
 
@@ -254,7 +272,7 @@
 
                     <div class="form-group row">
                         <label for="qty" class="col-sm-3 col-form-label">Qty</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" class="form-control form-control-sm" id="qty" name="qty" onkeypress="return hanyaAngka(event)" required>
                         </div>
                     </div>
@@ -302,8 +320,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-
 
 
 

@@ -174,7 +174,6 @@ class Product extends CI_Controller
     {
         $this->form_validation->set_rules('title', 'Title Product', 'required');
         $this->form_validation->set_rules('product_name', 'Nama Product', 'required');
-
         $this->form_validation->set_rules('kategori', 'Kategori Product', 'required');
         $this->form_validation->set_rules('hargaproductbeli', 'Harga Beli', 'required');
         $this->form_validation->set_rules('hargaproduct', 'Harga', 'required');
@@ -186,7 +185,6 @@ class Product extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->DataProduct();
         } else {
-
 
 
             if (empty($_FILES['image_product']['name'])) {
@@ -228,11 +226,20 @@ class Product extends CI_Controller
                     }
 
 
+                     $is_diskon =  $this->input->post('diskon');
+                     if($is_diskon == 0){
+                        $diskon_id = NULL;
+                        $date_expired_diskon = NULL;
 
+                     }  
+                     else{
 
+                        $diskon_id = $this->input->post('diskon_value');
+                        $date_expired_diskon = $this->input->post('dateexpired_diskon');
 
+                     }
 
-                    $data = array(
+                    $datainsertproduct = array(
                         'kode_product'          => $kode_product,
                         'title_product'         => $this->input->post('title'),
                         'nama_product'          => $this->input->post('product_name'),
@@ -240,21 +247,22 @@ class Product extends CI_Controller
                         'id_category_product'   => $this->input->post('kategori'),
                         'price_buy'             => $this->input->post('hargaproductbeli'),
                         'price_sell'            => $this->input->post('hargaproduct'),
-                        'is_diskon'             => $this->input->post('diskon'),
-                        'diskon_id'          => $this->input->post('diskon_value'),
+                        'is_diskon'             => $is_diskon,
+                        'diskon_id'             => $diskon_id,
                         'status'                => $this->input->post('status'),
                         'qty'                   => $this->input->post('qty'),
                         'image_product'         => $default_name,
                         'user_create'           => $this->session->userdata('username'),
-                        'date_create'           => date('Y-m-d H:i:s')
+                        'date_create'           => date('Y-m-d H:i:s'),
+                        'price_belife'          => $this->input->post('hargaproductbelife'),
+                        'rate_beli'             => $this->input->post('rateproductbeli'),
+                        'rate_belife'           => $this->input->post('rateproductbelife'),
+                        'date_expired_diskon'   => $date_expired_diskon
+                        
                     );
 
 
-
-
-
-                    $this->db->insert('product', $data);
-
+                    $this->db->insert('product', $datainsertproduct);
 
                     // $this->Product_m->insert_product($data);
 
@@ -262,7 +270,7 @@ class Product extends CI_Controller
                         'username' => $this->session->userdata('username'),
                         'activities' => 'Add new  Product',
                         'url'        => base_url('Product/AddProduct'),
-                        'object'     => $data['kode_product'],
+                        'object'     => $datainsertproduct['kode_product'],
                         'ipdevice'   => Get_ipdevice(),
                         'at_time'    => date('Y-m-d H:i:s')
                     ];

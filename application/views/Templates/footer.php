@@ -551,6 +551,30 @@
     });
 
 
+    function harga_belife() {      
+        
+        var hargabeli = $("#hargaproductbeli").val();
+        var ratebeli = $("#rateproductbeli").val();
+        var rateharga = (hargabeli * ratebeli)/100;
+        var hargabelife = parseInt(hargabeli)+parseInt(rateharga);
+        console.log(hargabelife);
+        document.getElementById('hargaproductbelife').value = hargabelife;
+    }
+
+
+    function harga_jual() {      
+        
+        var hargabelife = $("#hargaproductbelife").val();
+        var ratebelife = $("#rateproductbelife").val();
+        var rateharga = (hargabelife * ratebelife)/100;
+        var hargajual = parseInt(hargabelife)+parseInt(rateharga);
+        document.getElementById('hargaproduct').value = hargajual;
+    }
+
+
+
+
+
 
     $(document).ready(function() {
         $('#startdate').datepicker({
@@ -559,6 +583,11 @@
         });
 
         $('#enddate').datepicker({
+            autoclose: true,
+            format: "yyyy-mm-dd"
+        });
+
+        $('#dateexpired_diskon').datepicker({
             autoclose: true,
             format: "yyyy-mm-dd"
         });
@@ -583,8 +612,6 @@
         var kode_voucher = $("#kode_voucher").val();
         var totalharga = $("#totalharga").val();
 
-
-
         $.ajax({
             type: "POST",
             url: "<?= base_url('Feature/VoucherCheck') ?>",
@@ -594,7 +621,6 @@
             },
             // cache: false,
             success: function(data) {
-
 
                 if (data == null) {
 
@@ -621,8 +647,6 @@
     function kalkulasi() {
         var tenor = parseFloat(document.orderscustomer.tenor.value);
         var totalharga = parseFloat(document.orderscustomer.totalharga.value);
-
-
 
         $.ajax({
             type: "POST",

@@ -239,7 +239,6 @@ class Product_m extends CI_Model
     {
         $query = "select * from ms_general where code like 'Diskon_%'";
 
-
         return $this->db->query($query);
     }
 
@@ -247,7 +246,6 @@ class Product_m extends CI_Model
     {
         return $this->db->insert('product_category', $data);
     }
-
 
     function get_kategoiproduct_byid($id)
     {
@@ -289,6 +287,7 @@ class Product_m extends CI_Model
               ,a.id_category_product
               ,b.category_name
               ,price_buy
+              ,price_belife
               ,price_sell
               ,status
               ,qty
