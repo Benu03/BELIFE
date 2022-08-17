@@ -49,7 +49,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h4><strong> Featured Products </strong></h4>
+                     <h4><strong> Produk Belife </strong></h4>
                      <hr style="background-color: #fc7c19; height: 3px; border: 0;">
                   </div>
                </div>
@@ -67,10 +67,10 @@
                       <div class="img-hover-zoom card-img-top text-center">
                         <a href="<?= base_url('Feature/DetailProduct/') ?><?= $p['kode_product']; ?>">
                           <img src="<?= base_url('assets/img/product/') ?><?= $p['image_product']; ?>" class="img-square img-fluid mb-2" style="height:150px;max-width:100%;">
-                        
                         </a>
-                        <strong>
-                        <p class="card-title text-dark" ><?= $p['title_product']; ?></p>
+                        <br>
+                        <strong >
+                        <p class="card-title text-dark " style="font-size: 1.0rem;" ><?= $p['title_product']; ?></p>
                         </strong>
                       </div>
                     </div>

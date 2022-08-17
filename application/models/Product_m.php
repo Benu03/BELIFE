@@ -36,14 +36,9 @@ class Product_m extends CI_Model
     function get_all_product_home()
     {
 
-
-
-        $this->db->select('product.*,ms_general.value diskon_value');
-        $this->db->from($this->table_name);
-        $this->db->join('ms_general', 'product.diskon_id = ms_general.id', 'left');
-        $this->db->limit(8);
-        $query = $this->db->get();
-        return $query->result_array();
+        $query = "SELECT * FROM product order by  date_create desc limit 8";
+        return $this->db->query($query)->result_array();
+        
     }
 
 
