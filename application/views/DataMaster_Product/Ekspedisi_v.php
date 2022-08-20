@@ -86,7 +86,8 @@
                                                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="confDelete('<?= base_url('DataMaster_Product/DeleteEkspedisi/' . Encrypt_url($org['id'])); ?>')">Delete</a></li>
                                                         </ul>
                                                     </div>
-                                                </div </td>
+                                                </div 
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

@@ -30,11 +30,37 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+        <?= $this->session->flashdata('message'); ?>
+        <?= form_error('contract_no', '<div class="alert alert-danger alert-dismissible text-sm"><button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>'); ?>
             <div class="row">
-                <div class="col-12">
+                <div class="col-5">
+
+                    <div class="card">
+                        <div class="card-header">
+                            Cari Kontrak
+                        </div>
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                        <form action="<?= base_url('Smart_Search/Kontrak_detail'); ?>" method="POST">
+
+                        <div class="form-group">
+                        <label for="contract_no">Kontrak No</label>
+                        <input type="text" class="form-control form-control-sm" id="contract_no" name="contract_no" autocomplete="off" >
+                        </div>
+                    
+
+                        <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Cari</button>
+                        </div>
+                        </form>
+            
+                        </div>
+                    </div>
 
 
-
+                    </div>
+                    </div>
 
 
 
