@@ -332,7 +332,6 @@ class Finance extends CI_Controller
         $this->Finance_m->update_dataupload($namafile, $dataupdate1);
 
 
-       
 
         unlink('assets/upload/billing/' . $namafile);    // hapus file 
 
