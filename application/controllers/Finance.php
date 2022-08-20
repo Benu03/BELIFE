@@ -147,7 +147,7 @@ class Finance extends CI_Controller
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['listfileuplaod'] = $this->Finance_m->get_all_list_file_upload();
-        // $data['dataunposting'] = $this->Finance_m->get_data_upload_unposting();
+        $data['dataunposting'] = $this->Finance_m->get_data_upload_unposting();
         $data['checkposting'] = $this->Finance_m->checkposting()->num_rows();
 
 
@@ -211,14 +211,20 @@ class Finance extends CI_Controller
                 //  mkdir("./assets/upload/billing/" .$datafile['nama_file'], 0777, true);
 
                 $reader = ReaderEntityFactory::createXLSXReader();
-
+               
                 $reader->open('assets/upload/billing/' . $datafile['nama_file']);
-
+                $reader->setShouldFormatDates(true);
                 foreach ($reader->getSheetIterator() as $sheet) {
                     $numRow = 1;
 
+                   
+
                     foreach ($sheet->getRowIterator() as $row) {
                         if ($numRow > 1) {
+
+                       
+
+
                             $databilling = array(
                                 'nama_file'                     => $datafile['nama_file'] . '',
                                 'contract_no'                   => $row->getCellAtIndex(0),
@@ -227,17 +233,17 @@ class Finance extends CI_Controller
                                 'date_payment'                  => $row->getCellAtIndex(3),
                                 'bank_account'                  => $row->getCellAtIndex(4),
                             );
-
-                    
-                            $this->Finance_m->importdatabilling($databilling);
+ 
+                             $this->Finance_m->importdatabilling($databilling);
                         }
-
+                   
                         $numRow++;
+                       
                     }
                     $reader->close();
 
 
-                    //  unlink('assets/upload/billing/'.$datafile['nama_file']);    //( jika file ingin langsung di delte ketika sesudah di insert ke table)
+                  unlink('assets/upload/billing/'.$datafile['nama_file']);    //( jika file ingin langsung di delte ketika sesudah di insert ke table)
 
                 }
 
@@ -315,25 +321,7 @@ class Finance extends CI_Controller
         $checkposting = $this->Finance_m->checkposting()->row_array();
 
         $namafile = $checkposting['nama_file'];
-
-
-
-        ///
-
-
-
-        // update ke table installment_customer  dati table  billing_list_contract
-
-
-
-
-
-
-        ///
-
-
-
-
+        $this->Finance_m->update_dataInstallment($namafile);
 
         $dataupdate1 = [
             'is_posting' => 1,
@@ -341,18 +329,10 @@ class Finance extends CI_Controller
             'date_posting' => date('Y-m-d H:i:s')
 
         ];
-
         $this->Finance_m->update_dataupload($namafile, $dataupdate1);
 
 
-        $dataupdate2 = [
-
-            'user_posting' => $this->session->userdata('username'),
-            'date_posting' => date('Y-m-d H:i:s')
-
-        ];
-        $this->Finance_m->update_dataupload_list($namafile, $dataupdate2);
-
+       
 
         unlink('assets/upload/billing/' . $namafile);    // hapus file 
 
@@ -370,7 +350,7 @@ class Finance extends CI_Controller
            <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Success!</h5>
-                Data Success Di Reset! </div> ');
+                Data Success Di Posting! </div> ');
         redirect('Finance/Billing');
     }
 

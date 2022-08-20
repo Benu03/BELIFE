@@ -203,7 +203,7 @@ class Finance_m  extends CI_Model
                 $query = "SELECT 
 
                         a.nama_file,
-                        count(b.id) as countdata,
+                        count(b.contract_no) as countdata,
                         sum(b.amount) as amount,
                         a.user_upload,
                         date(date_upload) as date_upload
@@ -242,13 +242,31 @@ class Finance_m  extends CI_Model
         }
 
 
+        public function update_dataInstallment($namafile)
+        {
+                $datepost =date('Y-m-d H:i:s');
+                $query = "UPDATE installment_customer ic 
+                          set   is_payment = 1,
+                                payment_post_date = '$datepost',
+                                date_payment  = to_date(blc.date_payment,'YYYY-MM-DD') 
+                
+                from billing_list_contract blc
+                where 
+                 ic.contract_no = blc.contract_no and 
+                 ic.installment_no = blc.installment_no and
+                 blc.nama_file ='$namafile'";
+                return $this->db->query($query);
+        }
+
+
+
 
 
         public function update_dataupload($namafile, $dataupdate1)
         {
 
                 $this->db->where('nama_file', $namafile);
-                return $this->db->update('BILLING_UPLOAD', $dataupdate1);
+                return $this->db->update('billing_upload', $dataupdate1);
         }
 
         public function update_dataupload_list($namafile, $dataupdate2)

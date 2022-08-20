@@ -62,7 +62,7 @@
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-4 text-right">
                                                                 <button type="submit" class="btn btn-primary">
                                                                     <i class="fas fa-upload"></i> Upload
                                                                 </button>
