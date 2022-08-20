@@ -103,7 +103,7 @@ class Transaction extends CI_Controller
                 'angsuran'              => $dataorderdetail['angsuran'],
                 'admin_cost'            => $dataorderdetail['admin_cost'],
                 // 'shipping_cost'      => $dataorderdetail['date_order'],
-                'status_contract'       => 'APPROVE_ADMIN',
+                'status_contract'       => 'GOLIVE',
                 'id_fintech'            => $dataorderdetail['id_fintech'],
                 // 'id_ekspedisi'       => $dataorderdetail['date_order'],
                 'user_approve'          => $dataorderdetail['user_proses'],
@@ -115,31 +115,33 @@ class Transaction extends CI_Controller
 
             ];
 
+            
 
             $this->db->insert('contract', $datacontract);
 
             $duedateadjustment =  date('Y-m-25');
 
-            // $datainstallment = array();
-            // $tenor = $dataorderdetail['tenor'];
+           
 
-            // for ($i = 1; $i <= $tenor; $i++) {
-            //     $datainstallment[] = array(
-            //         'contract_no'           => $contractno,
-            //         'installment_no'        => $i,  // Ambil dan set data nama sesuai index array dari $index
-            //         'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  // Ambil dan set data telepon sesuai index array dari $index
-            //         'amount'                => $dataorderdetail['angsuran'],  // Ambil dan set data alamat sesuai index array dari $index
+            $datainstallment = array();
+            $tenor = $dataorderdetail['tenor'];
+        
 
-            //     );
-            // }
+            for ($i = 1; $i <= $tenor; $i++) {
+                $datainstallment[] = array(
+                    'contract_no'           => $contractno,
+                    'installment_no'        => $i,  // Ambil dan set data nama sesuai index array dari $index
+                    'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  // Ambil dan set data telepon sesuai index array dari $index
+                    'angsuran'                => $dataorderdetail['angsuran'], // Ambil dan set data alamat sesuai index array dari $index
+
+                );
+
+             
+            }
 
 
 
-            // $this->db->insert_batch('installment_customer', $datainstallment);
-
-
-
-
+           $this->db->insert_batch('installment_customer', $datainstallment);
 
             $logData = [
                 'username' => $this->session->userdata('username'),

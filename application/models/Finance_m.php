@@ -214,7 +214,7 @@ class Finance_m  extends CI_Model
                         where is_posting=0
                         
                         group by a.nama_file,a.user_upload,a.date_upload";
-                return $this->db->query($query)->row_array();
+                      return $this->db->query($query)->row_array();
         }
 
         public function checkposting()
@@ -228,7 +228,7 @@ class Finance_m  extends CI_Model
         public function cleasingdata_dataupload($namafile)
         {
 
-                $query = " DELETE BILLING_UPLOAD  where nama_file ='$namafile'
+                $query = " DELETE  from BILLING_UPLOAD  where nama_file ='$namafile'
                     and is_posting=0";
                 return $this->db->query($query);
         }
@@ -237,7 +237,7 @@ class Finance_m  extends CI_Model
         public function cleasingdata_dataupload_list($namafile)
         {
 
-                $query = " DELETE billing_list_contract  where nama_file ='$namafile'";
+                $query = " DELETE from billing_list_contract  where nama_file ='$namafile'";
                 return $this->db->query($query);
         }
 

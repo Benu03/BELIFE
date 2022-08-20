@@ -172,8 +172,8 @@
 
                     <div class="form-group row">
                         <label for="kategori" class="col-sm-3 col-form-label">Kategori Product</label>
-                        <div class="col-sm-9">
-                            <select name="kategori" id="kategori" class="form-control">
+                        <div class="col-sm-6">
+                            <select name="kategori" id="kategori" class="form-control form-control-sm">
                                 <option value="" hidden>Select Kategori</option>
 
                                 <?php foreach ($kategoriproduct as $r) :   ?>
@@ -186,11 +186,22 @@
                     <div class="form-group row">
                         <label for="hargaproductbeli" class="col-sm-3 col-form-label">Harga Beli</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" required>
+                        
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                        <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli %</label>
+                        <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" required>
+                        </div>
+                        </div>
+                        <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli</label>
                         <div class="col-sm-1">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">%</span>
+                        </div>
                             <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()" required>
+                        </div>
                         </div>
                     </div>
 
@@ -198,11 +209,21 @@
                     <div class="form-group row">
                         <label for="hargaproductbelife" class="col-sm-3 col-form-label">Harga Belife</label>
                         <div class="col-sm-3">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
+                        </div>
                             <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" required>
+                        </div>
                         </div>
                         <label for="rateproductbelife" class="col-sm-2 col-form-label">Rate Belife %</label>
                         <div class="col-sm-1">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">%</span>
+                        </div>
                             <input type="text" class="form-control form-control-sm" id="rateproductbelife" name="rateproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" required>
+                        </div>
                         </div>
                     </div>
 
@@ -210,7 +231,12 @@
                     <div class="form-group row">
                         <label for="hargaproduct" class="col-sm-3 col-form-label">Harga Jual</label>
                         <div class="col-sm-3">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
+                        </div>
                             <input type="text" class="form-control form-control-sm" id="hargaproduct" name="hargaproduct" onkeypress="return hanyaAngka(event)" required>
+                        </div>
                         </div>
                     </div>
 
@@ -242,11 +268,16 @@
                     <div class="form-group row " id="diskon_label" style="display: none">
                         <label for="diskon_value" class="col-sm-3 col-form-label">Diskon Value</label>
                         <div class="col-sm-3">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
+                        </div>
                         <input type="text" class="form-control form-control-sm" id="diskon_value" name="diskon_value" onkeypress="return hanyaAngka(event)" required>
+                        </div>
                         </div>
                         <label for="diskon_value" class="col-sm-2 col-form-label">Date Expired</label>
                         <div class="col-sm-2">
-                            <input type="dateexpired_diskon" class="form-control" placeholder="(YYYY-MM-DD)" id="dateexpired_diskon" name="dateexpired_diskon" value="<?= set_value('dateexpired_diskon'); ?>"  />
+                            <input type="dateexpired_diskon" class="form-control form-control-sm" placeholder="(YYYY-MM-DD)" id="dateexpired_diskon" name="dateexpired_diskon" value="<?= set_value('dateexpired_diskon'); ?>"  />
                             </div>
                     </div>
 
@@ -255,7 +286,7 @@
                     <div class="form-group row">
                         <label for="status" class="col-sm-3 col-form-label">Status</label>
                         <div class="col-sm-4">
-                            <select name="status" class="form-control" name="status" id="status">
+                            <select name="status" class="form-control form-control-sm" name="status" id="status">
                                 <option value="" hidden>Select Status</option>
                                 <option value="in stock">in stock</option>
                                 <option value="out stock">out stock</option>
@@ -318,3 +349,4 @@
 
 
 <?php $this->load->view('Templates/footer'); ?>
+

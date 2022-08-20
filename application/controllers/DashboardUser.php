@@ -59,8 +59,6 @@ class DashboardUser extends CI_Controller
         }
 
 
-
-
         $this->db->where('id_category_product', $data['kategoridata']);
         $this->db->like('title_product', $data['cari']);
         $this->db->or_like('nama_product', $data['cari']);

@@ -147,7 +147,7 @@ class Finance extends CI_Controller
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['listfileuplaod'] = $this->Finance_m->get_all_list_file_upload();
-        $data['dataunposting'] = $this->Finance_m->get_data_upload_unposting();
+        // $data['dataunposting'] = $this->Finance_m->get_data_upload_unposting();
         $data['checkposting'] = $this->Finance_m->checkposting()->num_rows();
 
 
@@ -179,23 +179,22 @@ class Finance extends CI_Controller
 
             $config['upload_path']   = './assets/upload/billing/';
             $config['allowed_types'] = 'xlsx|xls';
-            $config['max_size']     = '8129';   // data tidak lebih dari 7 MB
+            $config['max_size']     = '3072';   // data tidak lebih dari 3 MB
             $config['file_name']     = "BILL_" . time();
             $config['overwrite']     = TRUE;
+
 
             $this->upload->initialize($config);
 
             if (!$this->upload->do_upload('billing')) {
 
                 $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            ' . $error . 'Your File not Required! </div>');
 
-
+        
                 $this->session->set_flashdata('message', '
-            <div class="alert alert-danger alert-dismissible">
+                <div class="alert alert-danger alert-dismissible">
                  <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
-                 <h5><i class="icon fas fa-check"></i>Success!</h5>
+                 <h5><i class="icon fas fa-info"></i>Danger !</h5>
                  Your File not Required! </div> ');
 
                 redirect('Finance/Billing');
@@ -209,7 +208,7 @@ class Finance extends CI_Controller
                 ];
                 $this->db->insert('billing_upload', $datafile);
 
-
+                //  mkdir("./assets/upload/billing/" .$datafile['nama_file'], 0777, true);
 
                 $reader = ReaderEntityFactory::createXLSXReader();
 
@@ -229,10 +228,7 @@ class Finance extends CI_Controller
                                 'bank_account'                  => $row->getCellAtIndex(4),
                             );
 
-
-
-                            //       var_dump($databilling);
-                            // die();
+                    
                             $this->Finance_m->importdatabilling($databilling);
                         }
 

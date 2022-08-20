@@ -71,7 +71,14 @@
 
                                                         </div>
 
+                                                        <div class="form-group row">
+                                                        <div class="col-sm-12 text-left">
+                                                            
+                                                        <a href="<?= base_url('assets/upload/Template_Billing_Customer.xlsx'); ?>" class="btn btn-outline-warning btn-sm"><i class="fas fa-file-signature"></i> Template Billing Customer</a>
 
+                                                   
+                                                        </div>
+                                                        </div>
 
 
                                                     </form>
