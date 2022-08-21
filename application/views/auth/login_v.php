@@ -67,7 +67,7 @@
 
                 <input type="submit" value="Log In" class="btn btn-block btn-light" />
 
-                <span class="d-block text-left my-2 text-muted"><a href="javascript:void(0)" onclick="location.href='<?= base_url('Auth/Registration'); ?>'" class="signup-pass">Sign Up</a></span>
+                <span class="d-block text-left my-2 text-muted"><a href="javascript:void(0)" onclick="location.href='<?= base_url('Auth/Registration_form'); ?>'" class="signup-pass">Sign Up</a></span>
 
                 <span class="d-block text-left my-1 text-center text-white">PT Betterlife Jaya Indonesia </span>
                 <span class="d-block text-left my-1 text-center text-white">Copyright &copy;<?= date('Y'); ?> JAP</span>

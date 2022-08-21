@@ -63,6 +63,7 @@
                     <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
                     <?= $this->session->flashdata('message'); ?>
+                    
                     <form action="<?= base_url('Auth/Registration') ?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         <div class="row register-form">
 
@@ -105,6 +106,9 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                <?=$captcha['image']?>
+                                </div>
 
                                
 
@@ -113,7 +117,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
 
-                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"></textarea>
+                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
                                 </div>
 
 
@@ -154,57 +158,21 @@
 
 
 
-                                <!-- <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="selfie_image" name="selfie_image" value="<?= set_value('selfie_image'); ?>">
-                                        <label class="custom-file-label" for="selfie_image">Foto Selfie *</label>
-                                    </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1" required />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2" required />
+                                </div>
+
+                                <div class="form-group">
+                               
+                                <input type="text" class="form-control" placeholder="captcha" value="" id="captcha" name="captcha" required />
+                                
                                 </div>
 
 
 
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="ktp_image" name="ktp_image" value="<?= set_value('ktp_image'); ?>">
-                                        <label class="custom-file-label" for="ktp_image">Foto KTP *</label>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="selfie_ktp_image" name="selfie_ktp_image" value="<?= set_value('selfie_ktp_image'); ?>">
-                                        <label class="custom-file-label" for="selfie_ktp_image">Foto Selfie Dengan KTP *</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="buku_tabungan" name="buku_tabungan" value="<?= set_value('buku_tabungan'); ?>">
-                                        <label class="custom-file-label" for="selfie_ktp_image">Foto Buku Tabungan*</label>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="slip_gaji" name="slip_gaji" value="<?= set_value('slip_gaji'); ?>">
-                                        <label class="custom-file-label" for="slip_gaji">Foto Slip Gaji*</label>
-                                    </div>
-                                </div> -->
-
-
-
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1"  />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2"  />
-                                </div>
 
                             </div>
                             <a href="<?= base_url('Auth'); ?>" class="btnSignIn text-center">Sign In</a>

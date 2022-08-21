@@ -175,7 +175,8 @@ class Auth extends CI_Controller
         }
     }
 
-    public function Registration()
+     
+    public function Registration_form()
     {
         if ($this->session->userdata('username')) {
             redirect('Home');
@@ -188,9 +189,48 @@ class Auth extends CI_Controller
         $data['provinsi'] = $this->DataMaster_m->get_all_provinsi();
         $data['kota'] = $this->DataMaster_m->get_all_kota();
 
+        $vals = [
+            // 'word' -> nantinya akan digunakan sebagai random teks yang akan keluar di captchanya
+            'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
+            'img_path'      => './assets/img/captcha/',
+            'img_url'       => base_url('assets/img/captcha/'),
+            'img_width'     => 280,
+            'img_height'    => 40,
+            'expiration'    => 7200,
+            'word_length'   => 12,
+            'font_size'     => 40,
+            'img_id'        => 'Imageid',
+            'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'colors'        => [
+                    'background'=> [255, 255, 255],
+                    'border'    => [255, 255, 255],
+                    'text'      => [0, 0, 0],
+                    'grid'      => [255, 90, 72]
+            ]
+        ];
+        
+        $captcha = create_captcha($vals);
+        $data['captcha'] = create_captcha($vals);
+
+        $this->session->set_userdata('captcha', $captcha['word']);
+        $this->load->view('auth/register_v', $data);
+    }
+
+
+
+
+    public function Registration()
+    {
+        
+        $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
+        $data['patner'] = $this->DataMaster_m->get_all_patner();
+        $data['provinsi'] = $this->DataMaster_m->get_all_provinsi();
+        $data['kota'] = $this->DataMaster_m->get_all_kota();
+      
         //Validasi Form Register
+
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
-    
+
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
             'is_unique' => 'This email has already registered!'
         ]);
@@ -201,9 +241,23 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('auth/register_v', $data);
-        } else {
+            redirect('Auth/Registration_form#anchor');
+        } else {    
 
+        $post_code  = $this->input->post('captcha');
+        $captcha    = $this->session->userdata('captcha');
+
+        if ($post_code != $captcha) {
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
+                Captcha Not Match
+            </div>
+        ');
+        redirect('Auth/Registration_form');
+        }else{
+       
 
             $userNameRandom = $this->input->post('name', true);
             $userNameRandom2 = strtoupper(substr($userNameRandom, 0, 4)) . date('Hs');
@@ -276,7 +330,7 @@ class Auth extends CI_Controller
                     </div> ');
                    
                     redirect('Auth');
-           
+                }
         }
     }
 
@@ -344,8 +398,7 @@ class Auth extends CI_Controller
         $username= $this->input->post('username');
         $email= $this->input->post('email');
 
-        var_dump($username);
-
+      
         $default_name_selfie          = 'SELFIE_' . $username . ".jpg";
         $config_img['upload_path']   = './assets/img/img-profile/' . $username . '/';
         $config_img['allowed_types'] = 'jpg|jpeg|png';

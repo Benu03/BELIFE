@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <?php else : ?>
 
                   <li><a href="<?= base_url('Auth/Login'); ?>" class="dropdown-item"> <span class="fas fa-sign-in-alt"></span> Login Akun </a></li>
-                  <li><a href="<?= base_url('Auth/Registration'); ?>" class="dropdown-item"> <span class="fas fa-user-friends"></span> Daftar Akun</a></li>
+                  <li><a href="<?= base_url('Auth/Registration_form'); ?>" class="dropdown-item"> <span class="fas fa-user-friends"></span> Daftar Akun</a></li>
                   <li><a href="<?= base_url('Auth/forgot_password'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Lupa Password</a></li>
 
 
