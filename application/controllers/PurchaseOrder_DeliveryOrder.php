@@ -299,19 +299,13 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $id =  $this->input->post('id');
         $kode_po_do =  $this->input->post('kode_po_do');
 
-
-
-
-
-
-
         $this->Po_do_m->del_wating_podo_sup($id);
 
         $data['countoderpodo']    =   $this->Po_do_m->list_wating_podo_add_supplier($kode_po_do)->num_rows();
         $data['sumpodoadd']    =   $this->Po_do_m->sum_wating_podo_add_supplier($kode_po_do);
 
 
-        $data = [
+         $data = [
             'countoderpodo' => $data['countoderpodo'],
             'sumpodoadd'  => $data['sumpodoadd']['price']
 
@@ -321,4 +315,30 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
 
         echo json_encode($data);
     }
+
+    public function PO_supplier(){
+        $data['title']          = "PO List Supplier";
+        $data['polist']    =   $this->Po_do_m->get_data_polist_supplier()->result_array();
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
+        $this->load->view('Po_Do/PoListSupplier', $data);
+
+    }
+
+
+    public function PO_supplier_d($kode_po_do){
+
+
+        $data['title']          = "Detail PO List Supplier";
+        $data['podetailsup']    =   $this->Po_do_m->get_data_polist_supplier_d($kode_po_do)->row_array();
+        var_dump($data['podetailsup']);
+        die();
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
+        $this->load->view('Po_Do/PoListSupplier', $data);
+
+
+    }
+
+   
+    
 }
+

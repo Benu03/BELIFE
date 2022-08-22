@@ -43,13 +43,9 @@ class Utilities_m extends CI_Model
 		left join orders b on a.kode_shipping = b.kode_shipping
         left join personal_customer c on b.user_order = c.username
         where a.status_pengiriman = 'WAITING'
-
         ";
         return $this->db->query($query)->result_array();
     }
-
-
-
 
 
     function get_all_delivery()

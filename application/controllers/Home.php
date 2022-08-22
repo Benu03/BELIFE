@@ -553,7 +553,7 @@ class Home extends CI_Controller
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username = $data['usrProfile']['username'];
 
-        if(empty($_FILES['slip_gaji_image']['name'])) {
+                     if(empty($_FILES['slip_gaji_image']['name'])) {
             $this->session->set_flashdata('message', '
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>

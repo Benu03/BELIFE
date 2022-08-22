@@ -156,4 +156,28 @@ class Po_do_m extends CI_Model
         $query = "update  po_do_supplier_detail  set is_request = 1 where kode_po_do='$kode_po_do'";
         return $this->db->query($query);
     }
+
+
+    function get_data_polist_supplier()
+    {
+        $query = "SELECT     *
+        from po_do pd  
+        where pd.po_do_type = 2
+        and status_po_do ='APV' and is_print =0";
+        return $this->db->query($query);
+    }
+
+
+    function get_data_polist_supplier_d($kode_po_do)
+    {
+        $query = "SELECT     *
+        from po_do pd  
+        where pd.po_do_type = 2
+        and status_po_do ='APV' and is_print =0 and kode_po_do ='$kode_po_do'";
+        return $this->db->query($query);
+    }
+
+
+
+
 }

@@ -546,6 +546,7 @@
     $("#tblistpodoapv").DataTable();
     $("#tblistpodo2").DataTable();
     $("#tbinstallmentss").DataTable();
+    $("#tbpolistsupplier").DataTable();
 
 
     $(function() {
