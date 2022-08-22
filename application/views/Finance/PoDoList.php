@@ -157,8 +157,8 @@
 
 
 
-                                                                <a href="<?= base_url('Finance/PrintPodoList/' . Encrypt_url($lr['kode_po_do'])); ?>" class="btn  btn-sm btn-info" target="_blank">
-                                                                    <i class="fas fa-print"></i> Print</a>
+                                                                <!-- <a href="<?= base_url('Finance/PrintPodoList/' . Encrypt_url($lr['kode_po_do'])); ?>" class="btn  btn-sm btn-info" target="_blank">
+                                                                    <i class="fas fa-print"></i> Print</a> -->
 
 
                                                                 <a href="javascript:void(0)" onclick="location.href='<?= base_url('Finance/PrintPodoListDone/' . Encrypt_url($lr['kode_po_do'])); ?>'" class="btn  btn-sm btn-success">

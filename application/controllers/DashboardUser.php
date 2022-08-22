@@ -84,11 +84,11 @@ class DashboardUser extends CI_Controller
     public function AddBucketProduct($id)
     {
 
-
-
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
         $datapersonal = $this->Users_m->personal_customer_check($username)->row_array();
+        $contract_status = $this->Users_m->contract_check($username)->num_rows();
+    
 
          if($datapersonal['selfie_image']==NULL && $datapersonal['ktp_image']==NULL && $datapersonal['selfie_ktp_image']==NULL && $datapersonal['buku_tabungan']==NULL && $datapersonal['slip_gaji']==NULL){
                 $this->session->set_flashdata('message', '
@@ -110,6 +110,16 @@ class DashboardUser extends CI_Controller
                Akun Anda Sedang Menunggu Verifikasi Admin Belife ...!!!
              </div>');
             redirect('Home');
+
+        }elseif($contract_status == 1){
+
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-info"></i>Info!</h5>
+               Mohon Maaf ,Tagihan Anda Sebelumnya Belum Selesai ...!!!
+             </div>');
+            redirect('DashboardUser');
 
         }
 

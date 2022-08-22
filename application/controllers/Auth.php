@@ -198,7 +198,7 @@ class Auth extends CI_Controller
             'img_height'    => 40,
             'expiration'    => 7200,
             'word_length'   => 12,
-            'font_size'     => 40,
+            'font_size'     => 56,
             'img_id'        => 'Imageid',
             'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
             'colors'        => [
@@ -561,7 +561,7 @@ class Auth extends CI_Controller
             $this->email->message('
                 <b>Dear Sahabat Belife </b><br>
                 <br>
-                    Silakan Melengkapi Data Personal Anda Terlebih Dahulu Sebelum Akun Anda di Verifikasi oleh admin,dan mohon untuk Menunggu Status Akun and sebelum melakukan transaksi.
+                    Silakan Login dan Melengkapi Data Personal Anda Terlebih Dahulu Sebelum Akun Anda di Verifikasi oleh admin,dan mohon untuk Menunggu Status Akun and sebelum melakukan transaksi.
                 <br> <br>
                 Best Regards<br>
                 Betterlife Jaya indonesia<br>

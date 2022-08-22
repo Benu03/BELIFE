@@ -164,6 +164,17 @@ class Users_m extends CI_Model
 
     }
 
+    function contract_check($username)
+    {
+
+        $query = "select * from contract 
+        where user_order ='$username' and status_contract ='GOLIVE'";
+        return $this->db->query($query);  
+
+    }
+
+    
+
     function update_selfie_image($username,$default_name_selfie)
     {
 
