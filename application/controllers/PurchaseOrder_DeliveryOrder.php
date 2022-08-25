@@ -294,24 +294,15 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
     {
 
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-        $username           = $data['usrProfile']['username'];
-
+        $username = $data['usrProfile']['username'];
         $id =  $this->input->post('id');
         $kode_po_do =  $this->input->post('kode_po_do');
-
         $this->Po_do_m->del_wating_podo_sup($id);
-
         $data['countoderpodo']    =   $this->Po_do_m->list_wating_podo_add_supplier($kode_po_do)->num_rows();
         $data['sumpodoadd']    =   $this->Po_do_m->sum_wating_podo_add_supplier($kode_po_do);
-
-
          $data = [
             'countoderpodo' => $data['countoderpodo'],
-            'sumpodoadd'  => $data['sumpodoadd']['price']
-
-        ];
-
-
+            'sumpodoadd'  => $data['sumpodoadd']['price'] ];
 
         echo json_encode($data);
     }
@@ -327,18 +318,50 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
 
     public function PO_supplier_d($kode_po_do){
 
-
         $data['title']          = "Detail PO List Supplier";
         $data['podetailsup']    =   $this->Po_do_m->get_data_polist_supplier_d($kode_po_do)->row_array();
-        var_dump($data['podetailsup']);
-        die();
+       
+
+        $data['podetailsup2']    =   $this->Po_do_m->get_data_polist_supplier_d2($kode_po_do)->result_array();
+  
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
-        $this->load->view('Po_Do/PoListSupplier', $data);
+        $this->load->view('Po_Do/PoListSupplier_detail', $data);
 
 
     }
 
+    
+    public function PoSupDetailDone($kode_po_do){
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username    = $data['usrProfile']['username'];
+        $this->Po_do_m->update_polist_supplier($kode_po_do, $username);
+
+
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Po supplier Process Done',
+            'object'     => $kode_shipping,
+            'url'        => base_url('PurchaseOrder_DeliveryOrder/PoSupDetailDone'),
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+
+        $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i>Success!</h5>
+            Purchase Order Supplier Done.
+            </div> ');
+        redirect('PurchaseOrder_DeliveryOrder/PO_supplier');
+
+
+
+    }
    
+    
     
 }
 

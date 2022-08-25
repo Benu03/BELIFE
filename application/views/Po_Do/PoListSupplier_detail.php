@@ -33,13 +33,13 @@
       <div class="row">
         <div class="col-12">
 
-          
+
           <!-- Main content -->
-          <div class="invoice p-3 mb-3" style="background-color: #adb5bd;">
+          <div class="invoice p-3 mb-3" style="background-color: #d7e4f2;">
             <!-- title row -->
             <div class="row align-items-center">
               <div class="col-12">
-                <form name="detailshipping" action="<?= base_url('Utilities/DetailshippingDone'); ?>" method="POST">
+                <form name="detailshipping" amethod="POST">
                   <img class="img-fluid img-rounded float-left mr-2 mb-2" src="<?= base_url('assets/img/belife-logo-1.png'); ?>" style="height:30px;">
                   <h4>
                     PT Betterlife Jaya indonesia
@@ -50,75 +50,75 @@
             </div>
             <!-- info row -->
             <div class="row invoice-info mb-2">
-              <?php foreach ($detailshipping as $ds) : ?>
+     
                 <div class="col-sm-4 invoice-col">
-                  Kode Pengiriman
+                  Kode Purchase Order
                   <address>
-                    <strong><?= $ds['kode_shipping']; ?></strong><br>
+                    <strong><?= $podetailsup['kode_po_do']; ?></strong><br>
 
                   </address>
-                  Kode Order
+                 
+                </div>
+
+                <div class="col-sm-4 invoice-col">
+                
+   
+                  Total Amount
                   <address>
-                    <strong><?= $ds['kode_order']; ?></strong><br>
+                    <strong>Rp. <?= number_format($podetailsup['total_req'], 0, ',', '.'); ?></strong><br>
 
                   </address>
                 </div>
-                <!-- /.col -->
+
                 <div class="col-sm-4 invoice-col">
-                  Nama Penerima
+                
+                Tangal Approve
                   <address>
-                    <strong><?= $ds['nama_penerima']; ?></strong><br>
+                    <strong><?= $podetailsup['date_approve']; ?></strong><br>
 
                   </address>
-                  Kontak Penerima
-                  <address>
-                    <strong><?= $ds['kontak_penerima']; ?></strong><br>
-
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                  <b>Alamat Penerima</b><br>
-                  <address>
-                    <?= $ds['alamat_pengiriman']; ?><br>
-
-                  </address>
-                </div>
-                <!-- /.col -->
-              <?php endforeach; ?>
+              </div>
+             
+              
+            
             </div>
             <!-- /.row -->
 
             <!-- Table row -->
+
+
             <div class="row">
+            <strong>Detail Purchase Order</strong>
               <div class="col-12 table-responsive">
                 <table class="table table-hover   text-nowrap">
                   <thead>
                     <tr>
-                      <th>Kode Product</th>
-                      <th>Nama Product</th>
-                      <th class="text-center">Qty</th>
-                      <th class="text-center">Harga</th>
-                      <th class="text-center">Tanggal Order</th>
+                      <th>Supplier Name</th>
+                      
+                      <th>Nama Kontak</th>
+                      <th>Kontak</th>
+                      <th>Price</th>
+                      <th>Alamat</th>
+                      <th class="text-center">Bank</th>
+                      <th class="text-center">No Rekening</th>
+              
                     </tr>
                   </thead>
                   <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($detailshipping_item as $s) : ?>
+                    <?php foreach ($podetailsup2 as $s) : ?>
                       <tr>
-                        <td><?= $s['kode_product']; ?></td>
-                        <td><?= $s['nama_product']; ?></td>
-                        <td class="text-center"><?= $s['qty']; ?></td>
-                        <td class="text-center">Rp. <?= number_format($s['price'], 0, ',', '.'); ?></td>
-                        <td class="text-center"><?= $s['date_order']; ?></td>
+                        <td><?= $s['supplier_name']; ?></td>
+                        <td><?= $s['nama_kontak_supplier']; ?></td>
+                        <td><?= $s['kontak_supplier']; ?></td>
+                        <td>Rp. <?= number_format($s['price'], 0, ',', '.'); ?></td>
+                        <td><?= $s['alamat']; ?></td>
+                        <td class="text-center"><?= $s['bank_supplier']; ?></td>
+                        <td class="text-center"><?= $s['norek_supplier']; ?></td>
                       </tr>
 
                     <?php endforeach; ?>
-                    <tr>
-                      <td colspan="5" class="text-left">
-                        <b> Total Harga : Rp. <?= number_format($totalharga['totalharga'], 0, ',', '.'); ?> </b>
-                      </td>
-                    </tr>
+                   
 
                   </tbody>
                 </table>
@@ -144,10 +144,10 @@
               <div class="card card-solid">
                 <div class="card-body">
 
-                  <a class="btn btn-success float-right mr-2" href="javascript:void(0)" onclick="location.href='<?= base_url('Utilities/ShippingDelivery'); ?>/<?= $detailshipping['0']['kode_shipping']; ?>' "><i class="fas fa-truck-pickup"></i> Delivery</a>
-                  <a class="btn btn-primary float-right mr-2" href="<?= base_url('Utilities/GeneratePDFShipping'); ?>/<?= $detailshipping['0']['kode_shipping']; ?>" target="_blank"><i class="fas fa-download"></i> Generate PDF</a>
+                  <a class="btn btn-success float-right mr-2" href="javascript:void(0)" onclick="location.href='<?= base_url('PurchaseOrder_DeliveryOrder/PoSupDetailDone'); ?>/<?= $podetailsup['kode_po_do']; ?>' "><i class="fas fa-check-square"></i> Done</a>
+                  <a class="btn btn-primary float-right mr-2" href="<?= base_url('PurchaseOrder_DeliveryOrder/GeneratePDFPOSup'); ?>/<?= $podetailsup['kode_po_do']; ?>" target="_blank"><i class="fas fa-download"></i> Generate PDF</a>
 
-
+                 
 
                 </div>
                 <!-- /.col -->

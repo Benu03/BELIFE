@@ -168,14 +168,47 @@ class Po_do_m extends CI_Model
     }
 
 
+
     function get_data_polist_supplier_d($kode_po_do)
     {
-        $query = "SELECT     *
-        from po_do pd  
-        where pd.po_do_type = 2
-        and status_po_do ='APV' and is_print =0 and kode_po_do ='$kode_po_do'";
+        $query = "select 
+        pd.kode_po_do,
+        pd.total_req,
+        pd.note_review,
+        pd.date_approve
+        from po_do pd 
+        where pd.kode_po_do='$kode_po_do'";
         return $this->db->query($query);
     }
+
+
+    function get_data_polist_supplier_d2($kode_po_do)
+    {
+        $query = "select
+        pdsd.kode_po_do,
+        sup.supplier_name,
+        pdsd.price,
+        sup.alamat,
+        sup.nama_kontak_supplier,
+        sup.kontak_supplier,
+        sup.bank_supplier,
+        sup.norek_supplier,
+        pdsd.date_post
+        from po_do_supplier_detail pdsd 
+        left join po_do_type pdt  on pdsd.po_do_type = pdt.id 
+        left join supplier sup on pdsd.kode_parent = sup.id 
+        where pdsd.kode_po_do ='$kode_po_do'";
+        return $this->db->query($query);
+    }
+
+    function update_polist_supplier($kode_po_do, $username)
+    {
+
+        $query = "update  po_do set is_print= 1 ,is_podo_done = 1 where kode_po_do='$kode_po_do'";
+        return $this->db->query($query);
+
+    }
+
 
 
 

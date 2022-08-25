@@ -86,8 +86,6 @@ class Utilities extends CI_Controller
         ];
 
         $this->db->insert('notification', $Datanotification);
-
-
         $logData = [
             'username' => $this->session->userdata('username'),
             'activities' => 'Delivery Process',
@@ -112,7 +110,6 @@ class Utilities extends CI_Controller
     {
         $data['title']      = "Delivery Proses";
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-
         $username           = $data['usrProfile']['username'];
         $data['delivery']  = $this->Utilities_m->get_all_delivery();
 
@@ -148,8 +145,6 @@ class Utilities extends CI_Controller
         $kode_shipping =  $this->input->post('kode_shipping');
 
         $user_order = $this->Utilities_m->chekcuserorder($kode_shipping);
-
-
         $this->Utilities_m->update_shipping_delivery_done($kode_shipping, $username, $no_resi);
 
 
