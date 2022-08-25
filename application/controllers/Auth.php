@@ -194,18 +194,18 @@ class Auth extends CI_Controller
             'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
             'img_path'      => './assets/img/captcha/',
             'img_url'       => base_url('assets/img/captcha/'),
-            'img_width'     => 280,
+            'img_width'     => 300,
             'img_height'    => 40,
             'expiration'    => 7200,
-            'word_length'   => 12,
+            'word_length'   => 150,
             'font_size'     => 56,
             'img_id'        => 'Imageid',
             'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
             'colors'        => [
                     'background'=> [255, 255, 255],
                     'border'    => [255, 255, 255],
-                    'text'      => [0, 0, 0],
-                    'grid'      => [255, 90, 72]
+                    'text'      => [5, 5, 0],
+                    'grid'      => [255, 40, 40]
             ]
         ];
         
