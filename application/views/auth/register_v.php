@@ -106,8 +106,19 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                <?=$captcha['image']?>
+
+                                <div class="form-group row">
+                                    <div class="col-xl-10">
+                                        <div class="card" id="captcaimg">
+                                       <span id="captcaimg">
+                                        <?=$captcha['image']?>
+                                        </span>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="col-sm-2">                                                              
+                                    <a class="btn btn-warning" onclick="getNewCaptca();"><i class="fas fa-sync"></i></a>
+                                    </div>
                                 </div>
 
                                
@@ -144,12 +155,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <select class="form-control select2" id="id_org" name="id_org" data-placeholder="Select an Organization" style="width: 100%;" >
+                                    <select class="form-control select2" id="partner" name="partner" data-placeholder="Select an partner" style="width: 100%;" >
                                         <option hidden>Nama Perusahaan</option>
-                                        <?php foreach ($patner as $dt) : ?>
+                                        <?php foreach ($partner as $dt) : ?>
 
                                             <option value="<?= $dt['id']; ?>">
-                                                <?= $dt['patner_name']; ?>
+                                                <?= $dt['partner_name']; ?>
                                             </option>
 
                                         <?php endforeach; ?>
@@ -166,9 +177,9 @@
                                 </div>
 
                                 <div class="form-group">
-                               
+                             
                                 <input type="text" class="form-control" placeholder="captcha" value="" id="captcha" name="captcha" required />
-                                
+                               
                                 </div>
 
 
@@ -213,6 +224,7 @@
 
     <script>
     
+        
 
         $(function(){
         $(".datepicker").datepicker({
@@ -249,6 +261,22 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+
+
+        <script>
+
+        function getNewCaptca(){
+
+            $.ajax({
+                url:"<?= base_url('Auth/Create_captcha');?>"
+                success:function(response)
+                {
+                    $('#captcaimg').html(response);
+                }
+
+                });
+            }
+        </script>
 
 
 

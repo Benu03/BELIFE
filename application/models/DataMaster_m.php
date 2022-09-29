@@ -74,8 +74,8 @@ class DataMaster_m extends CI_Model
     function get_all_Patner()
     {
         $this->db->select('*');
-        $this->db->from('patner');
-        $this->db->order_by('patner_name', 'ASC');
+        $this->db->from('partner');
+        $this->db->order_by('partner_name', 'ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
