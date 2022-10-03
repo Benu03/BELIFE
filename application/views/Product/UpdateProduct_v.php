@@ -104,7 +104,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                                 </div>
-                                    <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)"  value="<?= $product['price_buy']; ?>" required>
+                                    <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife(); numberWithCommas()" value="<?= $product['price_buy']; ?>" required>
                                 </div>
                                 </div>
                                 <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli</label>
@@ -113,7 +113,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">%</span>
                         </div>
-                                    <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()"  value="<?= $product['rate_beli']; ?>" required>
+                                    <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife(); numberWithCommas()"  value="<?= $product['rate_beli']; ?>" required>
                                 </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                                    <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" value="<?= $product['price_belife']; ?>" required>
+                                    <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" value="<?= $product['price_belife']; ?>" required>
                                 </div>
                                 </div>
                                 <label for="rateproductbelife" class="col-sm-2 col-form-label">Rate Belife %</label>
@@ -145,9 +145,9 @@
                                     <label for="hargaproduct" class="col-sm-3 col-form-label">Harga Jual</label>
                                     <div class="col-sm-3">
                                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
-                        </div>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
+                                        </div>
                                         <input type="text" class="form-control form-control-sm" id="hargaproduct" name="hargaproduct" onkeypress="return hanyaAngka(event)" value="<?= $product['price_sell']; ?>" required>
                                     </div>
                                     </div>

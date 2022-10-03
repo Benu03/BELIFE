@@ -80,7 +80,7 @@
                                             <td class="text-left" style="vertical-align:middle"><?= $p['name']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['email']; ?></td>
                                             <td class="text-left" style="vertical-align:middle"><?= $p['phone']; ?></td>
-                                            <td class="text-left" style="vertical-align:middle"><?= $p['patner_name']; ?></td>
+                                            <td class="text-left" style="vertical-align:middle"><?= $p['partner_name']; ?></td>
 
 
 

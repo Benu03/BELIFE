@@ -40,20 +40,41 @@ class Po_do_m extends CI_Model
     {
 
 
-        $q = $this->db->query("SELECT MAX(RIGHT(kode_po_do,4)) as kode_po_do  from po_do
-        where date(date_request) = date(now()) ");
-        $kd = "";
-        if ($q->num_rows() > 0) {
-            foreach ($q->result() as $k) {
-                $tmp = ((int)$k->kode_po_do) + 1;
-                $kd = sprintf("%04s", $tmp);
-            }
+        // $q = $this->db->query("SELECT MAX(RIGHT(kode_po_do,4)) as kode_po_do  from po_do
+        // where date(date_request) = date(now())");
+
+        // var_dump($q);
+        // die();
+
+        // $kd = "";
+        // if ($q->num_rows() > 0) {
+        //     foreach ($q->result() as $k) {
+        //         $tmp = ((int)$k->kode_po_do) + 1;
+        //         $kd = sprintf("%04s", $tmp);
+        //     }
+        // } else {
+        //     $kd = "0001";
+        // }
+        // date_default_timezone_set('Asia/Jakarta');
+        // $date = date("ymd");
+        // return "PODO" . "-" . $date . $kd;
+
+
+        $this->db->select('RIGHT(po_do.kode_po_do,4) as kode_po_do', FALSE);
+        $this->db->where('date(date_request)', date('Y-m-d'));
+        $this->db->order_by('date_request', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('po_do');
+        if ($query->num_rows() <> 0) {
+            $data = $query->row();
+            $kode = intval($data->kode_po_do) + 1;
         } else {
-            $kd = "0001";
+            $kode = 1;
         }
-        date_default_timezone_set('Asia/Jakarta');
-        $date = date("ymd");
-        return "PODO" . "-" . $date . $kd;
+        $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);
+        $date = date("Ymd");
+        $kodetampil = "PODO-" . $date . "-" . $batas;
+        return $kodetampil;
     }
 
 

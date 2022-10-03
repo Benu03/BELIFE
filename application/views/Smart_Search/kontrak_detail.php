@@ -181,7 +181,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Nama Perusahan</th>
-                            <td><?= $personaldata['patner_name'] ?></td>
+                            <td><?= $personaldata['partner_name'] ?></td>
                             <th scope="row">Tanggal Register</th>
                             <td><?= $personaldata['datetime_post'] ?></td>
                         </tr>

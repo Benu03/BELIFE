@@ -114,7 +114,7 @@
                         <div class="row">
                             <label for="staticEmail" class="col-sm-4 col-form-label">Nama Perusahan</label>
                             <div class="col-sm-8">
-                                <label for="staticEmail" class="col-form-label"><?= $datadetailregister['patner_name'] ?></label>
+                                <label for="staticEmail" class="col-form-label"><?= $datadetailregister['partner_name'] ?></label>
                             </div>
                         </div>
 
@@ -131,6 +131,9 @@
                             <label for="staticEmail" class="col-sm-4 col-form-label">Limit</label>
                             <div class="col-sm-8">
                                 <label for="staticEmail" class="col-form-label">Rp. <?= number_format($datadetailregister['limit_user'], 0, ',', '.'); ?></label>
+                           
+                           
+                           
                             </div>
                         </div>
 
@@ -207,11 +210,16 @@
                         <form action="<?= base_url('User_Manage/approvedpostlimit'); ?>" method="POST" enctype="multipart/form-data">
 
                             <div class="form-group row">
-                                <label for="limit" class="col-sm-4 col-form-label">Limit (Rp)</label>
+                                <label for="limit" class="col-sm-4 col-form-label">Limit</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-sm" id="username" name="username" value="<?= $datadetailregister['username'] ?>" hidden>
-                                    <input type="text" class="form-control form-control-sm" id="limit" name="limit" onkeypress="return hanyaAngka(event)" required>
-
+                                    
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm" id="limit" name="limit" onkeypress="return hanyaAngka(event)" required>
+                                    </div>
                                 </div>
                             </div>
 

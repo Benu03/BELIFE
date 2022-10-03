@@ -33,7 +33,7 @@ class User_manage_m extends CI_Model
         b.slip_gaji,
         b.limit_user,
         b.id_loc,
-        e.patner_name,
+        e.partner_name,
         a.is_active,
         b.datetime_post
         
@@ -41,7 +41,7 @@ class User_manage_m extends CI_Model
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-        left join patner e on b.id_org = e.id
+        left join partner e on b.id_partner = e.id
          where a.id_role=2 and a.id = '$id'";
         return $this->db->query($query)->row_array();
     }
@@ -72,7 +72,7 @@ class User_manage_m extends CI_Model
         b.slip_gaji,
         b.limit_user,
         b.id_loc,
-        e.patner_name,
+        e.partner_name,
         a.is_active,
         b.datetime_post
         
@@ -80,7 +80,7 @@ class User_manage_m extends CI_Model
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-        left join patner e on b.id_org = e.id
+        left join partner e on b.id_partner = e.id
          where a.id_role=2 and a.id ='$id'    ";
         return $this->db->query($query)->row_array();
     }
@@ -114,7 +114,7 @@ class User_manage_m extends CI_Model
         b.slip_gaji,
         b.limit_user,
         b.id_loc,
-        e.patner_name,
+        e.partner_name,
         a.is_active,
         b.datetime_post
         
@@ -122,7 +122,7 @@ class User_manage_m extends CI_Model
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-        left join patner e on b.id_org = e.id
+        left join partner e on b.id_partner = e.id
          where a.id_role= 2 and a.username ='$id'   ";
         return $this->db->query($query)->row_array();
     }
@@ -152,7 +152,7 @@ class User_manage_m extends CI_Model
         b.slip_gaji,
         b.limit_user,
         b.id_loc,
-        e.patner_name,
+        e.partner_name,
         a.is_active,
         b.datetime_post
         
@@ -160,7 +160,7 @@ class User_manage_m extends CI_Model
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-        left join patner e on b.id_org = e.id
+        left join partner e on b.id_partner = e.id
          where a.id_role=2 and  a.username ='$id'   ";
         return $this->db->query($query)->row_array();
     }
@@ -178,13 +178,13 @@ class User_manage_m extends CI_Model
                     b.name_full,
                     a.email,
                     b.phone,                    
-                    e.patner_name,
+                    e.partner_name,
                     a.is_active                    
                     from users a
                     left join personal_customer b on a.username = b.username 
                     --left join ms_provinsi c on b.provinsi_id = c.id_provinsi
                     --left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-                    left join patner e on b.id_org = e.id
+                    left join partner e on b.id_partner = e.id
                     where a.id_role= 2 
                     and b.status_register ='update'
         ";
@@ -232,13 +232,13 @@ class User_manage_m extends CI_Model
         a.name,
         a.email,
         b.phone,
-        d.patner_name
+        d.partner_name
         
         
         
          from users a
          left join personal_customer b on a.username = b.username
-         left join patner d on b.id_org = d.id
+         left join partner d on b.id_partner = d.id
         
         
         where a.id_role=2 and status_register='approved'";
@@ -262,12 +262,12 @@ class User_manage_m extends CI_Model
 		f.nama_kota_kabupaten,
 		b.address_ktp,
 		b.limit_user,
-        d.patner_name        
+        d.partner_name        
         
         
          from users a
          left join personal_customer b on a.username = b.username
-         left join patner d on b.id_org = d.id
+         left join partner d on b.id_partner = d.id
 	     left join ms_provinsi e on b.provinsi_id = e.id_provinsi
 		 left join ms_kota_kabupaten f on b.kota_id = f.id_kota_kabupaten
         

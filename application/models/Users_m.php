@@ -56,11 +56,11 @@ class Users_m extends CI_Model
     /* FOR USER SESSION DATA */
     function get_session($username)
     {
-        $this->db->select('users.username, users.name, users.email, users.password, users.img_user, users.id_role, users.is_active, user_roles.role, worklocation.location_name, organization.organization_name');
+        $this->db->select('users.username, users.name, users.email, users.password, users.img_user, users.id_role, users.is_active, user_roles.role, worklocation.location_name, partner.partner_name');
         $this->db->from('users');
         $this->db->join('user_roles', 'user_roles.id = users.id_role', 'left');
         $this->db->join('worklocation', 'worklocation.id = users.id_loc', 'left');
-        $this->db->join('organization', 'organization.id = users.id_org', 'left');
+        $this->db->join('partner', 'partner.id = users.id_partner', 'left');
         $this->db->where('users.username', $username);
         $this->db->or_where('users.email', $username);
         $query = $this->db->get();
@@ -134,7 +134,7 @@ class Users_m extends CI_Model
 
         $query = "SELECT username, name_full, email, phone, nik, tgl_lahir, tempat_lahir, jenis_kelamin,
         mp.nama_provinsi, mkk.nama_kota_kabupaten , address_ktp, ktp_image, selfie_ktp_image, limit_user, 
-        id_loc, id_org, date(datetime_post) as datetime_post, status_register, buku_tabungan, slip_gaji,selfie
+        id_loc, id_partner, date(datetime_post) as datetime_post, status_register, buku_tabungan, slip_gaji,selfie
         FROM public.personal_customer a
         left join ms_provinsi mp ON a.provinsi_id = mp.id_provinsi 
         left join ms_kota_kabupaten mkk on a.kota_id = mkk.id_kota_kabupaten 

@@ -106,30 +106,16 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-group">
 
-                                <div class="form-group row">
-                                    <div class="col-xl-10">
-                                        <div class="card" id="captcaimg">
-                                       <span id="captcaimg">
-                                        <?=$captcha['image']?>
-                                        </span>
-                                        </div>
-                                    
-                                    </div>
-                                    <div class="col-sm-2">                                                              
-                                    <a class="btn btn-warning" onclick="getNewCaptca();"><i class="fas fa-sync"></i></a>
-                                    </div>
+                                <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
                                 </div>
-
-                               
+                                                            
 
 
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-
-                                    <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
-                                </div>
+                              
 
 
 
@@ -175,12 +161,26 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Confirm Password *" value="" id="password2" name="password2" required />
                                 </div>
+<!-- 
+                                <div class="form-group row">
+                                    <div class="col-xl-10">
+                                        <div class="card" id="captcaimg">
+                                       <span id="captcaimg">
+                                        <?=$captcha ?>
+                                        </span>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="col-sm-2">                                                              
+                                    <a class="btn btn-warning" onclick="getNewCaptca();"><i class="fas fa-sync"></i></a>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                              
                                 <input type="text" class="form-control" placeholder="captcha" value="" id="captcha" name="captcha" required />
                                
-                                </div>
+                                </div> -->
 
 
 

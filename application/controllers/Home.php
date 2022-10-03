@@ -213,7 +213,7 @@ class Home extends CI_Controller
 
         $data['title']          = "Personal Data";
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-        $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
+        // $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
 
         $username = $data['usrProfile']['username'];
@@ -224,7 +224,7 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('phone', 'phone', 'required');
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
-        $this->form_validation->set_rules('id_org', 'id_org', 'required');
+        $this->form_validation->set_rules('id_partner', 'id_partner', 'required');
         $this->form_validation->set_rules('id_loc', 'id_loc', 'required');
 
         if ($this->form_validation->run() == false) {
@@ -277,7 +277,7 @@ class Home extends CI_Controller
                         'phone'   => $this->input->post('phone'),
                         'address'       => $this->input->post('alamat'),
                         'selfie_image' => $default_name,
-                        'id_org'       => $this->input->post('id_org'),
+                        'id_partner'       => $this->input->post('id_partner'),
                         'id_loc' => $this->input->post('id_loc'),
                         'datetime_post' => date('Y-m-d H:i:s')
                     );
@@ -291,7 +291,7 @@ class Home extends CI_Controller
 
 
 
-                    $this->session->set_flashdata('message', '
+            $this->session->set_flashdata('message', '
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
@@ -615,22 +615,61 @@ class Home extends CI_Controller
 
         $datapersonal = $this->Users_m->personal_customer_check($username)->row_array();
 
-        if($datapersonal['selfie_image']==NULL && $datapersonal['ktp_image']==NULL && $datapersonal['selfie_ktp_image']==NULL && $datapersonal['buku_tabungan']==NULL && $datapersonal['slip_gaji']==NULL){
-               $this->session->set_flashdata('message', '
-               <div class="alert alert-info alert-dismissible">
-                    <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-check"></i>Info!</h5>
-                  Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu...!!!
-                </div>');
-               redirect('Home/PersonalData');
-           
-        }else{
+        if($datapersonal['ktp_image'] == null ){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+             </div>');
+            redirect('Home/PersonalData');
+         }
+         elseif($datapersonal['selfie_ktp_image'] == null){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+             </div>');
+            redirect('Home/PersonalData');
+
+         }
+         elseif($datapersonal['buku_tabungan'] == null){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+             </div>');
+            redirect('Home/PersonalData');
+
+         }
+         elseif($datapersonal['slip_gaji'] == null){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+             </div>');
+            redirect('Home/PersonalData');
+
+         }
+         elseif($datapersonal['selfie'] == null){
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-info alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Info!</h5>
+               Mohon Untuk Menlengkapi Data Profile Terlebih Dahulu  ...!!!
+             </div>');
+            redirect('Home/PersonalData');
+
+         }else{
         
                 $logData = [
                     'username' => $this->session->userdata('username'),
-                    'activities' => 'Upload slip_gaji_image',
+                    'activities' => 'Update Register Status',
                     'object'     => $username,
-                    'url'        => base_url('Home/Upload_slip_gaji'),
+                    'url'        => base_url('Home/UpdateRegisterStatus'),
                     'ipdevice'   => Get_ipdevice(),
                     'at_time'    => date('Y-m-d H:i:s')
                 ];

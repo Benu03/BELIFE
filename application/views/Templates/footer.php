@@ -566,10 +566,10 @@
         var ratebeli = $("#rateproductbeli").val();
         var rateharga = (hargabeli * ratebeli)/100;
         var hargabelife = parseInt(hargabeli)+parseInt(rateharga);
-        console.log(hargabelife);
         document.getElementById('hargaproductbelife').value = hargabelife;
+        harga_jual();
     }
-
+   
 
     function harga_jual() {      
         
@@ -922,6 +922,8 @@
 
     }
 
+
+ 
 
 
     function pododelordersup(event) {

@@ -42,6 +42,9 @@ class Auth extends CI_Controller
         $password   = $this->input->post('password');
         $user       = $this->Users_m->get_session($username);
 
+        var_dump($user);
+
+
 
         // Jika data user ada
         if ($user) {
@@ -83,7 +86,7 @@ class Auth extends CI_Controller
                             You are logged in as ' . $user['role'] . ' now.
                         </div>
                     ');
-                        redirect('Homepage');
+                        redirect('DashboardUser');
                     } elseif ($sessionData['id_role'] == '3') {
 
 
@@ -175,6 +178,7 @@ class Auth extends CI_Controller
         }
     }
 
+  
      
     public function Registration_form()
     {
@@ -188,31 +192,32 @@ class Auth extends CI_Controller
         $data['partner'] = $this->DataMaster_m->get_all_patner();
         $data['provinsi'] = $this->DataMaster_m->get_all_provinsi();
         $data['kota'] = $this->DataMaster_m->get_all_kota();
+        // $data['captcha'] = $this->Create_captcha();
 
-        $vals = [
-            // 'word' -> nantinya akan digunakan sebagai random teks yang akan keluar di captchanya
-            'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
-            'img_path'      => './assets/img/captcha/',
-            'img_url'       => base_url('assets/img/captcha/'),
-            'img_width'     => 300,
-            'img_height'    => 40,
-            'expiration'    => 7200,
-            'word_length'   => 150,
-            'font_size'     => 56,
-            'img_id'        => 'Imageid',
-            'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            'colors'        => [
-                    'background'=> [255, 255, 255],
-                    'border'    => [255, 255, 255],
-                    'text'      => [5, 5, 0],
-                    'grid'      => [255, 40, 40]
-            ]
-        ];
+        // $vals = [
+        //     // 'word' -> nantinya akan digunakan sebagai random teks yang akan keluar di captchanya
+        //     'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
+        //     'img_path'      => './assets/img/captcha/',
+        //     'img_url'       => base_url('assets/img/captcha/'),
+        //     'img_width'     => 300,
+        //     'img_height'    => 40,
+        //     'expiration'    => 7200,
+        //     'word_length'   => 150,
+        //     'font_size'     => 56,
+        //     'img_id'        => 'Imageid',
+        //     'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        //     'colors'        => [
+        //             'background'=> [255, 255, 255],
+        //             'border'    => [255, 255, 255],
+        //             'text'      => [5, 5, 0],
+        //             'grid'      => [255, 40, 40]
+        //     ]
+        // ];
         
-        $captcha = create_captcha($vals);
-        $data['captcha'] = create_captcha($vals);
+        // $captcha = create_captcha($vals);
+        // $data['captcha'] = create_captcha($vals);
 
-        $this->session->set_userdata('captcha', $captcha['word']);
+        // $this->session->set_userdata('captcha', $captcha['word']);
         $this->load->view('auth/register_v', $data);
     }
 
@@ -271,7 +276,8 @@ class Auth extends CI_Controller
                         'password'      => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                         'created_at'    => date('Y-m-d H:i:s'),
                         'id_role'       => 2,
-                        'is_active'     => '1'
+                        'is_active'     => '1',
+                        'id_partner'    => $this->input->post('partner', true)
                     );
 
 
@@ -297,7 +303,7 @@ class Auth extends CI_Controller
                         // 'selfie_ktp_image'  => $default_name_selfie_ktp,
                         'limit_user'        => 0,
                         'id_loc'            => 1,
-                        'id_org'            => $this->input->post('id_org', true),
+                        'id_partner'        => $this->input->post('partner', true),
                         'datetime_post'     => date('Y-m-d H:i:s'),
                         'status_register'   => 'not_update'
                     );
@@ -742,36 +748,36 @@ class Auth extends CI_Controller
     }
 
 
-    function Create_captcha()
-    {                                
-        $vals = [
-            // 'word' -> nantinya akan digunakan sebagai random teks yang akan keluar di captchanya
-            'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
-            'img_path'      => './assets/img/captcha/',
-            'img_url'       => base_url('assets/img/captcha/'),
-            'img_width'     => 300,
-            'img_height'    => 40,
-            'expiration'    => 7200,
-            'word_length'   => 150,
-            'font_size'     => 56,
-            'img_id'        => 'Imageid',
-            'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            'colors'        => [
-                    'background'=> [255, 255, 255],
-                    'border'    => [255, 255, 255],
-                    'text'      => [5, 5, 0],
-                    'grid'      => [255, 40, 40]
-            ]
-        ];
+    // public function Create_captcha()
+    // {                                
+    //     $vals = [
+    //         // 'word' -> nantinya akan digunakan sebagai random teks yang akan keluar di captchanya
+    //         'word'          => substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6),
+    //         'img_path'      => './assets/img/captcha/',
+    //         'img_url'       => base_url('assets/img/captcha/'),
+    //         'img_width'     => 300,
+    //         'img_height'    => 40,
+    //         'expiration'    => 7200,
+    //         'word_length'   => 150,
+    //         'font_size'     => 56,
+    //         'img_id'        => 'Imageid',
+    //         'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    //         'colors'        => [
+    //                 'background'=> [255, 255, 255],
+    //                 'border'    => [255, 255, 255],
+    //                 'text'      => [5, 5, 0],
+    //                 'grid'      => [255, 40, 40]
+    //         ]
+    //     ];
         
-        $captcha = create_captcha($vals);
-        $data['captcha'] = create_captcha($vals);
+    //     $captcha = create_captcha($vals);
+    //     $data['captcha'] = create_captcha($vals);
 
-        $this->session->set_userdata('captcha', $captcha['word']);
+    //     $this->session->set_userdata('captcha', $captcha['word']);
     
 
-        return $captcha['image'];
-     }
+    //     return $captcha['image'];
+    //  }
     // END IBNU TAMBAHAN
 
 

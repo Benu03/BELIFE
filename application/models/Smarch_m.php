@@ -42,7 +42,7 @@ class Smarch_m extends CI_Model
         b.slip_gaji,
         b.limit_user,
         b.id_loc,
-        e.patner_name,
+        e.partner_name,
         a.is_active,
         b.datetime_post
         
@@ -50,7 +50,7 @@ class Smarch_m extends CI_Model
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
-        left join patner e on b.id_org = e.id
+        left join partner e on b.id_org = e.id
           
         where a.username ='$usercontract'";
 
