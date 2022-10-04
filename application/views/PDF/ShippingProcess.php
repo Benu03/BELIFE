@@ -32,11 +32,11 @@
 </head>
 
 <body>
-  <!-- <?php
+ <?php
   $data = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
   $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
   ?>
-  <img src="<?php echo $base64; ?>" style="height:50px;"> -->
+  <img src="<?php echo $base64; ?>" style="height:50px;">
   <h2 style="text-align:center">TANDA TERIMA</h2>
   <h5 style="text-align:center">PT. BetterLife Jaya Indonesia</h5>
 
