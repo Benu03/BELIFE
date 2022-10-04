@@ -20,6 +20,8 @@ class Utilities extends CI_Controller
         $this->Shipping();
     }
 
+
+    
     public function Shipping()
     {
         $data['title']      = "Shipping Proses";
@@ -169,9 +171,6 @@ class Utilities extends CI_Controller
             'at_time'    => date('Y-m-d H:i:s')
         ];
         $this->db->insert('log_activity', $logData);
-
-
-
 
 
 
