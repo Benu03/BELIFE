@@ -21,7 +21,7 @@ class Utilities extends CI_Controller
     }
 
 
-    
+
     public function Shipping()
     {
         $data['title']      = "Shipping Proses";
@@ -74,8 +74,6 @@ class Utilities extends CI_Controller
 
 
         $this->Utilities_m->update_shipping_delivery($id, $username);
-
-
 
         $user_order = $this->Utilities_m->chekcuserorder($id);
 
