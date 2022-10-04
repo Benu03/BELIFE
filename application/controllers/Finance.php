@@ -44,6 +44,7 @@ class Finance extends CI_Controller
     {
         $kode_po_do = Decrypt_url($id);
 
+
         $podotype = $this->Finance_m->chekcpodotype($kode_po_do);
 
 
