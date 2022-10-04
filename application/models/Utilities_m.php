@@ -157,4 +157,27 @@ class Utilities_m extends CI_Model
 
         return $this->db->query($query)->row_array();
     }
+
+    function getShippingDetail($id)
+    {
+        $query = "SELECT 
+            a.kode_shipping,
+		    b.kode_order,
+            DATE(b.date_order) AS date_order,
+            c.name_full,
+            c.phone,
+            a.nama_penerima,
+		    a.kontak_penerima,
+		    a.alamat_pengiriman,
+		    a.status_pengiriman,
+            cnt.contract_no,
+            pt.partner_name
+        FROM shipping a
+		LEFT JOIN orders b ON a.kode_shipping = b.kode_shipping
+        LEFT JOIN personal_customer c ON b.user_order = c.username
+        LEFT JOIN partner pt ON c.id_partner = pt.id
+        LEFT JOIN contract cnt on a.kode_shipping = cnt.kode_shipping
+        WHERE a.kode_shipping = '$id'";
+        return $this->db->query($query)->row_array();
+    }
 }

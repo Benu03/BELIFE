@@ -267,7 +267,7 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
             'date_post'  => date('Y-m-d H:i:s')
         ];
 
-    
+
         $this->db->insert('po_do_supplier_detail', $data);
 
 
@@ -300,38 +300,39 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $this->Po_do_m->del_wating_podo_sup($id);
         $data['countoderpodo']    =   $this->Po_do_m->list_wating_podo_add_supplier($kode_po_do)->num_rows();
         $data['sumpodoadd']    =   $this->Po_do_m->sum_wating_podo_add_supplier($kode_po_do);
-         $data = [
+        $data = [
             'countoderpodo' => $data['countoderpodo'],
-            'sumpodoadd'  => $data['sumpodoadd']['price'] ];
+            'sumpodoadd'  => $data['sumpodoadd']['price']
+        ];
 
         echo json_encode($data);
     }
 
-    public function PO_supplier(){
+    public function PO_supplier()
+    {
         $data['title']          = "PO List Supplier";
         $data['polist']    =   $this->Po_do_m->get_data_polist_supplier()->result_array();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
         $this->load->view('Po_Do/PoListSupplier', $data);
-
     }
 
 
-    public function PO_supplier_d($kode_po_do){
+    public function PO_supplier_d($kode_po_do)
+    {
 
         $data['title']          = "Detail PO List Supplier";
         $data['podetailsup']    =   $this->Po_do_m->get_data_polist_supplier_d($kode_po_do)->row_array();
-       
+
 
         $data['podetailsup2']    =   $this->Po_do_m->get_data_polist_supplier_d2($kode_po_do)->result_array();
-  
+
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('employeeid'));
         $this->load->view('Po_Do/PoListSupplier_detail', $data);
-
-
     }
 
-    
-    public function PoSupDetailDone($kode_po_do){
+
+    public function PoSupDetailDone($kode_po_do)
+    {
 
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username    = $data['usrProfile']['username'];
@@ -341,7 +342,7 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $logData = [
             'username' => $this->session->userdata('username'),
             'activities' => 'Po supplier Process Done',
-            'object'     => $kode_shipping,
+            'object'     => $kode_po_do,
             'url'        => base_url('PurchaseOrder_DeliveryOrder/PoSupDetailDone'),
             'ipdevice'   => Get_ipdevice(),
             'at_time'    => date('Y-m-d H:i:s')
@@ -356,12 +357,16 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
             Purchase Order Supplier Done.
             </div> ');
         redirect('PurchaseOrder_DeliveryOrder/PO_supplier');
-
-
-
     }
-   
-    
-    
-}
 
+    public function GeneratePDFPOSup($kode_po_do)
+    {
+        $data['title']        = "Report PO List Supplier";
+        $data['dtPODODetail'] = $this->Po_do_m->get_data_polist_supplier_d2($kode_po_do)->result_array();
+
+        $this->load->library('pdf');
+        $this->pdf->setPaper('A4', 'portrait');
+        $this->pdf->filename = "Print_" . $kode_po_do . ".pdf";
+        $this->pdf->load_view('PDF/PoSupplierProcess', $data);
+    }
+}

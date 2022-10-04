@@ -119,12 +119,10 @@ class Utilities extends CI_Controller
 
     public function GeneratePDFShipping($kode_shipping)
     {
-        $data['title']    = "Report Pengiriman";
-
-        $data['detailshipping']  = $this->Utilities_m->get_all_shipping_detail($kode_shipping);
+        $data['title']                = "Report Pengiriman";
+        $data['dtShippingCust']       = $this->Utilities_m->getShippingDetail($kode_shipping);
         $data['detailshipping_item']  = $this->Utilities_m->get_all_shipping__item_detail($kode_shipping);
-        $data['totalharga']    = $this->Utilities_m->get_data_totalharga($kode_shipping)->row_array();
-
+        $data['totalharga']           = $this->Utilities_m->get_data_totalharga($kode_shipping)->row_array();
 
         $this->load->library('pdf');
         $this->pdf->setPaper('A4', 'landscape');
