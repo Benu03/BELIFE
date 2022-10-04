@@ -33,7 +33,7 @@
 
 <body>
   <?php
-  $data = file_get_contents('https://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
+  $data = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
   $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
   ?>
   <img src="<?php echo $base64; ?>" style="height:50px;">
