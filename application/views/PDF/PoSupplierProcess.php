@@ -32,17 +32,17 @@
 <?php foreach ($dtPODODetail as $dt) : ?>
 
     <body>
-        <?php
-        $data = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
+  <!--       <?php
+        $data = file_get_contents('http://34.101.236.251:88/assets/img/belife-logo-pdf.png');
         $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
-        ?>
+        ?>  -->
 
-        <!-- <h2 style="background-color:Gray;">
+      <!--   <h2 style="background-color:Gray;">
         <center> <img src="<?php echo $base64; ?>" style="height:30px;"> PT Betterlife Jaya indonesia</center>
     </h2> -->
-        <h2>
+        <!-- <h2>
             <img src="<?php echo $base64; ?>" style="height:50px;">
-        </h2>
+        </h2> -->
         <center>
             <h2>PURCHASE ORDER</h2>
         </center>

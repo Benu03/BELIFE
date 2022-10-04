@@ -177,7 +177,6 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
             'date_post'  => date('Y-m-d H:i:s')
         ];
 
-
         $this->db->insert('po_do_detail', $data);
 
 
