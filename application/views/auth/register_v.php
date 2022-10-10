@@ -21,8 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/auth_assets/css/bootstrap.min.css" />
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.js"></script>
-    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/daterangepicker/daterangepicker.css">
+
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -69,29 +68,29 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" required />
+                                    <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" autocomplete="off" required />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" required/>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  required/>
+                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" autocomplete="off" required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)"  required/>
+                                    <input type="text" class="form-control" placeholder="No Handphone *" id="nohp" name="nohp" value="<?= set_value('nohp'); ?>" onkeypress="return hanyaAngka(event)"  autocomplete="off" required/>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  required/>
+                                    <input type="text" class="form-control" placeholder="NIK KTP *" id="nik" name="nik" value="<?= set_value('nik'); ?>" onkeypress="return hanyaAngka(event)" autocomplete="off"  required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Lahir *" id="tgl_lahir" name="tgl_lahir" value="<?= set_value('tgl_lahir'); ?>"  autocomplete="off" required/>
 
                                 </div>
 
 
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>"  required/>
+                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" autocomplete="off" required/>
                                 </div>
 
                                 <div class="form-group">
@@ -228,11 +227,16 @@
 
         $(function(){
         $(".datepicker").datepicker({
-            format: 'dd/mm/yyyy',
+            language:  'id',
+            assumeNearbyYear: true,
+            format: 'dd-mm-yyyy',
             autoclose: true,
-            todayHighlight: true,
+            todayHighlight: 1,
         });
         });
+
+
+     
 
         function hanyaAngka(event) {
             var nohp = event.which ? event.which : event.keyCode;

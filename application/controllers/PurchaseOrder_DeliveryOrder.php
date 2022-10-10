@@ -368,4 +368,19 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $this->pdf->filename = "Print_" . $kode_po_do . ".pdf";
         $this->pdf->load_view('PDF/PoSupplierProcess', $data);
     }
+
+    public function PO_DO_History(){
+
+        $data['title']          = "PO & DO History";
+      
+        $data['listdata']    =   $this->Po_do_m->HistoryPODO()->result_array();
+        $this->load->view('Po_Do/PO_DO_History', $data);
+
+
+
+    }
+
+    
+    
 }
+

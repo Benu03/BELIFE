@@ -332,7 +332,7 @@ class Auth extends CI_Controller
                     <div class="alert alert-success alert-dismissible">
                         <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i>Congratulation!</h5>
-                        Anda Berhasil Registrasi, Silakan Login dan Melengkapi Data Personal.
+                        Silakan Login dan Melengkapi Data Personal.
                     </div> ');
                    
                     redirect('Auth');
@@ -587,7 +587,7 @@ class Auth extends CI_Controller
             } else {
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                ' . $email . ' User Anda Sedang Di Verikasi Admin,Mohon untuk Menunggu.!</div>');
+                ' . $email . ' Silakan login,dan Mohon untuk Melengkapain Data Personal.!</div>');
                 redirect('auth');
             }
         } else if ($type == 'forgot') {
