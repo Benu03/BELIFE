@@ -562,25 +562,6 @@
     });
 
 
-    function harga_belife() {      
-        
-        var hargabeli = $("#hargaproductbeli").val();
-        var ratebeli = $("#rateproductbeli").val();
-        var rateharga = (hargabeli * ratebeli)/100;
-        var hargabelife = parseInt(hargabeli)+parseInt(rateharga);
-        document.getElementById('hargaproductbelife').value = hargabelife;
-        harga_jual();
-    }
-   
-
-    function harga_jual() {      
-        
-        var hargabelife = $("#hargaproductbelife").val();
-        var ratebelife = $("#rateproductbelife").val();
-        var rateharga = (hargabelife * ratebelife)/100;
-        var hargajual = parseInt(hargabelife)+parseInt(rateharga);
-        document.getElementById('hargaproduct').value = hargajual;
-    }
 
 
 

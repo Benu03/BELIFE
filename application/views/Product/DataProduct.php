@@ -191,7 +191,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                        <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" required>
+                        <input type="text" class="form-control form-control-sm" id="hargaproductbeli" name="hargaproductbeli" onkeypress="return hanyaAngka(event)" autocomplete="off" required>
                         </div>
                         </div>
                         <label for="rateproductbeli" class="col-sm-2 col-form-label">Rate Beli</label>
@@ -200,7 +200,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">%</span>
                         </div>
-                            <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()" required>
+                            <input type="text" class="form-control form-control-sm" id="rateproductbeli" name="rateproductbeli" onkeypress="return hanyaAngka(event)" onkeyup="harga_belife()" data="rupiah"  autocomplete="off" required>
                         </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                            <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" required>
+                            <input type="text" class="form-control form-control-sm" id="hargaproductbelife" name="hargaproductbelife" onkeypress="return hanyaAngka(event)" autocomplete="off" required>
                         </div>
                         </div>
                         <label for="rateproductbelife" class="col-sm-2 col-form-label">Rate Belife %</label>
@@ -222,7 +222,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">%</span>
                         </div>
-                            <input type="text" class="form-control form-control-sm" id="rateproductbelife" name="rateproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" required>
+                            <input type="text" class="form-control form-control-sm" id="rateproductbelife" name="rateproductbelife" onkeypress="return hanyaAngka(event)"  onkeyup="harga_jual()" autocomplete="off" required>
                         </div>
                         </div>
                     </div>
@@ -235,7 +235,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                            <input type="text" class="form-control form-control-sm" id="hargaproduct" name="hargaproduct" onkeypress="return hanyaAngka(event)" required>
+                            <input type="text" class="form-control form-control-sm" id="hargaproduct" name="hargaproduct" onkeypress="return hanyaAngka(event)" autocomplete="off" required>
                         </div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text form-control-sm" id="basic-addon1">Rp</span>
                         </div>
-                        <input type="text" class="form-control form-control-sm" id="diskon_value" name="diskon_value" onkeypress="return hanyaAngka(event)" required>
+                        <input type="text" class="form-control form-control-sm" id="diskon_value" name="diskon_value" onkeypress="return hanyaAngka(event)" autocomplete="off" required>
                         </div>
                         </div>
                         <label for="diskon_value" class="col-sm-2 col-form-label">Date Expired</label>
@@ -346,6 +346,76 @@
     <!-- /.modal-dialog -->
 </div>
 
+
+
+<script>
+
+
+
+    var hargaproductbeli = document.getElementById("hargaproductbeli"); 
+    var hargaproductbelife = document.getElementById("hargaproductbelife");
+    var hargaproduct = document.getElementById("hargaproduct");
+    var diskon_value = document.getElementById("diskon_value");
+      
+        hargaproductbeli.addEventListener("keyup", function(e) {    
+        hargaproductbeli.value = formatRupiah(this.value);
+        });
+
+        hargaproductbelife.addEventListener("keyup", function(e) {    
+        hargaproductbelife.value = formatRupiah(this.value);
+        });
+
+        hargaproduct.addEventListener("keyup", function(e) {    
+        hargaproduct.value = formatRupiah(this.value);
+        });
+
+        diskon_value.addEventListener("keyup", function(e) {    
+        diskon_value.value = formatRupiah(this.value);
+        });
+
+       
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, "").toString(),
+            split = number_string.split(","),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        if (ribuan) {
+            separator = sisa ? "." : "";
+            rupiah += separator + ribuan.join(".");
+        }
+
+        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        return prefix == undefined ? rupiah : rupiah ? rupiah : "";
+        }
+
+
+     
+        
+
+    function harga_belife() {      
+        
+        var hargabeli = $("#hargaproductbeli").val().replaceAll('.', '');
+     
+        // console.log(hargabeli);
+        var ratebeli = $("#rateproductbeli").val();
+        var rateharga = (hargabeli * ratebeli)/100;
+        var hargabelife = parseInt(hargabeli)+parseInt(rateharga);
+        document.getElementById('hargaproductbelife').value = hargabelife;
+        harga_jual();
+    }
+   
+
+    function harga_jual() {      
+        
+        var hargabelife = $("#hargaproductbelife").val().replaceAll('.', '');
+        var ratebelife = $("#rateproductbelife").val();
+        var rateharga = (hargabelife * ratebelife)/100;
+        var hargajual = parseInt(hargabelife)+parseInt(rateharga);
+        document.getElementById('hargaproduct').value = hargajual;
+    }
+
+</script>
 
 
 <?php $this->load->view('Templates/footer'); ?>

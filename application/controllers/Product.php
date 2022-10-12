@@ -234,19 +234,21 @@ class Product extends CI_Controller
                      }  
                      else{
 
-                        $diskon_value = $this->input->post('diskon_value');
+                        $diskon_value = str_replace(".", "", $this->input->post('diskon_value'));
                         $date_expired_diskon = $this->input->post('dateexpired_diskon');
 
                      }
 
+                   
+                     
                     $datainsertproduct = array(
                         'kode_product'          => $kode_product,
                         'title_product'         => $this->input->post('title'),
                         'nama_product'          => $this->input->post('product_name'),
                         'description'           => $this->input->post('deskripsi'),
                         'id_category_product'   => $this->input->post('kategori'),
-                        'price_buy'             => $this->input->post('hargaproductbeli'),
-                        'price_sell'            => $this->input->post('hargaproduct'),
+                        'price_buy'             => str_replace(".", "", $this->input->post('hargaproductbeli')),
+                        'price_sell'            => str_replace(".", "", $this->input->post('hargaproduct')),
                         'is_diskon'             => $is_diskon,
                         // 'diskon_id'             => $diskon_id,
                         'status'                => $this->input->post('status'),
@@ -254,13 +256,14 @@ class Product extends CI_Controller
                         'image_product'         => $default_name,
                         'user_create'           => $this->session->userdata('username'),
                         'date_create'           => date('Y-m-d H:i:s'),
-                        'price_belife'          => $this->input->post('hargaproductbelife'),
+                        'price_belife'          => str_replace(".", "", $this->input->post('hargaproductbelife')),
                         'rate_beli'             => $this->input->post('rateproductbeli'),
                         'rate_belife'           => $this->input->post('rateproductbelife'),
                         'date_expired_diskon'   => $date_expired_diskon,
                         'diskon_value'          => $diskon_value
                         
                     );
+     
 
 
                     $this->db->insert('product', $datainsertproduct);
