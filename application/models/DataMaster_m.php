@@ -270,6 +270,13 @@ class DataMaster_m extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    function get_all_kota_by_id($id_provinsi)
+    {
+        $query = "SELECT * FROM ms_kota_kabupaten  where id_provinsi = '$id_provinsi' ";
+        return $this->db->query($query)->result_array();
+    }
+
+
 
     function edit_patner($id, $data)
     {

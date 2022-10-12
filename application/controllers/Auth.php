@@ -780,6 +780,23 @@ class Auth extends CI_Controller
     //  }
     // END IBNU TAMBAHAN
 
+    public function listKota(){
+        // Ambil data ID Provinsi yang dikirim via ajax post
+        $id_provinsi = $this->input->post('id_provinsi');        
+        
+        $kota = $this->DataMaster_m->get_all_kota_by_id($id_provinsi);
+
+        // Buat variabel untuk menampung tag-tag option nya
+        // Set defaultnya dengan tag option Pilih
+        $lists = "<option value=''>Pilih</option>";
+        
+        foreach($kota as $data){
+          $lists .= "<option value='".$data['id_kota_kabupaten']."'>".$data['nama_kota_kabupaten']."</option>"; // Tambahkan tag option ke variabel $lists
+        }
+        
+        $callback = array('list_kota'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        echo json_encode($callback); // konversi varibael $callback menjadi JSON
+      }
 
 
 

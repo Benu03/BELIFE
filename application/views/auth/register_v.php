@@ -121,7 +121,6 @@
                                 <div class="form-group">
                                     <select class="form-control" id="provinsi" name="provinsi">
                                         <option value="" hidden>Provinsi</option>
-
                                         <?php foreach ($provinsi as $r) :   ?>
                                             <option value="<?= $r['id_provinsi']; ?>"> <?= $r['nama_provinsi'];  ?></option>
                                         <?php endforeach;   ?>
@@ -132,10 +131,7 @@
                                 <div class="form-group">
                                     <select class="form-control" id="kota" name="kota">
                                         <option value="" hidden>Kota</option>
-
-                                        <?php foreach ($kota as $r) :   ?>
-                                            <option value="<?= $r['id_kota_kabupaten']; ?>"> <?= $r['nama_kota_kabupaten'];  ?></option>
-                                        <?php endforeach;   ?>
+                                      
                                     </select>
                                 </div>
 
@@ -267,21 +263,33 @@
     </script>
 
 
-        <script>
-
-        function getNewCaptca(){
-
-            $.ajax({
-                url:"<?= base_url('Auth/Create_captcha');?>"
-                success:function(response)
-                {
-                    $('#captcaimg').html(response);
-                }
-
-                });
-            }
-        </script>
-
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+ 
+    
+    $("#provinsi").change(function(){ // Ketika user mengganti atau memilih data provinsi
+ 
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("Auth/listKota"); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_provinsi : $("#provinsi").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+       
+          $("#kota").html(response.list_kota).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
 
 
 </body>
