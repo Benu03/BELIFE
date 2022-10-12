@@ -250,7 +250,7 @@ class Po_do_m extends CI_Model
     function ChekctypePoDO($kode_po_do)
     {
 
-        $query = "select  po_do_type from po_do where kode_po_do='$kode_po_do'";
+        $query = "select  * from po_do where kode_po_do='$kode_po_do'";
         return $this->db->query($query);
             
 

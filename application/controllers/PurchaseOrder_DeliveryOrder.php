@@ -12,6 +12,7 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Po_do_m');
+        $this->load->model('Finance_m');
     }
 
 
@@ -395,18 +396,23 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
 
     public function PO_His1_d($kode_po_do){        
 
+        $data['title']          = "PO & DO History";  
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $data['DetailData']     = $this->Finance_m->get_all_po_do_list_D1($kode_po_do);
+        $data['pododata']     = $this->Finance_m->get_podo_data($kode_po_do);
 
-      var_dump($kode_po_do."satu");
-      die();
-   
+        $this->load->view('Po_Do/PO_DO_History_1', $data);
 
     }
 
     public function PO_His2_d($kode_po_do){        
+        $data['title']          = "PO & DO History";  
 
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $data['DetailData']     = $this->Finance_m->get_all_po_do_list_D2($kode_po_do);
+        $data['pododata']     = $this->Finance_m->get_podo_data($kode_po_do);
 
-        var_dump($kode_po_do."dua");
-      die();
+        $this->load->view('Po_Do/PO_DO_History_2', $data);
    
 
     }
