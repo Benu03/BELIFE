@@ -233,24 +233,29 @@ class Po_do_m extends CI_Model
 
     function HistoryPODO()
     {
-        $query = "SELECT  distinct
-                        contract.kode_order,
-                        user_order,
-                        date(date_order) as date_order,
-                        contract.total_amount,
-                        angsuran,
-                        b.price_buy as total_harga_beli,
-                        c.fintech_name
-                        FROM contract
-                        left join (select kode_order,sum(price_buy) as price_buy  from order_detail
-                        group by kode_order) b on contract.kode_order = b.kode_order
-                        left join fintech c on contract.id_fintech = c.id
-                        WHERE 
-                        kode_shipping IN (SELECT kode_shipping  from shipping where status_pengiriman='WAITING')
-                        and contract.kode_order not in (select kode_parent from po_do_detail where is_add=1)";
+        $query = 'SELECT 
+                    a.kode_po_do,
+                    b."Description"  as type,
+                    a.po_do_type,
+                    a.total_req,
+                    a.date_request,
+                    a.status_po_do
+                    from public.po_do a
+                    left join public.po_do_type b on a.po_do_type = b.id 
+                    ';
         return $this->db->query($query)->result_array();
     }
 
+
+    function ChekctypePoDO($kode_po_do)
+    {
+
+        $query = "select  po_do_type from po_do where kode_po_do='$kode_po_do'";
+        return $this->db->query($query);
+            
+
+    }
+    
 
 
 

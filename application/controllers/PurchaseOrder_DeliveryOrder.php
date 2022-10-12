@@ -371,14 +371,49 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
 
     public function PO_DO_History(){
 
-        $data['title']          = "PO & DO History";
-      
-        $data['listdata']    =   $this->Po_do_m->HistoryPODO()->result_array();
+        $data['title']          = "PO & DO History";      
+        $data['listdata']    =   $this->Po_do_m->HistoryPODO();
         $this->load->view('Po_Do/PO_DO_History', $data);
 
+    }
 
+
+    public function PO_His_d($kode_po_do){        
+        $type   =   $this->Po_do_m->ChekctypePoDO($kode_po_do)->row_array();
+
+        if($type['po_do_type'] == 1){
+            $this->PO_His1_d($kode_po_do);
+        }
+        else{
+
+            $this->PO_His2_d($kode_po_do);
+        }    
+       
 
     }
+
+
+    public function PO_His1_d($kode_po_do){        
+
+
+      var_dump($kode_po_do."satu");
+      die();
+   
+
+    }
+
+    public function PO_His2_d($kode_po_do){        
+
+
+        var_dump($kode_po_do."dua");
+      die();
+   
+
+    }
+
+
+
+
 
     
     

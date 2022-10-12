@@ -44,24 +44,38 @@
                         </div>
                         <div class="card-body table-responsive pad">
 
-                        <table id="tbproduct" class="table table-bordered table-striped table-sm">
+                        <table id="tbhispodo" class="table table-bordered table-striped table-sm">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Kode</th>
-                                        <th>Status</th>                                       
+                                        <th>Type</th> 
+                                        <th>Amount</th> 
+                                        <th>Date Request</th> 
+                                        <th>Status</th> 
+                                        <th>Aksi</th> 
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($listdata as $ld) : ?>
                                     <tr>
                                     <td class="text-left" style="vertical-align:middle"><?= $ld['kode_po_do']; ?></td>
+                                    <td class="text-left" style="vertical-align:middle"><?= $ld['type']; ?></td>
+                                    <td class="text-left" style="vertical-align:middle">Rp. <?= number_format($ld['total_req'], 0, ',', '.'); ?></td>
+                                    <td class="text-left" style="vertical-align:middle"><?= $ld['date_request']; ?></td>
                                     <td class="text-left" style="vertical-align:middle"><?= $ld['status_po_do']; ?></td>
+                                    <td class="text-center" style="vertical-align:middle">
+
+                                    <a class="btn btn-sm bg-warning" href="javascript:void(0)" onclick="location.href='<?= base_url('PurchaseOrder_DeliveryOrder/PO_His_d'); ?>/<?= $ld['kode_po_do']; ?>' "><i class="fas fa-inbox"></i> Detail</a>
+                                
+                                
+                                    </td>
 
                                     </tr>
                                 <?php endforeach; ?>
                                 </tbody>
 
-
+                                </table>
 
 
                         </div>
@@ -69,6 +83,7 @@
 
                 </div>
 
+                
 
 
 
@@ -83,12 +98,6 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
-
-
-
-
-
-
 
 
 
