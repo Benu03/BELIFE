@@ -114,7 +114,7 @@
                         <div class="row">
                             <label for="staticEmail" class="col-sm-4 col-form-label">Nama Perusahan</label>
                             <div class="col-sm-8">
-                                <label for="staticEmail" class="col-form-label"><?= $detailUser['patner_name'] ?></label>
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['partner_name'] ?></label>
                             </div>
                         </div>
 
@@ -150,22 +150,33 @@
 
 
 
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie_image']); ?>" data-toggle="lightbox" data-title="Foto Selfie" data-gallery="gallery">
-                                    <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie_image']); ?>" class="img-fluid mb-2">
+                    <div class="card-body ">
+                        <div class="row text-center">
+                            <div class="col-sm-2 text-center">
+                                <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie']); ?>" data-toggle="lightbox" data-title="Foto Selfie" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-2 text-center">
                                 <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['ktp_image']); ?>" data-toggle="lightbox" data-title="Foto KTP" data-gallery="gallery">
                                     <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['ktp_image']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
 
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-2 text-center">
                                 <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie_ktp_image']); ?>" data-toggle="lightbox" data-title="Foto Selfie Dengan KTP" data-gallery="gallery">
                                     <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['selfie_ktp_image']); ?>" class="img-fluid mb-2">
+                                </a>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['buku_tabungan']); ?>" data-toggle="lightbox" data-title="Foto Buku Tabungan" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['buku_tabungan']); ?>" class="img-fluid mb-2">
+                                </a>
+                            </div>
+
+                            <div class="col-sm-2 text-center">
+                                <a href="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['slip_gaji']); ?>" data-toggle="lightbox" data-title="Foto Slip Gaji" data-gallery="gallery">
+                                    <img src="<?= base_url('assets/img/img-profile/' . $detailUser['username'] . '/' . $detailUser['slip_gaji']); ?>" class="img-fluid mb-2">
                                 </a>
                             </div>
 

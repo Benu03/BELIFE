@@ -67,7 +67,7 @@
                                     <?php foreach ($Patner as $c) : ?>
                                         <tr>
                                             <td width="30px"><?= $i++; ?></td>
-                                            <td><?= $c['patner_name']; ?></td>
+                                            <td><?= $c['partner_name']; ?></td>
                                             <td width="80px" class="text-center">
                                                 <?php if ($c['is_active'] == '1') : ?>
                                                     Yes
