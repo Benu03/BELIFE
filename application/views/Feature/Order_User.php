@@ -122,7 +122,7 @@
                             <div class="row ">
                                 <!-- accepted payments column -->
 
-                                <div class="col-8 ">
+                                <div class="col-md-8 ">
                                     <div class="card card-solid">
                                         <div class="card-body">
 
@@ -183,28 +183,35 @@
 
                                 </div>
 
-                                <div class="col-4 ">
+                                <div class="col-md-4 ">
                                     <div class="card card-solid">
                                         <div class="card-body">
                                             <div class="form-group row">
                                                 <label for="kode_voucher" class="col-sm-4 col-form-label">Kode Voucher</label>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-5">
 
 
-
-                                                    <input type="text" class="form-control form-control-sm" id="kode_voucher" name="kode_voucher" placeholder="Insert Voucher">
-
-
-
+                                                <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control form-control-sm" id="kode_voucher" name="kode_voucher" placeholder="Insert Voucher">
+                                                    <div class="input-group-append">
+                                                    <a href="javascript:void(0)" class="btn btn-outline-secondary" id="btnbvoucherget" name="btnbvoucherget" onclick="voucherget()">
+                                                    <i class="fa fa-search"></i>
+                                                      </a>
+                                                        <!-- <button class="btn btn-outline-secondary" type="button"></button> -->
+                                                    </div>
                                                 </div>
 
-                                                <div class="col-sm-2">
+                                                                                        <!-- <input type="text" class="form-control form-control-sm" id="kode_voucher" name="kode_voucher" placeholder="Insert Voucher"> -->
 
-                                                    <a href="javascript:void(0)" class="btn btn-sm bg-teal" id="btnbvoucherget" name="btnbvoucherget" onclick="voucherget()">
-                                                        <i class="fa fa-search"></i>
-                                                    </a>
 
+                                                    
                                                 </div>
+
+                                                <!-- <div class="col-sm-2">
+
+                                                    
+
+                                                </div> -->
 
 
 
