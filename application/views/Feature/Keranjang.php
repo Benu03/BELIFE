@@ -41,10 +41,10 @@
                             <?= $this->session->flashdata('alert');   ?>
 
                             <div class="card-body table-responsive pad">
-                                <table id="tbk1" class="table table-hover text-nowrap mb-3">
+                                <table id="tbk1" class="table table-hover text-nowrap mb-3" style="font-size: 10px;">
                                     <thead class="text-center">
                                         <tr>
-                                            <th>Gambar</th>
+                                            <!-- <th>Gambar</th> -->
                                             <th>Nama Produk</th>
                                             <th>Jumlah</th>
                                             <th>Harga</th>
@@ -55,7 +55,7 @@
                                     <tbody>
                                         <?php foreach ($datacart as $dt) : ?>
                                             <tr>
-                                                <td width="100px" class="text-center">
+                                                <!-- <td width="100px" class="text-center">
 
                                                     <img src="<?= base_url('assets/img/product/') . $dt['image_product']; ?>" class="img-thumbnail">
 
@@ -63,7 +63,7 @@
 
 
 
-                                                </td>
+                                                </td> -->
                                                 <td class="text-left" style="vertical-align:middle"><?= $dt['nama_product']; ?></td>
                                                 <td width="150px" class="text-center" style="vertical-align:middle">
 
@@ -74,19 +74,12 @@
 
 
 
-                                                    <input type="number" value="<?= $dt['qty']; ?>" min="1" max="<?= $dt['stok']; ?>" name="qtykeranjang" id="qtykeranjang<?= $dt['id']; ?>" onchange="qty_subtotal(<?= $dt['id']; ?>)" />
+                                                    <input class="form-control-sm" type="number" value="<?= $dt['qty']; ?>" min="1" max="<?= $dt['stok']; ?>" name="qtykeranjang" id="qtykeranjang<?= $dt['id']; ?>" onchange="qty_subtotal(<?= $dt['id']; ?>)" />
 
-
+                                                 
 
                                                     <input class="form-control input-sm" type="text" value="<?= $dt['price']; ?>" name="hrgbrg<?= $dt['id']; ?>" id="hrgbrg<?= $dt['id']; ?>" hidden />
-
                                                     <input class="form-control input-sm" type="text" value="<?= $dt['kode_product']; ?>" name="kodeprd<?= $dt['id']; ?>" id="kodeprd<?= $dt['id']; ?>" hidden />
-
-
-
-
-
-
 
 
 
@@ -97,10 +90,21 @@
 
                                                 <td class="text-center" style="vertical-align:middle">
 
-                                                    <a class="btn btn-sm bg-warning" href="<?= base_url('Feature/DeleteProductkeranjang'); ?>/<?= $dt['id']; ?>"><i class="fas fa-inbox"></i> Hapus</a>
+                                                    
 
-                                                    <a class="btn btn-sm bg-success" href="<?= base_url('Feature/DetailProductkeranjang'); ?>/<?= $dt['kode_product']; ?>"><i class="fas fa-barcode"></i> Lihat Detail</a>
+                                                    <div class="btn-group-vertical">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a class="dropdown-item" href="<?= base_url('Feature/DeleteProductkeranjang'); ?>/<?= $dt['id']; ?>"><i class="fas fa-inbox"></i> Hapus</a></li>
+                                                            <li> <a class="dropdown-item" href="<?= base_url('Feature/DetailProductkeranjang'); ?>/<?= $dt['kode_product']; ?>"><i class="fas fa-barcode"></i> Lihat Detail</a></li>
 
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 </td>
 
                                             </tr>

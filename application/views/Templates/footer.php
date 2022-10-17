@@ -681,7 +681,7 @@
 
 
 
-    $("input[name='qtykeranjang']").inputSpinner()
+    $("input[name='qtykeranjang']").inputSpinner({buttonsOnly: true, autoInterval: undefined})
 
     const rupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -691,6 +691,9 @@
         }).format(Math.round(number));
 
     }
+
+
+
 
 
 
