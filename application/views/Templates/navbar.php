@@ -53,6 +53,7 @@
             </li>
 
 
+<!--         
             <li class="nav-item ml-2">
                 <?php if (($this->session->userdata('id_role') == 2)) : ?>
                     <form action="<?= base_url('DashboardUser/Index'); ?>" method="post" class="form-inline">
@@ -84,7 +85,7 @@
                     </form>   
                 <?php endif; ?>
              
-            </li>
+            </li> -->
 
         </ul>
 

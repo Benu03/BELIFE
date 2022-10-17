@@ -56,10 +56,49 @@
         <section class="content">
             <!-- /.content -->
 
-          
-
             <div class="row text-center">
+                <div class="col-sm-12">
+                
+              
+                    <div class="card border-light">
+                    <div class="card-header">
+                    <div class="row">  
+                     <div class="col-6 col-sm-4 col-md-2 d-flex align-items-stretch flex-column">
+                            <form action="<?= base_url('DashboardUser/Index'); ?>" method="post" class="form-inline mr-2">
+                            <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" id="cari" name="cari" type="text" placeholder="Search" aria-label="Search" autocomplete="off">                   
+                            <span class="input-group-append">
+                            <input class="btn btn-outline-warning btn-sm" type="submit" name="submit" value="Cari">
+                            </span>
+                            </div>
+                            </form> 
+                            </div>  
+                            <div class="col-6 col-sm-4 col-md-2 d-flex align-items-stretch flex-column">
+                            <form action="<?= base_url('DashboardUser/Index'); ?>" method="post" class="form-inline">
+                            <div class="input-group input-group-sm">
+                                    <select name="kategori_dashboard" id="kategori_dashboard" class="form-control">
+                                        <option value="" hidden> Kategori</option>
+                                        <?php foreach ($kategori as $r) :   ?>
+                                            <option value="<?= $r['id']; ?>"> <?= $r['category_name'];  ?></option>
+                                        <?php endforeach;   ?>
+                                    </select>
+                                <div class="input-group-append">
+                                <input class="btn btn-outline-warning btn-sm" type="submit" name="submit2" value="Pilih">
+                                </div>
+                                </div>
+                            </form>   
+                            </div> 
+                            </div>
 
+                         </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">         
+
+            
 
                 <?php foreach ($product as $p) : ?>
 
@@ -88,6 +127,7 @@
                                
 
                             </div>
+                            
                             <div class="text-left">
 
                                 <?php if ($p['is_diskon'] == 1 && $p['date_expired_diskon'] >= date("Y-m-d")) : ?>
