@@ -320,7 +320,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    File Belum Di pilih.
+                    File KTP Belum Di pilih.
                 </div>
             ');
             redirect('Home/PersonalData');
@@ -379,7 +379,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    File Belum Di pilih.
+                    File Selfie Belum Di pilih.
                 </div>
             ');
             redirect('Home/PersonalData');
@@ -439,7 +439,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    File Belum Di pilih.
+                    File Selfie KTP Belum Di pilih.
                 </div>
             ');
             redirect('Home/PersonalData');
@@ -498,7 +498,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    File Belum Di pilih.
+                    File Buku Tabungan Belum Di pilih.
                 </div>
             ');
             redirect('Home/PersonalData');
@@ -558,7 +558,7 @@ class Home extends CI_Controller
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-exclamation-triangle"></i>Sorry!</h5>
-                    File Belum Di pilih.
+                    File Slip Gaji Belum Di pilih.
                 </div>
             ');
             redirect('Home/PersonalData');
