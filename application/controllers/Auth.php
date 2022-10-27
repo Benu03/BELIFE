@@ -38,12 +38,9 @@ class Auth extends CI_Controller
 
     private function _login()
     {
-        $username = $this->input->post('username');
+        $username = strtoupper($this->input->post('username'));
         $password   = $this->input->post('password');
         $user       = $this->Users_m->get_session($username);
-
-        var_dump($user);
-
 
 
         // Jika data user ada
@@ -239,6 +236,11 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
             'is_unique' => 'This email has already registered!'
         ]);
+
+        $this->form_validation->set_rules('nohp', 'No Handphone', 'required|trim|is_unique[personal_customer.phone]', [
+            'is_unique' => 'This Phone has already registered!'
+        ]);
+
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
             'matches' => 'Password didnt match!',
             'min_length' => 'Password to short!'

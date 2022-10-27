@@ -56,15 +56,16 @@ class Users_m extends CI_Model
     /* FOR USER SESSION DATA */
     function get_session($username)
     {
-        $this->db->select('users.username, users.name, users.email, users.password, users.img_user, users.id_role, users.is_active, user_roles.role, worklocation.location_name, partner.partner_name');
-        $this->db->from('users');
-        $this->db->join('user_roles', 'user_roles.id = users.id_role', 'left');
-        $this->db->join('worklocation', 'worklocation.id = users.id_loc', 'left');
-        $this->db->join('partner', 'partner.id = users.id_partner', 'left');
-        $this->db->where('users.username', $username);
-        $this->db->or_where('users.email', $username);
-        $query = $this->db->get();
-        return $query->row_array();
+        $query = "SELECT users.username, users.name, users.email,personal_customer.phone, users.password, users.img_user, 
+        users.id_role, users.is_active, user_roles.role,partner.partner_name
+        from users 
+        left join user_roles on user_roles.id = users.id_role
+        left join partner on partner.id = users.id_partner
+        left join personal_customer on personal_customer.username = users.username and personal_customer.email = users.email
+        where upper(users.email)  = '$username'
+        or personal_customer.phone ='$username'";     
+
+        return $this->db->query($query)->row_array(); 
     }
 
     /* FOR CHECK USER PASSWORD DATA */

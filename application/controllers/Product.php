@@ -217,7 +217,7 @@ class Product extends CI_Controller
                     $config_img['allowed_types'] = 'jpg|jpeg|png';
                     $config_img['file_name']     = $default_name;
                     $config_img['overwrite']     = TRUE;
-                    $config_img['max_size']      = 512; /* max 512kb */
+                    $config_img['max_size']      = 1024; /* max 512kb */
                     $this->upload->initialize($config_img);
                     if (($_FILES['image_product']['name'])) {
                         if ($this->upload->do_upload('image_product')) {

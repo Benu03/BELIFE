@@ -105,19 +105,8 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
 
-                                <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
-                                </div>
-                                                            
-
-
-                            </div>
-                            <div class="col-md-6">
-                              
-
-
-
+                                
                                 <div class="form-group">
                                     <select class="form-control" id="provinsi" name="provinsi">
                                         <option value="" hidden>Provinsi</option>
@@ -136,6 +125,49 @@
                                 </div>
 
                                 <div class="form-group">
+
+                                <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
+                                </div>
+                                                            
+                                                            
+
+
+                            </div>
+                            <div class="col-md-6">
+                              
+                               
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nama Ibu Kandung *" id="nama_ibu" name="nama_ibu" value="<?= set_value('nama_ibu'); ?>" autocomplete="off" required/>
+                                </div>
+
+                              
+                                <div class="form-group">
+                                    <select class="form-control select2" id="marital_status" name="marital_status" data-placeholder="Select an status" style="width: 100%;" >
+                                        <option hidden>Status Perkawinan</option>
+                                         <option value="Belum Kawin">Belum Kawin</option>
+                                         <option value="Kawin">Kawin</option>
+                                         <option value="Cerai Hidup">Cerai Hidup</option>
+                                         <option value="Cerai Mati">Cerai Mati</option>                                       
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nama Pasangan *" id="nama_pasangan" name="nama_pasangan" value="<?= set_value('nama_pasangan'); ?>" autocomplete="off" required/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="No HP Pasangan *" id="no_hp_pasangan" name="no_hp_pasangan" value="<?= set_value('no_hp_pasangan'); ?>" autocomplete="off" required/>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nama Saudara *" id="nama_saudara" name="nama_saudara" value="<?= set_value('nama_saudara'); ?>" autocomplete="off" required/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="No HP Saudara *" id="no_hp_saudara" name="no_hp_saudara" value="<?= set_value('no_hp_saudara'); ?>" autocomplete="off" required/>
+                                </div>
+
+
+                                <div class="form-group">
                                     <select class="form-control select2" id="partner" name="partner" data-placeholder="Select an partner" style="width: 100%;" >
                                         <option hidden>Nama Perusahaan</option>
                                         <?php foreach ($partner as $dt) : ?>
@@ -148,7 +180,10 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Mulai Bekerja *" id="tgl_mulai_bekerja" name="tgl_mulai_bekerja" value="<?= set_value('tgl_mulai_bekerja'); ?>"  autocomplete="off" required/>
 
+                                </div>
 
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password *" value="" id="password1" name="password1" required />

@@ -44,7 +44,7 @@
 
               <form action="<?= base_url('Auth/login'); ?>" method="post">
                 <div class="form-group first">
-                  <label for="username">Username or Email</label>
+                  <label for="username">Username or Handphone</label>
                   <input type="text" class="form-control" id="username" name="username" value="<?= set_value('username'); ?>" required />
                 </div>
                 <div class="form-group last mb-4">

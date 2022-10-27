@@ -70,10 +70,6 @@
 
 
 
-
-
-
-
                                                     <input class="form-control-sm" type="number" value="<?= $dt['qty']; ?>" min="1" max="<?= $dt['stok']; ?>" name="qtykeranjang" id="qtykeranjang<?= $dt['id']; ?>" onchange="qty_subtotal(<?= $dt['id']; ?>)" />
 
                                                  
