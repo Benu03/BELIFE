@@ -36,8 +36,8 @@
                 <div class="col-5">
 
                     <div class="card">
-                        <div class="card-header">
-                            Cari Kontrak
+                        <div class="card-header bg-info">
+                        <i class="fas fa-file-contract"></i> Cari Kontrak
                         </div>
                     <div class="card-body">
                     <div class="row">

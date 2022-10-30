@@ -232,10 +232,10 @@ class User_Manage extends CI_Controller
 
         $data = array(
             'username'          => $this->input->post('username'),
-            'limit'             => $this->input->post('limit'),
+            'limit'             => str_replace(".", "", $this->input->post('limit')),
             'status_register'   => 'approved'
         );
-
+        
 
         $this->Users_m->update_actived_user($data['username']);
         $this->User_manage_m->update_limitstatuspesonalcustomer($data);

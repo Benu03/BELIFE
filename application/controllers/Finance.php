@@ -357,7 +357,6 @@ class Finance extends CI_Controller
 
 
 
-
     public function PrintPodoListDone($id = NULL)
     {
         $kode_po_do = Decrypt_url($id);

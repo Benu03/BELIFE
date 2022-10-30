@@ -16,11 +16,21 @@ class Notification_m  extends CI_Model {
 public function getdatanotif($username)
 {
 
-        $query = "SELECT * FROM notification WHERE user_receive = '$username' and is_view=0";
+        $query = "SELECT * FROM notification WHERE user_receive='$username'
+        and date_notif >= now() - interval '6 month' and  category_notification in ('akun','info')   order by date_notif  desc";
 
     
         return $this->db->query($query)->result_array();  
+       
+}
+                
+public function getdatanotifpesanan($username)
+{
 
+        $query = "SELECT * FROM notification WHERE user_receive='$username'
+        and date_notif >= now() - interval '6 month' and  category_notification='pesanan' order by date_notif  desc";
+    
+        return $this->db->query($query)->result_array();  
        
 }
 

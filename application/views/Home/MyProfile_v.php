@@ -407,11 +407,7 @@
                         </tbody>
                     </table>
 
-        
-
-                       
-
-
+ 
 
 
                     </div>
@@ -425,7 +421,7 @@
                     <div class="card">
                     <div class="card-body">
 
-                    <table id="tbinstallmentss" class="table table-bordered table-striped">
+                          <table id="tbinstallmentss" class="table table-bordered table-striped">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Kontrak No</th>
@@ -458,11 +454,6 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-
-
-
-
-
 
 
 

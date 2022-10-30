@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 class Transaction extends CI_Controller
 {
     public function __construct()
@@ -13,6 +14,7 @@ class Transaction extends CI_Controller
         $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Feature_m');
+        $this->load->model('Finance_m');
     }
 
     public function index()
@@ -66,6 +68,7 @@ class Transaction extends CI_Controller
 
 
         $this->form_validation->set_rules('fintech', 'Fintech', 'required');
+        $this->form_validation->set_rules('cutoffdate', 'Tanggal Cut Off', 'required');
 
         if ($this->form_validation->run() == false) {
 
@@ -82,6 +85,10 @@ class Transaction extends CI_Controller
                 'user_proses'       => $this->session->userdata('username'),
                 'date_proses'       => date('Y-m-d H:i:s')
             ];
+
+            $DateCutOff = $this->input->post('cutoffdate');
+
+        
 
             $kode_shipping =  $this->Transaction_m->getkodeshipping($kode_order);
             $kode_shippingpost =  $kode_shipping['kode_shipping'];
@@ -117,12 +124,10 @@ class Transaction extends CI_Controller
 
             
 
-            $this->db->insert('contract', $datacontract);
+            // $this->db->insert('contract', $datacontract);
 
-            $duedateadjustment =  date('Y-m-25');
-
-           
-
+            // $duedateadjustment =  date('Y-m-25');        
+            $duedateadjustment =  date('Y-m-'.$DateCutOff); 
             $datainstallment = array();
             $tenor = $dataorderdetail['tenor'];
         
@@ -130,9 +135,9 @@ class Transaction extends CI_Controller
             for ($i = 1; $i <= $tenor; $i++) {
                 $datainstallment[] = array(
                     'contract_no'           => $contractno,
-                    'installment_no'        => $i,  // Ambil dan set data nama sesuai index array dari $index
-                    'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  // Ambil dan set data telepon sesuai index array dari $index
-                    'angsuran'                => $dataorderdetail['angsuran'], // Ambil dan set data alamat sesuai index array dari $index
+                    'installment_no'        => $i, 
+                    'due_date'              => date('Y-m-d', strtotime('+' . $i . ' month', strtotime($duedateadjustment))),  
+                    'angsuran'                => $dataorderdetail['angsuran'], 
 
                 );
 
@@ -267,4 +272,229 @@ class Transaction extends CI_Controller
          </div> ');
         redirect('Transaction/Kontak');
     }
+
+
+    
+    public function Billing()
+    {
+        $data['title']          = "Billing Customer";
+        $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
+        $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $data['listfileuplaod'] = $this->Finance_m->get_all_list_file_upload();
+        $data['dataunposting'] = $this->Finance_m->get_data_upload_unposting();
+        $data['checkposting'] = $this->Finance_m->checkposting()->num_rows();
+
+
+
+        $this->load->view('Transaction/Billing', $data);
+    }
+
+
+    public function BillingUpload()
+    {
+
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+
+        $checkposting = $this->Finance_m->checkposting()->num_rows();
+
+
+        if ($checkposting == 1) {
+
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Warning!</h5>
+                 File Sebelumnya Belum Terposting </div> ');
+
+            redirect('Transaction/Billing');
+        } else {
+            $this->load->library('upload');
+            $config['upload_path']   = './assets/upload/billing/';
+            $config['allowed_types'] = 'xlsx|xls';
+            $config['max_size']     = '3072';   // data tidak lebih dari 3 MB
+            $config['file_name']     = "BILL_" . time();
+            $config['overwrite']     = TRUE;
+
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('billing')) {
+
+                $error = array('error' => $this->upload->display_errors());
+
+        
+                $this->session->set_flashdata('message', '
+                <div class="alert alert-danger alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-info"></i>Danger !</h5>
+                 Your File not Required! </div> ');
+
+                redirect('Transaction/Billing');
+            } else {
+
+                $datafile = [
+                    'nama_file' => $this->upload->data('file_name'),
+                    'is_posting' => 0,
+                    'user_upload' => $this->session->userdata('username'),
+                    'date_upload'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('billing_upload', $datafile);
+
+                //  mkdir("./assets/upload/billing/" .$datafile['nama_file'], 0777, true);
+
+                $reader = ReaderEntityFactory::createXLSXReader();
+               
+                $reader->open('assets/upload/billing/' . $datafile['nama_file']);
+                $reader->setShouldFormatDates(true);
+                foreach ($reader->getSheetIterator() as $sheet) {
+                    $numRow = 1;
+
+                   
+
+                    foreach ($sheet->getRowIterator() as $row) {
+                        if ($numRow > 1) {
+
+                       
+
+
+                            $databilling = array(
+                                'nama_file'                     => $datafile['nama_file'] . '',
+                                'contract_no'                   => $row->getCellAtIndex(0),
+                                'installment_no'                => $row->getCellAtIndex(1),
+                                'amount'                        => $row->getCellAtIndex(2),
+                                'date_payment'                  => $row->getCellAtIndex(3),
+                                'bank_account'                  => $row->getCellAtIndex(4),
+                            );
+ 
+                             $this->Finance_m->importdatabilling($databilling);
+                        }
+                   
+                        $numRow++;
+                       
+                    }
+                    $reader->close();
+
+
+                  unlink('assets/upload/billing/'.$datafile['nama_file']);    //( jika file ingin langsung di delte ketika sesudah di insert ke table)
+
+                }
+
+
+
+                $logData = [
+                    'username' => $this->session->userdata('username'),
+                    'activities' => 'Upload File Billing',
+                    'url'        => base_url('Transaction/Billing'),
+                    'object'     =>  $config['file_name'],
+                    'ipdevice'   => Get_ipdevice(),
+                    'at_time'    => date('Y-m-d H:i:s')
+                ];
+                $this->db->insert('log_activity', $logData);
+
+
+                $this->session->set_flashdata('message', '
+            <div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h5><i class="icon fas fa-check"></i>Success!</h5>
+                 Data Success Upload! </div> ');
+
+                redirect('Transaction/Billing');
+            }
+        }
+    }
+
+
+
+
+
+    public function ResetBillingUpload()
+    {
+
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+
+        $checkposting = $this->Finance_m->checkposting()->row_array();
+
+        $namafile = $checkposting['nama_file'];
+
+        $this->Finance_m->cleasingdata_dataupload($namafile);
+        $this->Finance_m->cleasingdata_dataupload_list($namafile);
+
+
+        unlink('assets/upload/billing/' . $namafile);    // hapus file 
+
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Reset File Billing',
+            'url'        => base_url('Transaction/ResetBillingUpload'),
+            'object'     =>  $namafile,
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+
+        $this->session->set_flashdata('message', '
+           <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i>Success!</h5>
+                Data Success Di Reset! </div> ');
+
+        redirect('Transaction/Billing');
+    }
+
+
+    public function PostingBillingUpload()
+    {
+
+
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+
+        $checkposting = $this->Finance_m->checkposting()->row_array();
+
+        $namafile = $checkposting['nama_file'];
+        $this->Finance_m->update_dataInstallment($namafile);
+
+        $dataupdate1 = [
+            'is_posting' => 1,
+            'user_posting' => $this->session->userdata('username'),
+            'date_posting' => date('Y-m-d H:i:s')
+
+        ];
+        $this->Finance_m->update_dataupload($namafile, $dataupdate1);
+
+
+
+        unlink('assets/upload/billing/' . $namafile);    // hapus file 
+
+        $logData = [
+            'username' => $this->session->userdata('username'),
+            'activities' => 'Upload File Billing',
+            'url'        => base_url('Transaction/ResetBillingUpload'),
+            'object'     =>  $namafile,
+            'ipdevice'   => Get_ipdevice(),
+            'at_time'    => date('Y-m-d H:i:s')
+        ];
+        $this->db->insert('log_activity', $logData);
+
+        $this->session->set_flashdata('message', '
+           <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i>Success!</h5>
+                Data Success Di Posting! </div> ');
+        redirect('Transaction/Billing');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

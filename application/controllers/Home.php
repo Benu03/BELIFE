@@ -29,8 +29,13 @@ class Home extends CI_Controller
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $data['contract_data']     = $this->Users_m->get_user_contract($this->session->userdata('username'));
-
-        $contract_no = $data['contract_data']['contract_no'];
+        
+        if(isset($data['contract_data'])){
+            $contract_no = $data['contract_data']['contract_no'];
+        }else {
+            $contract_no ='20222022';
+            $data['contract_data']  = ['status_contract' => 'NO CONTRACT'];
+        }
         $data['contract'] = $this->Smarch_m->checkcontract($contract_no)->row_array();
         $data['personaldata'] = $this->Smarch_m->personaldata($this->session->userdata('username'))->row_array();
         $data['installment_data'] = $this->Smarch_m->installmentdata($contract_no)->result_array();

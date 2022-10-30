@@ -44,7 +44,7 @@
 
                                         <div class="card card-primary">
                                             <div class="card-header">
-                                                <h3 class="card-title">Data Order</h3>
+                                                <h3 class="card-title"><i class="fas fa-cart-arrow-down"></i> Data Order</h3>
 
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -110,7 +110,7 @@
                                         <div class="card card-warning">
 
                                             <div class="card-header">
-                                                <h3 class="card-title">Detail Data Order</h3>
+                                                <h3 class="card-title"><i class="fas fa-calendar-day"></i> Detail Data Order</h3>
 
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -199,6 +199,20 @@
 
 
                                                         </div>
+
+                                                        <div class="form-group row">
+                                                            <label for="cutoffdate" class="col-sm-4 col-form-label">Tanggal Cut Off</label>
+                                                            <div class="col-sm-2">
+                                                            <select class="form-control text-center" id="cutoffdate" name="cutoffdate">
+                                                                 <?php for ($i = 1; $i <= 28; $i++) :   ?>
+                                                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                                                      
+                                                                        <?php endfor;   ?>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+
+
                                                         <div class="form-group row">
                                                             <label for="inputPassword3" class="col-sm-4 col-form-label">Note Order</label>
                                                             <div class="col-sm-8">
