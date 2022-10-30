@@ -41,13 +41,30 @@ class Users_m extends CI_Model
 
     function get_user_profile($username)
     {
-        $this->db->select('*, user_roles.role');
-        $this->db->from('users');
-        $this->db->join('user_roles', 'user_roles.id = users.id_role', 'left');
-        $this->db->where('username', $username);
-        $query = $this->db->get();
-        return $query->row_array();
+          
+        $query = "SELECT *,user_roles.role,personal_customer.phone,personal_customer.limit_user  from users 
+        left join user_roles  on users.id_role  = user_roles.id
+        left join personal_customer on personal_customer.username = users.username and personal_customer.email = users.email
+        where users.username = '$username'";     
+
+        return $this->db->query($query)->row_array(); 
+    
+
+
     }
+
+    function get_user_contract($username)
+    {
+          
+        $query = "select * from contract
+        where user_order ='$username' and status_contract ='GOLIVE'";     
+
+        return $this->db->query($query)->row_array();     
+
+    }
+
+
+    
 
 
 

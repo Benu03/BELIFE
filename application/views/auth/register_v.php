@@ -68,10 +68,10 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" autocomplete="off" required />
+                                    <input type="text" class="form-control" placeholder="Nama Lengkap *" id="name" name="name" value="<?= set_value('name'); ?>" autocomplete="off"  onkeydown="upperCaseF(this)" required />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="Email *" id="email" name="email" value="<?= set_value('email'); ?>" autocomplete="off" onkeydown="upperCaseF(this)" required/>
                                 </div>
 
                                 <div class="form-group">
@@ -90,18 +90,18 @@
 
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="Tempat Lahir *" id="tempat_lahir" name="tempat_lahir" value="<?= set_value('tempat_lahir'); ?>" autocomplete="off" onkeydown="upperCaseF(this)" required/>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="maxl">
                                         <label class="radio inline">
-                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="laki-laki" checked>
-                                            <span>Laki-Laki </span>
+                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin1" value="LAKI-LAKI" checked>
+                                            <span>LAKI-LAKI</span>
                                         </label>
                                         <label class="radio inline">
-                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="perempuan">
-                                            <span>Perempuan</span>
+                                            <input type="radio" name="jenis_kelamin" id="jenis_kelamin2" value="PEREMPUAN">
+                                            <span>PEREMPUAN</span>
                                         </label>
                                     </div>
                                 </div>
@@ -126,18 +126,17 @@
 
                                 <div class="form-group">
 
-                                <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *"><?= set_value('alamat'); ?></textarea>
+                                <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" normalizer_normalize="alamat" rows="3" value="<?= set_value('alamat'); ?>" placeholder="Alamat Lengkap *" onkeydown="upperCaseF(this)"><?= set_value('alamat');  ?></textarea>
                                 </div>
                                                             
-                                                            
-
+                                                        
 
                             </div>
                             <div class="col-md-6">
                               
                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Ibu Kandung *" id="nama_ibu" name="nama_ibu" value="<?= set_value('nama_ibu'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="Nama Ibu Kandung *" id="nama_ibu" name="nama_ibu" value="<?= set_value('nama_ibu'); ?>" autocomplete="off" onkeydown="upperCaseF(this)" required/>
                                 </div>
 
                               
@@ -153,17 +152,17 @@
 
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Pasangan *" id="nama_pasangan" name="nama_pasangan" value="<?= set_value('nama_pasangan'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="Nama Pasangan *" id="nama_pasangan" name="nama_pasangan" value="<?= set_value('nama_pasangan'); ?>" autocomplete="off" onkeydown="upperCaseF(this)" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No HP Pasangan *" id="no_hp_pasangan" name="no_hp_pasangan" value="<?= set_value('no_hp_pasangan'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="No HP Pasangan *" id="no_hp_pasangan" name="no_hp_pasangan" value="<?= set_value('no_hp_pasangan'); ?>" autocomplete="off" onkeypress="return hanyaAngka(event)"  />
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nama Saudara *" id="nama_saudara" name="nama_saudara" value="<?= set_value('nama_saudara'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="Nama Saudara *" id="nama_saudara" name="nama_saudara" value="<?= set_value('nama_saudara'); ?>" autocomplete="off" onkeydown="upperCaseF(this)" required/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="No HP Saudara *" id="no_hp_saudara" name="no_hp_saudara" value="<?= set_value('no_hp_saudara'); ?>" autocomplete="off" required/>
+                                    <input type="text" class="form-control" placeholder="No HP Saudara *" id="no_hp_saudara" name="no_hp_saudara" value="<?= set_value('no_hp_saudara'); ?>" autocomplete="off" onkeypress="return hanyaAngka(event)"  required/>
                                 </div>
 
 
@@ -181,7 +180,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control datepicker" placeholder="Tangal Mulai Bekerja *" id="tgl_mulai_bekerja" name="tgl_mulai_bekerja" value="<?= set_value('tgl_mulai_bekerja'); ?>"  autocomplete="off" required/>
+                                    <input type="text" class="form-control datepicker" placeholder="Tangal Mulai Bekerja *" id="tgl_mulai_bekerja" name="tgl_mulai_bekerja" value="<?= set_value('tgl_mulai_bekerja'); ?>"   autocomplete="off" required/>
 
                                 </div>
 
@@ -264,10 +263,29 @@
             autoclose: true,
             todayHighlight: 1,
         });
+
+
+        $('#marital_status').change(function () {
+        if ($('#marital_status option:selected').text() == "Kawin"){
+            $('#nama_pasangan').show();
+            $('#no_hp_pasangan').show();
+        } else {
+            $('#nama_pasangan').hide();
+            $('#no_hp_pasangan').hide();
+        } }); 
+
         });
 
 
-     
+        function upperCaseF(a){
+            setTimeout(function(){
+                a.value = a.value.toUpperCase();
+            }, 1);
+        }
+
+ 
+
+       
 
         function hanyaAngka(event) {
             var nohp = event.which ? event.which : event.keyCode;

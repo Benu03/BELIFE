@@ -241,6 +241,16 @@ class Auth extends CI_Controller
             'is_unique' => 'This Phone has already registered!'
         ]);
 
+        $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
+
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+
+        $this->form_validation->set_rules('nama_ibu', 'Nama Ibu', 'required|trim');
+
+        $this->form_validation->set_rules('nama_saudara', 'Nama Saudara', 'required|trim');
+
+        $this->form_validation->set_rules('no_hp_saudara', 'No HP Saudara', 'required|trim');
+
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]', [
             'matches' => 'Password didnt match!',
             'min_length' => 'Password to short!'
@@ -267,13 +277,12 @@ class Auth extends CI_Controller
        
 
             $userNameRandom = $this->input->post('name', true);
-            $userNameRandom2 = strtoupper(substr($userNameRandom, 0, 4)) . date('Hs');
-
+            $userNameRandom2 = str_replace(' ','',strtoupper(substr($userNameRandom, 0, 4)) . date('Hs'));
 
                     $dataregister = array(
-                        'name'          => htmlspecialchars($this->input->post('name', true)),
+                        'name'          => htmlspecialchars(strtoupper($this->input->post('name', true))),
                         'username'      => $userNameRandom2,
-                        'email'         => htmlspecialchars($this->input->post('email', true)),
+                        'email'         => htmlspecialchars(strtoupper($this->input->post('email', true))),
                         'img_user'      => 'default_img_user.png',
                         'password'      => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                         'created_at'    => date('Y-m-d H:i:s'),
@@ -282,27 +291,36 @@ class Auth extends CI_Controller
                         'id_partner'    => $this->input->post('partner', true)
                     );
 
-
+      
 
                     $originalDate = $this->input->post('tgl_lahir', true);
                     $tgl_lahir =  str_replace('/', '-', $originalDate);
+                    $originalDateMulaikerja = $this->input->post('tgl_mulai_bekerja', true);
+                    $tgl_mulai_kerja =  str_replace('/', '-', $originalDateMulaikerja);
 
                     $datapersonal = array(
 
                         'username'          => $userNameRandom2,
-                        'name_full'         => $this->input->post('name', true),
-                        'email'             => $this->input->post('email', true),
+                        'name_full'         => strtoupper($this->input->post('name', true)),
+                        'email'             => strtoupper($this->input->post('email', true)),
                         'phone'             => $this->input->post('nohp', true),
                         'nik'               => $this->input->post('nik', true),
                         'tgl_lahir'         => date('Y-m-d', strtotime($tgl_lahir)),
-                        'tempat_lahir'      => $this->input->post('tempat_lahir', true),
-                        'jenis_kelamin'     => $this->input->post('jenis_kelamin', true),
+                        'tempat_lahir'      => strtoupper($this->input->post('tempat_lahir', true)),
+                        'jenis_kelamin'     => strtoupper($this->input->post('jenis_kelamin', true)),
                         'provinsi_id'       => $this->input->post('provinsi', true),
                         'kota_id'           => $this->input->post('kota', true),
-                        'address_ktp'       => $this->input->post('alamat', true),
+                        'address_ktp'       => strtoupper($this->input->post('alamat', true)),
                         // 'selfie_image'      => $default_name_selfie,
                         // 'ktp_image'         => $default_name_ktp,
                         // 'selfie_ktp_image'  => $default_name_selfie_ktp,
+                        'nama_ibu'          => strtoupper($this->input->post('nama_ibu', true)),
+                        'marital_status'    => strtoupper($this->input->post('marital_status', true)),
+                        'nama_pasangan'     => strtoupper($this->input->post('nama_pasangan', true)),
+                        'phone_pasangan'    => $this->input->post('no_hp_pasangan', true),
+                        'nama_saudara'      => strtoupper($this->input->post('nama_saudara', true)), 
+                        'phone_saudara'     => $this->input->post('no_hp_saudara', true), 
+                        'tgl_mulai_bekerja' => date('Y-m-d', strtotime($tgl_mulai_kerja)),                                 
                         'limit_user'        => 0,
                         'id_loc'            => 1,
                         'id_partner'        => $this->input->post('partner', true),
@@ -310,6 +328,7 @@ class Auth extends CI_Controller
                         'status_register'   => 'not_update'
                     );
 
+         
 
                     $this->Users_m->insert($dataregister);
                     $this->Users_m->insert_datapersonal($datapersonal);

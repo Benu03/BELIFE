@@ -12,6 +12,7 @@ class Home extends CI_Controller
         $this->load->model('Users_m');
         $this->load->model('DataMaster_m');
         $this->load->model('Product_m');
+        $this->load->model('Smarch_m');
     }
 
     public function index()
@@ -27,6 +28,13 @@ class Home extends CI_Controller
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $data['contract_data']     = $this->Users_m->get_user_contract($this->session->userdata('username'));
+
+        $contract_no = $data['contract_data']['contract_no'];
+        $data['contract'] = $this->Smarch_m->checkcontract($contract_no)->row_array();
+        $data['personaldata'] = $this->Smarch_m->personaldata($this->session->userdata('username'))->row_array();
+        $data['installment_data'] = $this->Smarch_m->installmentdata($contract_no)->result_array();
+        $data['history_contract'] = $this->Smarch_m->history_contract($this->session->userdata('username'))->result_array();
        
 
         $username  = $data['usrProfile']['username'];
