@@ -21,21 +21,10 @@ class Notification extends CI_Controller
         $username           = $data['usrProfile']['username'];
         $data['notif'] = $this->Notification_m->getdatanotif($username);
         $data['notifpesanan'] = $this->Notification_m->getdatanotifpesanan($username);
-        // var_dump($data['notif'] );
-        // die();
-        $datacheck = $this->Notification_m->checknotif($username);
-
-
+      
 
         $this->load->view('Notification/list_data', $data);
 
-        // if ($datacheck >= 1) {
-
-        //     $this->load->view('Notification/list_data', $data);
-        // } else {
-
-        //     redirect('DashboardUser');
-        // }
     }
 
 
