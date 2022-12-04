@@ -33,7 +33,7 @@
 
     <body>
         <?php
-        $data = file_get_contents('http://34.101.236.251:88/assets/img/belife-logo-pdf.png');
+        $data = file_get_contents(base_url('/assets/img/belife-logo-pdf.png'));
         $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
         ?> 
 

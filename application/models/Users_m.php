@@ -150,12 +150,19 @@ class Users_m extends CI_Model
     function personal_customer_get($username)
     {
 
-        $query = "SELECT username, name_full, email, phone, nik, tgl_lahir, tempat_lahir, jenis_kelamin,
+        $query = "SELECT a.username, name_full, email, phone, nik, tgl_lahir, tempat_lahir, jenis_kelamin,
         mp.nama_provinsi, mkk.nama_kota_kabupaten , address_ktp, ktp_image, selfie_ktp_image, limit_user, 
-        id_loc, id_partner, date(datetime_post) as datetime_post, status_register, buku_tabungan, slip_gaji,selfie
+        id_loc, id_partner, date(datetime_post) as datetime_post, status_register, buku_tabungan, slip_gaji,selfie,nama_ibu,
+        marital_status,nama_pasangan,phone_pasangan,nama_saudara,phone_saudara,tgl_mulai_bekerja,pp.partner_name
         FROM public.personal_customer a
         left join ms_provinsi mp ON a.provinsi_id = mp.id_provinsi 
         left join ms_kota_kabupaten mkk on a.kota_id = mkk.id_kota_kabupaten 
+        left join (select 
+                    s.username,
+                    p.partner_name  
+                    from users s
+                    left join partner p on s.id_partner = p.id 
+                    where id_role =2) pp on a.username = pp.username
         where a.username ='$username' ";
         return $this->db->query($query); 
 

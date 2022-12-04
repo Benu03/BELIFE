@@ -38,49 +38,80 @@
                                 <div class="card-body">
                             
                                             <div class="form-group row">
-                                                <label for="username" class="col-sm-5 col-form-label">UserName</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control form-control-sm" id="username" name="username" value="<?= $usrProfile['username']; ?>" disabled>
-                                              </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="name" class="col-sm-5 col-form-label">Name Lengkap</label>
-                                                <div class="col-sm-7">
+                                                <label for="name" class="col-sm-3 col-form-label">Name Lengkap</label>
+                                                <div class="col-sm-4">
                                                     <input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Insert Title" value="<?= $usrProfile['name']; ?>" disabled>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="email" class="col-sm-5 col-form-label">Email</label>
-                                                <div class="col-sm-7">
+                                                <label for="username" class="col-sm-3 col-form-label">UserName</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="username" name="username" value="<?= $usrProfile['username']; ?>" disabled>
+                                              </div>
+                                             
+                                            </div>
+                                           
+
+                                            <div class="form-group row">
+                                            <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                                <div class="col-sm-4">
                                                     <input type="text" class="form-control form-control-sm" id="email" name="email" value="<?= $usrProfile['email']; ?>" disabled>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="nik" class="col-sm-5 col-form-label">NIK</label>
-                                                <div class="col-sm-7">
+                                                <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                                <div class="col-sm-3">
                                                     <input type="text" class="form-control form-control-sm" id="nik" name="nik"  value="<?= $personaluser['nik']; ?>" disabled>
                                                 </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <label for="phone" class="col-sm-5 col-form-label">No Handphone</label>
-                                                <div class="col-sm-7">
+                                                <label for="phone" class="col-sm-3 col-form-label">No Handphone</label>
+                                                <div class="col-sm-3">
                                                     <input type="text" class="form-control form-control-sm" id="phone" name="phone" value="<?= $personaluser['phone']; ?>" disabled>
                                                 </div>
                                             </div>
 
 
                                             <div class="form-group row">
-                                                <label for="dateregister" class="col-sm-5 col-form-label">Tanggal Register</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['datetime_post']; ?>" disabled>
-                                                </div>
+                                               
                                             </div>
 
-                                           
+
+                                            <div class="form-group row">
+                                            <label for="tgl_lhr" class="col-sm-3 col-form-label">Tanggal lahir</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control form-control-sm" id="tgl_lhr" name="tgl_lhr"  value="<?= $personaluser['tgl_lahir']; ?>" disabled>
+                                            </div>
+                                            <label for="tmpt_lhr" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control form-control-sm" id="tmpt_lhr" name="tmpt_lhr" placeholder="Insert Title" value="<?= $personaluser['tempat_lahir']; ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                     
+                                    <div class="form-group row">
+                                        <label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control form-control-sm" id="provinsi" name="provinsi" placeholder="Insert Title" value="<?= $personaluser['nama_provinsi']; ?>" disabled>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="form-group row">
+                                    <label for="kota" class="col-sm-3 col-form-label">Kota/Kabupaten</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control form-control-sm" id="kota" name="kota" placeholder="Insert Title" value="<?= $personaluser['nama_kota_kabupaten']; ?>" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Tanggal Register</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['datetime_post']; ?>" disabled>
+                                                </div>
+                                     </div>
+
+                                
 
                                   
 
@@ -94,45 +125,72 @@
                                 <div class="card-body">                                      
                                   
                                     <div class="form-group row">
-                                        <label for="tgl_lhr" class="col-sm-5 col-form-label">Tanggal lahir</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control form-control-sm" id="tgl_lhr" name="tgl_lhr"  value="<?= $personaluser['tgl_lahir']; ?>" disabled>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label for="tmpt_lhr" class="col-sm-5 col-form-label">Tempat Lahir</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control form-control-sm" id="tmpt_lhr" name="tmpt_lhr" placeholder="Insert Title" value="<?= $personaluser['tempat_lahir']; ?>" disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="provinsi" class="col-sm-5 col-form-label">Provinsi</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control form-control-sm" id="provinsi" name="provinsi" placeholder="Insert Title" value="<?= $personaluser['nama_provinsi']; ?>" disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="kota" class="col-sm-5 col-form-label">Kota/Kabupaten</label>
-                                        <div class="col-sm-7">
-                                            <input type="text" class="form-control form-control-sm" id="kota" name="kota" placeholder="Insert Title" value="<?= $personaluser['nama_kota_kabupaten']; ?>" disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-5 col-form-label">Alamat KTP</label>
-                                        <div class="col-sm-7">
+                                        <label for="alamat" class="col-sm-3 col-form-label">Alamat KTP</label>
+                                        <div class="col-sm-5">
                                             <textarea class=" col-lg-12 form-control " style="overflow:auto;resize:none" id="alamat" name="alamat" rows="3" value="<?= set_value('alamat'); ?>" disabled><?= $personaluser['address_ktp']; ?></textarea>
                                         </div>
+                                      </div>
+
+
+                                      <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Nama Ibu</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['nama_ibu']; ?>" disabled>
                                                 </div>
+                                     </div>
+                                     <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Marital Status</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['marital_status']; ?>" disabled>
+                                                </div>
+                                     </div>
 
-                                            </div>
+                                     <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Nama Pasangan</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['nama_pasangan']; ?>" disabled>
+                                                </div>
+                                                <label for="dateregister" class="col-sm-3 col-form-label">NO HP Pasangan</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['phone_pasangan']; ?>" disabled>
+                                                </div>
+                                     </div>
 
-                                    </div>
+                                     <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Nama Saudara</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['nama_saudara']; ?>" disabled>
+                                                </div>
+                                                <label for="dateregister" class="col-sm-3 col-form-label">NO HP Saudara</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['phone_saudara']; ?>" disabled>
+                                                </div>
+                                     </div>
 
+                                     <div class="form-group row">
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Tempat Bekerja</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['partner_name']; ?>" disabled>
+                                                </div>
+                                               
+                                     </div>
+
+                                     <div class="form-group row">
+    
+                                                <label for="dateregister" class="col-sm-3 col-form-label">Tanggal Mulai Bekerja</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control form-control-sm" id="dateregister" name="dateregister"  value="<?= $personaluser['tgl_mulai_bekerja']; ?>" disabled>
+                                                </div>
+                                     </div>
+
+
+
+
+
+
+
+
+                                </div>
                                 </div>
 
                         </div>

@@ -23,7 +23,7 @@ footer {
 <body>
 
 <?php 
-$data = file_get_contents('http://localhost:8090/belife-apps/assets/img/belife-logo-1.png');
+$data = file_get_contents('http://localhost:8090/assets/img/belife-logo-1.png');
 $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
 ?>
 

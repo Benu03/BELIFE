@@ -2,7 +2,9 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
 
+
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 
 class User_Manage extends CI_Controller
 {
@@ -174,7 +176,7 @@ class User_Manage extends CI_Controller
         $data['title']      = "Detail Personal Customer";
         $data['datadetailregister'] = $this->User_manage_m->get_all_detaildataregister($id);
 
-
+// 
 
         $this->load->view('User_Manage/ViewDetailCustomer_v', $data);
     }
@@ -186,8 +188,6 @@ class User_Manage extends CI_Controller
 
         $data['title']      = "Detail Personal Customer";
         $data['datadetailregister'] = $this->User_manage_m->get_all_detaildataregister_generate($id);
-
-
 
 
         $this->load->library('pdf');
@@ -202,7 +202,9 @@ class User_Manage extends CI_Controller
 
         $data['title']      = "Detail Personal Customer";
         $data['datadetailregister'] = $this->User_manage_m->get_all_detailuser_generate($id);
-
+  
+       
+ 
 
 
         $this->load->library('pdf');
@@ -475,4 +477,21 @@ class User_Manage extends CI_Controller
             }
         }
     }
+
+    public function ImageDownload($id = NULL)
+    {
+        $id = Decrypt_url($id);
+        $this->load->library('zip');
+        $DataCustomer = $this->User_manage_m->get_all_detaildataregister($id);
+        $path ="assets/img/img-profile/".$DataCustomer['username'];
+
+        $this->zip->read_file($path."/".$DataCustomer['selfie']);
+        $this->zip->read_file($path."/".$DataCustomer['ktp_image']);
+        $this->zip->read_file($path."/".$DataCustomer['selfie_ktp_image']);
+        $this->zip->read_file($path."/".$DataCustomer['buku_tabungan']);
+        $this->zip->read_file($path."/".$DataCustomer['slip_gaji']);
+     
+        $this->zip->download($DataCustomer['username'].'_'.time().'.zip');
+    }
+    
 }

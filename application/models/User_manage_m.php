@@ -108,7 +108,7 @@ class User_manage_m extends CI_Model
         a.email,
         b.phone,
         b.nik,
-        date(b.tgl_lahir) as tgl_lahir,
+        to_char(b.tgl_lahir,'DD-MONTH-YYYY') as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,

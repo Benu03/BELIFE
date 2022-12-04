@@ -123,7 +123,14 @@
             <div class="col-sm-6">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-image"></i> Image Data</h3>
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                         <h3 class="card-title"><i class="fas fa-image"></i> Image Data</h3>
+                         </div>
+                         <div class="col-sm-6 text-right">
+                        <a class="btn btn-md bg-warning" href="<?= base_url('User_Manage/ImageDownload/' . Encrypt_url($datadetailregister['id'])); ?>"><i class="fas fa-download"></i> Download</a> 
+                        </div>
+                        </div>  
                     </div>
 
                     <div class="card-body">
@@ -176,7 +183,7 @@
 
             </div>
                 <div class="col-sm-6">
-                <div class="card card-warning">
+                <div class="card card-secondary">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-clipboard-list"></i> Verifikasi Customer</h3>
                     </div>

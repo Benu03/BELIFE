@@ -44,7 +44,7 @@
 
               <form action="<?= base_url('Auth/login'); ?>" method="post">
                 <div class="form-group first">
-                  <label for="username">Username or Handphone</label>
+                  <label for="username">Email or Contact Number</label>
                   <input type="text" class="form-control" id="username" name="username" value="<?= set_value('username'); ?>" required />
                 </div>
                 <div class="form-group last mb-4">
@@ -59,7 +59,7 @@
                     <span class="caption">Show Password</span>
                     <input type="checkbox" onclick="showpassword()" />
                     <div class="control__indicator"></div>
-
+ 
 
                   </label>
                   <span class="ml-auto"><a href="javascript:void(0)" onclick="location.href='<?= base_url('Auth/Forgot_Password'); ?>'" class="forgot-pass">Forgot Password</a></span>
