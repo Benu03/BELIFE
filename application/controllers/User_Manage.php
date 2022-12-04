@@ -46,9 +46,6 @@ class User_Manage extends CI_Controller
         $data['title']      = "Detail User";
 
         $data['detailUser'] = $this->User_manage_m->get_all_detailuser($id);
-
-
-
         $this->load->view('User_Manage/ViewDetailUser_v', $data);
     }
 

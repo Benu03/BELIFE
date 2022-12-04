@@ -108,7 +108,7 @@
                        </tr>
                        <tr>
                        <td><b>Status Pernikahan</b></td>
-                       <td><?= $datadetailregister['tgl_mulai_bekerja']; ?></td> 
+                       <td><?= $datadetailregister['marital_status']; ?></td> 
                        </tr>
                        <tr>
                        <td><b>Nama Pasangan</b></td>
@@ -133,6 +133,10 @@
                        <tr>
                        <td><b>Tanggal Mulai Bekerja</b></td>
                        <td><?= $datadetailregister['tgl_mulai_bekerja']; ?></td> 
+                       </tr>  
+                       <tr>
+                       <td><b>Limit</b></td>
+                       <td>Rp. <?= number_format($datadetailregister['limit_user'], 0, ',', '.'); ?></td> 
                        </tr>      
                        </tbody>
                       </table>

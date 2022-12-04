@@ -31,11 +31,11 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-md-6"">
+                <div class="col-md-6">
                                                    
                             <div class=" card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Personal Data</h3>
+                    <h3 class="card-title"> <i class="fas fa-user-alt"></i> Personal Data  </h3>
                     </div>
                     <div class="card-body">
 
@@ -112,11 +112,63 @@
                         </div>
 
                         <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Nama Ibu</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['nama_ibu'] ?></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Status Pernikahan</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['marital_status'] ?></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Nama Pasangan</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['nama_pasangan'] ?></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Kontak Pasangan</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['phone_pasangan'] ?></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Nama Saudara</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['nama_saudara'] ?></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Kontak Saudara</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['phone_saudara'] ?></label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
                             <label for="staticEmail" class="col-sm-4 col-form-label">Nama Perusahan</label>
                             <div class="col-sm-8">
                                 <label for="staticEmail" class="col-form-label"><?= $detailUser['partner_name'] ?></label>
                             </div>
                         </div>
+                        <div class="row">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Tanggal Mulai Bekerja</label>
+                            <div class="col-sm-8">
+                                <label for="staticEmail" class="col-form-label"><?= $detailUser['tgl_mulai_bekerja'] ?></label>
+                            </div>
+                        </div>
+
+
 
 
                         <div class="row">
@@ -145,7 +197,7 @@
             <div class="col-md-6">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">Image Data</h3>
+                        <h3 class="card-title"><i class="fas fa-images"></i> Image Data</h3>
                     </div>
 
 
@@ -186,7 +238,7 @@
 
                     <div class="card-footer text-right">
 
-                        <a class="btn btn-md bg-info mr-2" href="<?= base_url('User_Manage/GeneratePdfviewdetail/' . Encrypt_url($detailUser['username'])); ?>" target="_blank"><i class="fas fa-file-pdf"></i> Generate PDF</a>
+                        <a class="btn btn-md bg-info mr-2" href="<?= base_url('User_Manage/GeneratePdfRegister/' . Encrypt_url($detailUser['username'])); ?>" target="_blank"><i class="fas fa-file-pdf"></i> Generate PDF</a>
 
 
 

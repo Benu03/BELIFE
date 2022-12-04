@@ -66,12 +66,19 @@ class User_manage_m extends CI_Model
         a.email,
         b.phone,
         b.nik,
-        date(b.tgl_lahir) as tgl_lahir,
+        to_char(b.tgl_lahir,'DD-MONTH-YYYY') as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
+        b.nama_ibu,
+        b.marital_status,
+        b.nama_pasangan,
+        b.phone_pasangan,
+        b.nama_saudara,
+        b.phone_saudara,
+        to_char(b.tgl_mulai_bekerja,'DD-MONTH-YYYY') as tgl_mulai_bekerja,
         b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
@@ -83,7 +90,7 @@ class User_manage_m extends CI_Model
         a.is_active,
         b.datetime_post
         
-         from users a
+        from users a
         left join personal_customer b on a.username = b.username 
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
@@ -120,7 +127,7 @@ class User_manage_m extends CI_Model
         b.phone_pasangan,
         b.nama_saudara,
         b.phone_saudara,
-        b.tgl_mulai_bekerja,
+        to_char(b.tgl_mulai_bekerja,'DD-MONTH-YYYY') as tgl_mulai_bekerja,
         b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
@@ -153,12 +160,19 @@ class User_manage_m extends CI_Model
         a.email,
         b.phone,
         b.nik,
-        date(b.tgl_lahir) as tgl_lahir,
+        to_char(b.tgl_lahir,'DD-MONTH-YYYY') as tgl_lahir,
         b.tempat_lahir,
         b.jenis_kelamin,
         c.nama_provinsi,
         d.nama_kota_kabupaten,
         b.address_ktp,
+        b.nama_ibu,
+        b.marital_status,
+        b.nama_pasangan,
+        b.phone_pasangan,
+        b.nama_saudara,
+        b.phone_saudara,
+        to_char(b.tgl_mulai_bekerja,'DD-MONTH-YYYY') as tgl_mulai_bekerja,
         b.selfie,
         b.ktp_image,
         b.selfie_ktp_image,
@@ -175,7 +189,7 @@ class User_manage_m extends CI_Model
         left join ms_provinsi c on b.provinsi_id = c.id_provinsi
         left join ms_kota_kabupaten d on b.kota_id = d.id_kota_kabupaten
         left join partner e on b.id_partner = e.id
-         where a.id_role=2 and  a.username ='$id'   ";
+         where a.id_role= 2 and a.username ='$id'   ";
         return $this->db->query($query)->row_array();
     }
 
