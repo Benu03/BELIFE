@@ -20,9 +20,9 @@ class Notification extends CI_Controller
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
         $data['notif'] = $this->Notification_m->getdatanotif($username);
+
         $data['notifpesanan'] = $this->Notification_m->getdatanotifpesanan($username);
       
-
         $this->load->view('Notification/list_data', $data);
 
     }
@@ -31,8 +31,16 @@ class Notification extends CI_Controller
 
     public function isview_notif()
     {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username           = $data['usrProfile']['username'];
         $id =  $this->input->post('id');
-        $this->Notification_m->updateisview($id);
+    
+        $Datanotification_view = [
+            'username'  =>  $username,
+            'id_notif'     =>  $id
+         ];
+
+        $this->db->insert('notification_view', $Datanotification_view);
 
 
         redirect('Notification/listdata');
@@ -41,7 +49,10 @@ class Notification extends CI_Controller
 
     public function isview_notif2($id)
     {
+        $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
+        $username           = $data['usrProfile']['username'];
         $id =  $this->input->post('id');
+
         $this->Notification_m->updateisview($id);
 
         redirect('Notification/listdata');

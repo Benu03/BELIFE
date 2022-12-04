@@ -79,7 +79,7 @@ class Utilities extends CI_Controller
 
         $Datanotification = [
             "user_receive"  => $user_order['user_order'],
-            'massage'     =>  'Pesanan Anda Sedang Proses Delivery  dengan Kode Shipping ' . $id,
+            'message'     =>  'Pesanan Anda Sedang Proses Delivery  dengan Kode Shipping ' . $id,
             'is_view' => 0,
             'date_notif'  => date('Y-m-d H:i:s')
 
@@ -149,7 +149,7 @@ class Utilities extends CI_Controller
 
         $Datanotification = [
             "user_receive"  =>  $user_order['user_order'],
-            'massage'     =>  'Pesanan Anda Sedang di kirim dengan No resi ' . $no_resi,
+            'message'     =>  'Pesanan Anda Sedang di kirim dengan No resi ' . $no_resi,
             'is_view' => 0,
             'date_notif'  => date('Y-m-d H:i:s')
 

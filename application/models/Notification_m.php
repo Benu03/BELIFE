@@ -16,21 +16,55 @@ class Notification_m  extends CI_Model {
 public function getdatanotif($username)
 {
 
-        $query = "SELECT * FROM notification WHERE user_receive='ADE0914'
-        and date_notif >= now() - interval '6 month' and  category_notification ='akun'
-        union all 
-        SELECT * FROM notification WHERE  date_notif >= now() - interval '6 month' and  category_notification ='info'
-        order by date_notif , is_view desc";
+        $query = "
+        select * from (
+        select  
+                a.id,
+                a.user_receive,
+                a.message,
+                a.date_notif,
+                a.tag_notification,
+                a.category_notification,
+                b.id as id_view
+                           from notification  a
+                left join notification_view  b on a.id = b.id_notif         
+                where a.user_receive='IBNU0847'  and a.date_notif >= now() - interval '3 month'
+                and  a.category_notification ='pemberitahuan' 
+         union all 
+          select  
+                a.id,
+                a.user_receive,
+                a.message,
+                a.date_notif,
+                a.tag_notification,
+                a.category_notification,
+                b.id as id_view       
+                from notification  a
+                left join notification_view  b on a.id = b.id_notif         
+                where  a.date_notif >= now() - interval '3 month'
+                and  a.category_notification ='general' ) t order by date_notif  desc ";
 
-    
         return $this->db->query($query)->result_array();  
        
 }
                 
 public function getdatanotifpesanan($username){
 
-        $query = "SELECT * FROM notification WHERE user_receive='$username'
-        and date_notif >= now() - interval '6 month' and  category_notification='pesanan' order by date_notif  desc";
+        $query = "select  
+        a.id,
+        a.user_receive,
+        a.message,
+        a.date_notif,
+        a.tag_notification,
+        a.category_notification,
+        b.id as id_view
+        
+        
+        from notification  a
+        left join notification_view  b on a.id = b.id_notif 
+        
+        where a.user_receive='$username' and a.date_notif >= now() - interval '3 month'
+        and  a.category_notification ='pesanan' order by a.date_notif  desc";
     
         return $this->db->query($query)->result_array();  
        
@@ -60,6 +94,9 @@ function checknotif($username)
     return $this->db->query($query)->num_rows();  
 
 }
+
+
+
 
 
 

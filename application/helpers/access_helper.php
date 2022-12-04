@@ -71,7 +71,9 @@ function Count_notification($username)
 
     $ci = get_instance();
 
-    $query = "select  * from notification where user_receive='$username' and is_view= 0 ";
+    $query = "select  * from notification where user_receive='$username' and id not in (
+        select id_notif  from public.notification_view 
+        where username ='$username')";
     $result =   $ci->db->query($query)->num_rows();
     return $result;
 }

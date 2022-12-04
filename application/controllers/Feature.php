@@ -348,7 +348,7 @@ class Feature extends CI_Controller
 
         $Datanotification = [
             "user_receive"  => $username,
-            'massage'     =>  'Pesanan Anda Sedang Proses Verifikasi Admin Dengan Kode Order ' . $this->input->post('kode_order'),
+            'message'     =>  'Pesanan Anda Sedang Proses Verifikasi Admin Dengan Kode Order ' . $this->input->post('kode_order'),
             'is_view' => 0,
             'date_notif'  => date('Y-m-d H:i:s')
 

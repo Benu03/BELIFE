@@ -57,16 +57,14 @@
 
                                 <li class="list-group-item col-sm-6">
                                 <a data-target="#message<?php echo $p['id']; ?>" data-toggle="modal" 
-                                class="<?php if (($p['is_view'] == 0)){   echo "list-group-item list-group-item-action text-dark bg-info";
+                                class="<?php if (($p['id_view'] == null)){   echo "list-group-item list-group-item-action text-dark bg-gradient-warning";
                                     } else { echo "list-group-item list-group-item-action text-dark bg-light"; }?>"
                                 href="<?= base_url('Notification/isview_notif2'); ?>/<?= $p['id']; ?>"> 
-                                <?php if (($p['is_view'] == 0)){   echo '<i class="fas fa-envelope mr-2"></i>';
+                                <?php if (($p['id_view'] == null)){   echo '<i class="fas fa-envelope mr-2"></i>';
                                     } else { echo '<i class="fas fa-envelope-open-text mr-2"></i>'; }?>                                
                                 <?= $p['tag_notification']; ?>
                                 <b class="float-right"><?= $p['date_notif']; ?></b> </a> 
                                 </li>
-
-
 
 
                                 <?php endforeach; ?>
@@ -88,10 +86,10 @@
 
                                 <li class="list-group-item col-sm-6">
                                 <a data-target="#messagepesanan<?php echo $np['id']; ?>" data-toggle="modal" 
-                                class="<?php if (($np['is_view'] == 0)){   echo "list-group-item list-group-item-action text-dark bg-info";
+                                class="<?php if (($np['id_view'] == null)){   echo "list-group-item list-group-item-action text-dark bg-gradient-warning";
                                     } else { echo "list-group-item list-group-item-action text-dark bg-light"; }?>"
                                 href="<?= base_url('Notification/isview_notif2'); ?>/<?= $np['id']; ?>"> 
-                                <?php if (($np['is_view'] == 0)){   echo '<i class="fas fa-envelope mr-2"></i>';
+                                <?php if (($np['id_view'] == null)){   echo '<i class="fas fa-envelope mr-2"></i>';
                                     } else { echo '<i class="fas fa-envelope-open-text mr-2"></i>'; }?>                                
                                 <?= $np['tag_notification']; ?>
                                 <b class="float-right"><?= $np['date_notif']; ?></b> </a> 
@@ -148,7 +146,7 @@
                         </div>
                         <div class="form-group d-flex justify-content-md-center align-items-center">
                             <label for="value" class="col-sm-3 col-form-label">Pesan</label>
-                            <label for="value" class="col-sm-8 col-form-label"><?= $p['massage']; ?></label>
+                            <label for="value" class="col-sm-8 col-form-label"><?= $p['message']; ?></label>
                         </div>
                         <input type="hidden" class="form-control" id="id" name="id" value="<?= $p['id']; ?>">
                     </div>
@@ -184,7 +182,7 @@
                     </div>
                     <div class="form-group d-flex justify-content-md-center align-items-center">
                         <label for="value" class="col-sm-3 col-form-label">Pesan</label>
-                        <label for="value" class="col-sm-8 col-form-label"><?= $np['massage']; ?></label>
+                        <label for="value" class="col-sm-8 col-form-label"><?= $np['message']; ?></label>
                     </div>
                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $np['id']; ?>">
                 </div>
