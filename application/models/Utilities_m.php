@@ -134,9 +134,9 @@ class Utilities_m extends CI_Model
         return $this->db->query($query);
     }
 
-    function update_shipping_delivery_done($kode_shipping, $username, $no_resi)
+    function update_shipping_delivery_done($kode_shipping, $username, $no_resi, $attribut)
     {
-        $query = "update shipping set status_pengiriman ='DONE' ,user_pengiriman='$username' ,no_resi='$no_resi',date_pengiriman=now() where kode_shipping='$kode_shipping'";
+        $query = "update shipping set status_pengiriman ='DONE' ,user_pengiriman='$username' ,no_resi='$no_resi',attribut='$attribut',date_pengiriman=now() where kode_shipping='$kode_shipping'";
 
         return $this->db->query($query);
     }
