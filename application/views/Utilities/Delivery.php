@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"><?= $title; ?></h1>
+                    <h1 class="m-0"><?= $title; ?> <i class="fas fa-truck"></i></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -147,7 +147,7 @@
             <div class="modal-content">
                 <form action="<?= base_url('Utilities/DeliveryDone'); ?>" method="POST">
                     <div class="modal-header">
-                        <h4 class="modal-title">Masukan No Resi</h4>
+                        <h4 class="modal-title">Masukan No Resi <i class="fas fa-barcode"></i> </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -155,8 +155,14 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="no_resi">No Resi</label>
-                            <input type="text" class="form-control form-control-sm" id="no_resi" name="no_resi" placeholder="Enter No Resi" required>
                             <input type="hidden" class="form-control" id="kode_shipping" name="kode_shipping" value="<?= $s['kode_shipping']; ?>">
+                            <input type="text" class="form-control form-control-sm" id="no_resi" name="no_resi" placeholder="Enter No Resi" required>                          
+                        </div>
+
+                        <div class="form-group">
+                            <label for="no_resi">Note Atribut</label>
+                          
+                            <textarea class="form-control form-control-sm" style="font-size: 12px" id="attribut" name="attribut" normalizer_normalize="attribut" rows="4"  ></textarea>
                         </div>
 
                     </div>

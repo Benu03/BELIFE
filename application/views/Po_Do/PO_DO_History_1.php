@@ -1,4 +1,4 @@
-<?php $this->load->view('Templates/header'); ?>
+ <?php $this->load->view('Templates/header'); ?>
 <?php $this->load->view('Templates/navbar'); ?>
 <?php $this->load->view('Templates/sidebar'); ?>
 

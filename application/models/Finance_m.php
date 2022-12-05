@@ -50,14 +50,29 @@ class Finance_m  extends CI_Model
                         b.*,
                         a.user_request,
                         date(a.date_request)  as  date_request
-                        
-        
-        from po_do  a 
-        left join po_do_type  b on a.po_do_type =b.id
-        where a.status_po_do ='REQ'";
+                        from po_do  a 
+                        left join po_do_type  b on a.po_do_type =b.id
+                        where a.status_po_do ='REQ'";
 
 
                 return $this->db->query($query)->result_array();
+        }
+
+        public function count_po_do_req()
+        {
+
+                $query = "SELECT 
+                        a.kode_po_do,
+                        a.total_req,
+                        a.count_detail,
+                        b.*,
+                        a.user_request,
+                        date(a.date_request)  as  date_request
+                        from po_do  a 
+                        left join po_do_type  b on a.po_do_type =b.id
+                        where a.status_po_do ='REQ'";
+
+                return $this->db->query($query);
         }
 
 

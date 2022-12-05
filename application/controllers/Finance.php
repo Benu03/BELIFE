@@ -29,12 +29,8 @@ class Finance extends CI_Controller
         $data['dtOrganization'] = $this->DataMaster_m->get_all_organization();
         $data['dtWorklocation'] = $this->DataMaster_m->get_all_worklocation();
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-
-
         $data['listreq'] = $this->Finance_m->get_all_po_do_list_req();
-
         $data['listapv'] = $this->Finance_m->get_all_po_do_list_apv();
-
 
         $this->load->view('Finance/PoDoList', $data);
     }

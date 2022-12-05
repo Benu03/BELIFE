@@ -33,8 +33,15 @@
 
 <body>
  <?php
-  $data = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
-  $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
+  // $data = file_get_contents('http://' . $_SERVER["HTTP_HOST"] . '/assets/img/belife-logo-pdf.png');
+  // $base64 = 'data:image/'  . ';base64,' . base64_encode($data);
+
+
+  $path = "/application/BELIFE/assets/img/belife-logo-pdf.png";
+  $type = pathinfo($path, PATHINFO_EXTENSION);
+  $data = file_get_contents($path);
+  $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
   ?>
   <img src="<?php echo $base64; ?>" style="height:50px;">
   <h2 style="text-align:center">TANDA TERIMA</h2>

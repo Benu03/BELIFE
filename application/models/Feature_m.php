@@ -32,6 +32,12 @@ class Feature_m extends CI_Model
         return $this->db->query($query);
     }
 
+    function Checkorder($kodeord,$username)
+    {
+        $query = "select * from orders  where kode_order='$kodeord' and user_order='$username' ";
+        return $this->db->query($query);
+    }
+
 
 
     function get_data_totalharga($username)
@@ -51,9 +57,6 @@ class Feature_m extends CI_Model
 
     function getkodeorder()
     {
-
-
-
 
         $q = $this->db->query("select MAX(RIGHT(kode_order,4)) as kode_order  from orders
         where date(date_order) = date(now()) ");

@@ -41,17 +41,11 @@ class Transaction extends CI_Controller
 
         $data['title']      = "Detail Data Orders";
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-
         $username           = $data['usrProfile']['username'];
         $data['Dataorders']  = $this->Transaction_m->get_all_detail_orders($id);
-
         $data['Dataorders_item']  = $this->Transaction_m->get_all_detail_order_item($id);
-
-
         $data['totalharga']    = $this->Transaction_m->get_data_totalharga($id)->row_array();
-
         $data['fintech'] = $this->DataMaster_m->get_all_fintect();
-
 
         $this->load->view('Transaction/DetailDataOrders', $data);
     }
@@ -63,22 +57,14 @@ class Transaction extends CI_Controller
         $username               = $data['usrProfile']['username'];
         $kode_order             = $this->input->post('kode_order');
 
-
-
-
-
         $this->form_validation->set_rules('fintech', 'Fintech', 'required');
         $this->form_validation->set_rules('cutoffdate', 'Tanggal Cut Off', 'required');
 
         if ($this->form_validation->run() == false) {
-
             $this->DetailOrder($kode_order);
         } else {
 
-
-
             $dataupdate = [
-
                 'status_order'  => 'APPROVE',
                 'note_order'     => $this->input->post('noteorder'),
                 'id_fintech'       => $this->input->post('fintech'),
@@ -87,18 +73,12 @@ class Transaction extends CI_Controller
             ];
 
             $DateCutOff = $this->input->post('cutoffdate');
-
-        
-
             $kode_shipping =  $this->Transaction_m->getkodeshipping($kode_order);
             $kode_shippingpost =  $kode_shipping['kode_shipping'];
             $this->Transaction_m->updateapproval($kode_order, $dataupdate);
             $this->Transaction_m->updateshipping($kode_shippingpost);
-
             $contractno = $this->Transaction_m->getcontrackno();
             $dataorderdetail = $this->Transaction_m->getdataorderdetail($kode_order);
-
-
 
             $datacontract = [
                 'contract_no'           => $contractno,
@@ -124,13 +104,12 @@ class Transaction extends CI_Controller
 
             
 
-            // $this->db->insert('contract', $datacontract);
+            $this->db->insert('contract', $datacontract);
 
             // $duedateadjustment =  date('Y-m-25');        
             $duedateadjustment =  date('Y-m-'.$DateCutOff); 
             $datainstallment = array();
-            $tenor = $dataorderdetail['tenor'];
-        
+            $tenor = $dataorderdetail['tenor'];        
 
             for ($i = 1; $i <= $tenor; $i++) {
                 $datainstallment[] = array(
@@ -140,14 +119,10 @@ class Transaction extends CI_Controller
                     'angsuran'                => $dataorderdetail['angsuran'], 
 
                 );
-
-             
+            
             }
 
-
-
            $this->db->insert_batch('installment_customer', $datainstallment);
-
             $logData = [
                 'username' => $this->session->userdata('username'),
                 'activities' => 'Approve Order',

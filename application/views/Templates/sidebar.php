@@ -86,6 +86,14 @@
                                                     <?php elseif ($sm['id'] == '32') : ?>
                                                         <span class="badge badge-pill badge-info right">
                                                             <?= count_kontak(); ?></span>
+c
+                                                    <?php elseif ($sm['id'] == '39') : ?>
+                                                        <span class="badge badge-pill badge-info right">
+                                                        <?= count_shipping_waiting(); ?></span>
+
+                                                    <?php elseif ($sm['id'] == '43') : ?>
+                                                        <span class="badge badge-pill badge-info right">
+                                                        <?= count_apv_req(); ?></span>
 
                                                     <?php elseif ($sm['id'] == '11') : ?>
                                                         <span class="badge badge-pill badge-info right">

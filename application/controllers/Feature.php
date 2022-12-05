@@ -163,14 +163,7 @@ class Feature extends CI_Controller
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
         $username           = $data['usrProfile']['username'];
         $datacheckcontract  = $this->Feature_m->check_contract($username)->row_array();
-
         $datacheckvalidasi  = $this->Feature_m->check_order_validasi($username)->row_array();
-
-
-
-
-        //  tamahan pada saat pengajuan di proses admin , tidak bisa mengajukan pesana jg 
-
 
 
         if ($datacheckcontract['countdata'] > 0  && $datacheckvalidasi['countdata'] > 0) {
@@ -248,18 +241,25 @@ class Feature extends CI_Controller
     {
 
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
-
-
         $username           = $data['usrProfile']['username'];
-
-
         $kodeshipping = $this->Feature_m->getkodeshipping();
-
-
         $kode_voucher = $this->input->post('kode_voucher');
         $data['biayaadmin']    = $this->Feature_m->get_data_biayaadmin()->row_array();
 
 
+        $checkOrder = $this->Feature_m->Checkorder($kodeord = $this->input->post('kode_order'),$username)->num_rows();
+
+       if($checkOrder == 1){
+
+        $this->session->set_flashdata('alert', '<div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close text-sm-left" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-info"></i> Info !!!</h5>
+                        Orderan Anda Sebelumnya Sedang Di Proses Admin..!
+                    </div> ');
+
+            redirect('Feature/Keranjang');
+
+       }
 
         $DataOrder = [
             'kode_order'  => $this->input->post('kode_order'),
@@ -272,19 +272,11 @@ class Feature extends CI_Controller
             'kode_shipping' =>  $kodeshipping,
             'kode_voucher'   =>  $kode_voucher,
             'admin_cost'   => $data['biayaadmin']['value']
-
         ];
-
-
-
 
         $this->db->insert('orders', $DataOrder);
 
-
         $DataKeranjang   = $this->Feature_m->get_data_keranjang($username)->result_array();
-
-
-
 
         $result = array();
         foreach ($DataKeranjang as $dt) {
@@ -300,9 +292,6 @@ class Feature extends CI_Controller
             );
         }
 
-
-
-
         $dataupdate = array();
         foreach ($DataKeranjang as $ee) {
             $dataupdate[] = array(
@@ -314,7 +303,6 @@ class Feature extends CI_Controller
         }
 
         $Datashipping = [
-
             'kode_shipping' =>  $kodeshipping,
             'nama_penerima'  =>  $this->input->post('nama_penerima'),
             'kontak_penerima'  =>  $this->input->post('kontak_penerima'),
@@ -323,17 +311,11 @@ class Feature extends CI_Controller
             'user_post' => $username,
             'date_post'  => date('Y-m-d H:i:s')
         ];
-
-
-
         $this->db->insert_batch('order_detail', $result);
-
         $this->db->insert('shipping', $Datashipping);
-
         $this->db->update_batch('product', $dataupdate, 'kode_product');
         $this->Feature_m->UpdateKeranjang($username);
         $this->Feature_m->UpdateVoucher($kode_voucher, $username);
-
 
         $DataHistoryOrder = [
             "kode_order"  => $this->input->post('kode_order'),
@@ -350,7 +332,9 @@ class Feature extends CI_Controller
             "user_receive"  => $username,
             'message'     =>  'Pesanan Anda Sedang Proses Verifikasi Admin Dengan Kode Order ' . $this->input->post('kode_order'),
             'is_view' => 0,
-            'date_notif'  => date('Y-m-d H:i:s')
+            'date_notif'  => date('Y-m-d H:i:s'),
+            'tag_notification'  => 'Proses Verifikasi Order '.$this->input->post('kode_order'),
+            'category_notification' => 'pesanan'
 
         ];
 
@@ -394,8 +378,6 @@ class Feature extends CI_Controller
         $data['usrProfile']     = $this->Users_m->get_user_profile($this->session->userdata('username'));
 
         $username           = $data['usrProfile']['username'];
-
-
 
         $this->load->view('Feature/DetailHistoyTransaksi', $data);
     }

@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-12">
 
-                    <div class="card card-success card-outline">
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item mr-2" role="presentation">

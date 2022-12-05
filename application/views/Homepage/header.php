@@ -92,10 +92,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li><a href="<?= base_url('Feature/Keranjang'); ?>" class="dropdown-item"> <span class="fas fa-shopping-cart"></span> Keranjang (<?= count_item($this->session->userdata('username')); ?>)</a></li>
                     <li><a href="<?= base_url('Auth/Logout'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Log Out</a></li>
                   <?php elseif ($this->session->userdata('id_role') == '3') : ?>
-                    <li><a href="<?= base_url('DashboardAdmin_belife'); ?>" class="dropdown-item"> <span class="fas fa-user-friends"></span> Dasboard</a></li>
+                    <li><a href="<?= base_url('DashboardAdmin_belife'); ?>" class="dropdown-item"> <span class="fas fa-chalkboard-teacher"></span> Dasboard</a></li>
+                    <li><a href="<?= base_url('Auth/Logout'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Log Out</a></li>
+                  <?php elseif ($this->session->userdata('id_role') == '4') : ?>
+                    <li><a href="<?= base_url('DashboardAdmin_Product'); ?>" class="dropdown-item"> <span class="fas fa-chalkboard-teacher"></span> Dasboard</a></li>
                     <li><a href="<?= base_url('Auth/Logout'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Log Out</a></li>
                   <?php elseif ($this->session->userdata('id_role') == '5') : ?>
-                    <li><a href="<?= base_url('DashboardAdmin_Product'); ?>" class="dropdown-item"> <span class="fas fa-user-friends"></span> Dasboard</a></li>
+                    <li><a href="<?= base_url('DashboardBOD'); ?>" class="dropdown-item"> <span class="fas fa-chalkboard-teacher"></span> Dasboard</a></li>
+                    <li><a href="<?= base_url('Auth/Logout'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Log Out</a></li>
+                  <?php elseif ($this->session->userdata('id_role') == '6') : ?>
+                    <li><a href="<?= base_url('DashboardFinance'); ?>" class="dropdown-item"> <span class="fas fa-chalkboard-teacher"></span> Dasboard</a></li>
                     <li><a href="<?= base_url('Auth/Logout'); ?>" class="dropdown-item"><span class="fas fa-sign-out-alt"></span> Log Out</a></li>
                   <?php else : ?>
 

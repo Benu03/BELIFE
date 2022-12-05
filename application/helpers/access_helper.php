@@ -112,6 +112,27 @@ function count_kontak()
     return $result;
 }
 
+function amount_golive()
+{
+
+    $ci = get_instance();
+
+    $query = "select SUM(total_amount::INTEGER) from contract
+    where status_contract ='GOLIVE' and To_char(date_post, 'YYYY-MM') = to_char(now(), 'YYYY-MM')";
+    $result =   $ci->db->query($query)->row_array();
+    return $result;
+}
+
+function count_golive()
+{
+
+    $ci = get_instance();
+    $query = "select *  from contract
+    where status_contract ='GOLIVE' and To_char(date_post, 'YYYY-MM') = to_char(now(), 'YYYY-MM')";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
+}
+
 
 function count_validasiregister()
 {
@@ -134,6 +155,28 @@ function count_shipping()
     return $result;
 }
 
+
+function count_po_do_req()
+{
+
+    $ci = get_instance();
+
+    $query = "select * FROM po_do where status_po_do = 'REQ' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
+}
+
+
+function count_po_do_apv()
+{
+
+    $ci = get_instance();
+    $query = "select * FROM po_do where status_po_do = 'APV' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
+}
+
+
 function count_shipping_waiting()
 {
 
@@ -150,6 +193,16 @@ function count_delivery()
     $ci = get_instance();
 
     $query = "select * FROM shipping where status_pengiriman = 'DELIVERY' ";
+    $result =   $ci->db->query($query)->num_rows();
+    return $result;
+}
+
+function count_apv_req()
+{
+
+    $ci = get_instance();
+
+    $query = "select * FROM po_do where status_po_do ='REQ APV' ";
     $result =   $ci->db->query($query)->num_rows();
     return $result;
 }

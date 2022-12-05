@@ -42,12 +42,30 @@
                   <!-- small box -->
                   <div class="small-box bg-success">
                     <div class="inner">
-                      <h3><?= count_validasiregister(); ?></h3>
+                      <h3><?= count_po_do_req(); ?></h3>
 
-                      <p>Customer Register</p>
+                      <p>PO DO Request</p>
                     </div>
                     <div class="icon">
-                      <i class="ion ion-person-add"></i>
+                      <i class="ion ion-clipboard"></i>
+                    </div>
+                    <a href="javascript:void(0)" onclick="location.href=''" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                <!-- ./col -->
+
+                  <!-- Small boxes (Stat box) -->
+           
+                <div class="col-lg-3 col-6">
+                  <!-- small box -->
+                  <div class="small-box bg-info">
+                    <div class="inner">
+                      <h3><?= count_po_do_apv(); ?></h3>
+
+                      <p>PO DO Approve</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-document-text"></i>
                     </div>
                     <a href="javascript:void(0)" onclick="location.href=''" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                   </div>

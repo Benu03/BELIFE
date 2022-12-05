@@ -28,7 +28,6 @@ class PurchaseOrder_DeliveryOrder extends CI_Controller
         $data['kode_podo']    =    $this->Po_do_m->kode_podo_seq();
         $kode_po_do =  $data['kode_podo'];
         $data['listadd']    =   $this->Po_do_m->list_wating_podo_add($kode_po_do)->result_array();
-
         $data['countoderpodo']    =   $this->Po_do_m->list_wating_podo_add($kode_po_do)->num_rows();
         $data['sumpodoadd']    =   $this->Po_do_m->sum_wating_podo_add($kode_po_do);
 
