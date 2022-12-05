@@ -57,7 +57,7 @@
                   <!-- small box -->
                   <div class="small-box bg-info">
                     <div class="inner">
-                      <h3><?= count_golive(); ?></h3>
+                      <h4><?= count_golive(); ?></h4>
 
                       <p>Golive Account</p>
                     </div>
@@ -74,7 +74,7 @@
                   <!-- small box -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                      <h3><?= count_orderprocess(); ?></h3>
+                      <h4><?= count_orderprocess(); ?></h4>
 
                       <p>Order Process</p>
                     </div>
